@@ -1,14 +1,16 @@
 
-import React from 'react'
+import React, { useState } from 'react'
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Dashhead from '../../../Dashhead';
 import Header from '../../Header';
 import '../dashboard.scss'
 import { Autocomplete, Button, TextField } from '@mui/material';
+import { DatePicker, LocalizationProvider } from '@mui/lab';
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 function Addemployee() {
     const [display,setDisplay]=React.useState(false)
-
+    const [selectedDate,setSelectedDate]=useState()
     const department =[
       {name:'GENETIC'},
       {name:"MICROBIOLOGY"},
@@ -21,7 +23,13 @@ function Addemployee() {
          
       
     ]
+    const gender =[
+      {name:'Male'},
+      {name:"Fmale"},
+      {name:"Other"},
 
+      
+    ]
     return (
         <div className="row">
             <div className="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
@@ -53,13 +61,24 @@ function Addemployee() {
               <TextField
                 id="outlined-basic"
                 sx={{ width: 400 }}
-                label="Company Name"
+                label="First Name"
+                placeholder="First Name"
+                required
                 type="number"
                 variant="outlined"
               />
             </div>          
               <div className="col-6">
-              <Autocomplete
+              <TextField
+                id="outlined-basic"
+                sx={{ width: 400 }}
+                label="Last Name"
+                placeholder="Second Name"
+                required
+                type="number"
+                variant="outlined"
+              />
+              {/* <Autocomplete
                     disablePortal
                     id="combo-box-demo"
                     getOptionLabel={(department)=>department.name}
@@ -69,7 +88,7 @@ function Addemployee() {
                      }}
                     sx={{ width: 400 }}
                     renderInput={(params) => <TextField {...params} label="Select Company Type" />}
-                    />
+                    /> */}
             </div>
           </div>
            {/* ---------------------------------------------------second Row Start Here------------------------------------------- */}
@@ -79,7 +98,8 @@ function Addemployee() {
               <TextField
                 id="outlined-basic"
                 sx={{ width: 400 }}
-                label="Treading Name"
+                label="Staff Id"
+                placeholder="Staff Id"
                 type=""
                 variant="outlined"
               />
@@ -88,7 +108,8 @@ function Addemployee() {
               <TextField
                 id="outlined-basic"
                 sx={{ width: 400 }}
-                label="Registration Number"
+                label="Email"
+                placeholder="Email"
                 variant="outlined"
               />
             </div>
@@ -101,30 +122,69 @@ function Addemployee() {
                 id="outlined-basic"
                 sx={{ width: 400 }}
                 label="Phone number"
+                placeholder="Phone number"
                 type="number"
                 variant="outlined"
               />
             </div>          
               <div className="col-6">
-              <TextField
-                id="outlined-basic"
-                sx={{ width: 400 }}
-                label="Email"
-                variant="outlined"
-              />
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
+                  // sx={{ width: 700 }}
+                  label="Date of Birth"
+                  onChange={(newValue) => setSelectedDate(newValue)}
+                  renderInput={(params) => (
+                    <TextField name="date" {...params}  sx={{ width: 400 }} />
+                  )}
+                />
+              </LocalizationProvider>
             </div>
           </div>
            {/* ---------------------------------------------------forth Row Start Here------------------------------------------- */}
            <div className="row my-4  d-flex flex-row">
             
             <div className="col-6">
-              <TextField
-                id="outlined-basic"
-                sx={{ width: 400 }}
-                label="website (optional)"
-                type="number"
-                variant="outlined"
-              />
+                 <Autocomplete
+                    disablePortal
+                    id="combo-box-demo"
+                    getOptionLabel={(department)=>department.name}
+                     options={gender}
+                     onChange={(event,value)=>{
+                      // setSelectedDepartment(value.name)
+                     }}
+                    sx={{ width: 400 }}
+                    renderInput={(params) => <TextField {...params} label="Select Gender" required/>}
+                    />
+            </div>          
+              <div className="col-6">
+              <Autocomplete
+                    disablePortal
+                    id="combo-box-demo"
+                    getOptionLabel={(department)=>department.name}
+                     options={gender}
+                     onChange={(event,value)=>{
+                      // setSelectedDepartment(value.name)
+                     }}
+                    sx={{ width: 400 }}
+                    renderInput={(params) => <TextField {...params} label="Select Company"  required/>}
+                    />
+            </div>
+          </div>
+           {/* ---------------------------------------------------fifth Row Start Here------------------------------------------- */}
+           <div className="row my-4  d-flex flex-row">
+            
+            <div className="col-6">
+                 <Autocomplete
+                    disablePortal
+                    id="combo-box-demo"
+                    getOptionLabel={(department)=>department.name}
+                     options={gender}
+                     onChange={(event,value)=>{
+                      // setSelectedDepartment(value.name)
+                     }}
+                    sx={{ width: 400 }}
+                    renderInput={(params) => <TextField {...params} label="Select Department" required/>}
+                    />
             </div>          
               <div className="col-6">
               <Autocomplete
@@ -136,38 +196,132 @@ function Addemployee() {
                       // setSelectedDepartment(value.name)
                      }}
                     sx={{ width: 400 }}
-                    renderInput={(params) => <TextField {...params} label="Select location" />}
+                    renderInput={(params) => <TextField {...params} label="Select Designation"  required/>}
                     />
             </div>
           </div>
-           {/* ---------------------------------------------------forth Row Start Here------------------------------------------- */}
+           {/* ---------------------------------------------------sixth Row Start Here------------------------------------------- */}
            <div className="row my-4  d-flex flex-row">
             
             <div className="col-6">
-              <TextField
-                id="outlined-basic"
-                sx={{ width: 400 }}
-                label="Tax Number"
-                type="number"
-                variant="outlined"
-              />
+                 <Autocomplete
+                    disablePortal
+                    id="combo-box-demo"
+                    getOptionLabel={(department)=>department.name}
+                     options={gender}
+                     onChange={(event,value)=>{
+                      // setSelectedDepartment(value.name)
+                     }}
+                    sx={{ width: 400 }}
+                    renderInput={(params) => <TextField {...params} label="Office Shift" placeholder="select Office Shit" required/>}
+                    />
             </div>          
               <div className="col-6">
               <TextField
                 id="outlined-basic"
                 sx={{ width: 400 }}
-                // label="Tax Number"
+                label="Username"
+                placeholder="Enter User Name"
+                type="text"
+                variant="outlined"
+              />
+            </div>
+          </div>
+           {/* ---------------------------------------------------seven Row Start Here------------------------------------------- */}
+           <div className="row my-4  d-flex flex-row">
+            
+            <div className="col-6">
+            <Autocomplete
+                    disablePortal
+                    id="combo-box-demo"
+                    getOptionLabel={(department)=>department.name}
+                     options={gender}
+                     onChange={(event,value)=>{
+                      // setSelectedDepartment(value.name)
+                     }}
+                    sx={{ width: 400 }}
+                    renderInput={(params) => <TextField {...params} label="Role" placeholder="select Role" required/>}
+                    />
+            </div>          
+              <div className="col-6">
+              <TextField
+                id="outlined-basic"
+                sx={{ width: 400 }}
+                label="Password"
+                placeholder="Enter Password"
+                type="text"
+                variant="outlined"
+              />
+            </div>
+          </div>
+           {/* ---------------------------------------------------seven Row Start Here------------------------------------------- */}
+           <div className="row my-4  d-flex flex-row">
+            
+            <div className="col-6">
+            <TextField
+                id="outlined-basic"
+                sx={{ width: 400 }}
+                label="Confirm Password"
+                placeholder="Enter Confirm Password"
+                type="text"
+                variant="outlined"
+              />
+            </div>          
+              <div className="col-6">
+              <Autocomplete
+                    disablePortal
+                    id="combo-box-demo"
+                    getOptionLabel={(department)=>department.name}
+                     options={gender}
+                     onChange={(event,value)=>{
+                      // setSelectedDepartment(value.name)
+                     }}
+                    sx={{ width: 400 }}
+                    renderInput={(params) => <TextField {...params} label="Attendance Type" placeholder="select Attendance Type" required/>}
+                    />
+            </div>
+          </div>
+           {/* ---------------------------------------------------eight Row Start Here------------------------------------------- */}
+           <div className="row my-4  d-flex flex-row">
+            
+            <div className="col-6">
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
+                  // sx={{ width: 700 }}
+                  label="Date"
+                  onChange={(newValue) => setSelectedDate(newValue)}
+                  renderInput={(params) => (
+                    <TextField name="date" {...params}  sx={{ width: 400 }} />
+                  )}
+                />
+              </LocalizationProvider>
+            </div>          
+              <div className="col-6">
+              <TextField
+                id="outlined-basic"
+                sx={{ width: 400 }}
+                label="Image"
+                placeholder="Enter Confirm Password"
                 type="file"
                 variant="outlined"
               />
             </div>
           </div>
-          <div className="col-xl-4 mt-2 col-md-12 col-sm-12 my-5">
+          <div className="d-flex my-5">
+          <div className="mx-4">
             <Button variant='contained' 
             // InputProps={{ sx: { borderRadius: 10, backgroundColor:"white"} }}
             sx={{borderRadius:34, backgroundColor:'#2F69FF'}}
             >Add Company</Button>
             </div>
+          <div className="">
+            <Button variant='contained' 
+            // InputProps={{ sx: { borderRadius: 10, backgroundColor:"white"} }}
+            sx={{borderRadius:34, backgroundColor:'#011526'}}
+            >Reset All Changes</Button>
+            </div>
+          </div>
+        
         </div>
     </div>
  
