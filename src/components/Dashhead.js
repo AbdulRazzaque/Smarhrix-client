@@ -13,7 +13,9 @@ const Dashhead = (props) => {
     return (
         
             
-        <div className={display?"shadow-lg dashhead":'dashhead displayhidden'}>
+        <div className={display?"shadow-lg dashhead":'dashhead displayhidden min-vh-100'}
+        id="sidebar-wrapper"
+        >
             <div className="heading py-4">
             <h2>SMARTHIREX</h2>
             </div>
@@ -45,6 +47,7 @@ const Dashhead = (props) => {
             </div>
             }
             <hr className='ml-2' />
+            {/* =================================Hr========================================================== */}
             <div className='mx-3 my-3 '>
 
          <h6 className='subtitle'> HR</h6>
@@ -71,7 +74,42 @@ const Dashhead = (props) => {
             <p><RecordVoiceOverIcon /> Payroll</p>
             </div>
             }
+
             <hr className='ml-2' />
+ {/* ================================Recruitment========================================================== */}
+            <div className='mx-3 my-3 '>
+
+<h6 className='subtitle'> RECRUITMENT</h6>
+   </div>
+   {id===7?<div className="menu-container-active"  onClick={()=>props.history.push('Clients')}>
+       <p><PeopleIcon /> Clients</p>
+   </div>:
+   <div className="menu-container" onClick={()=>props.history.push('Clients')}>
+   <p><PeopleIcon /> Clients</p>
+   </div>
+   }
+
+   {id===5?<div className="menu-container-active" onClick={()=>props.history.push('Timesheets')}>
+       <p><TimerIcon /> Jobs</p>
+   </div>:
+   <div className="menu-container" onClick={()=>props.history.push('Timesheets')}>
+   <p><TimerIcon /> Jobs</p>
+   </div>
+   }
+   {id===6?<div className="menu-container-active" onClick={()=>props.history.push('Payroll')}>
+       <p><RecordVoiceOverIcon /> Candidates</p>
+   </div>:
+   <div className="menu-container" onClick={()=>props.history.push('Payroll')}>
+   <p><RecordVoiceOverIcon /> Candidates</p>
+   </div>
+   }
+   {id===6?<div className="menu-container-active" onClick={()=>props.history.push('Payroll')}>
+       <p><RecordVoiceOverIcon /> Interview Schedule</p>
+   </div>:
+   <div className="menu-container" onClick={()=>props.history.push('Payroll')}>
+   <p><RecordVoiceOverIcon /> Interview Schedule</p>
+   </div>
+   }
             
         </div>
     );

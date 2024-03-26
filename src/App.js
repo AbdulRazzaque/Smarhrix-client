@@ -12,6 +12,7 @@ import Employeeinfo from './components/pages/dashboard/employee/employeeinfo/Emp
 import Hrdetails from './components/pages/hr/Hrdetails';
 import Timesheets from './components/pages/hr/Timesheets';
 import Payroll from './components/pages/hr/Payroll';
+import Clients from './components/pages/recruitment/clients/Clients';
 function App() {
   return (
     <Switch>
@@ -29,6 +30,8 @@ function App() {
       <Route exact path="/Hrdetails" component={Hrdetails} />
       <Route exact path="/Timesheets" component={Timesheets} />
       <Route exact path="/Payroll" component={Payroll} />
+      {/* ==================================================================================================== */}
+      <Route exact path="/Clients" component={Clients} />
       
       {/* <Route exact path="/Corehr" component={Corehr} /> */}
       {/* <Route exact path="/Timesheets" component={Timesheets} />
