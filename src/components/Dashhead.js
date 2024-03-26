@@ -49,25 +49,25 @@ const Dashhead = (props) => {
 
          <h6 className='subtitle'> HR</h6>
             </div>
-            {id===4?<div className="menu-container-active"  onClick={()=>props.history.push('Corehr')}>
+            {id===4?<div className="menu-container-active"  onClick={()=>props.history.push('Hrdetails')}>
                 <p><PeopleIcon /> Core HR</p>
             </div>:
-            <div className="menu-container" onClick={()=>props.history.push('Corehr')}>
+            <div className="menu-container" onClick={()=>props.history.push('Hrdetails')}>
             <p><PeopleIcon /> Core HR</p>
             </div>
             }
 
-            {id===6?<div className="menu-container-active" onClick={()=>props.history.push('Timesheets')}>
+            {id===5?<div className="menu-container-active" onClick={()=>props.history.push('Timesheets')}>
                 <p><TimerIcon /> Timesheets</p>
             </div>:
             <div className="menu-container" onClick={()=>props.history.push('Timesheets')}>
             <p><TimerIcon /> Timesheets</p>
             </div>
             }
-            {id===7?<div className="menu-container-active" onClick={()=>props.history.push('Timesheets')}>
+            {id===6?<div className="menu-container-active" onClick={()=>props.history.push('Payroll')}>
                 <p><RecordVoiceOverIcon /> Payroll</p>
             </div>:
-            <div className="menu-container" onClick={()=>props.history.push('Timesheets')}>
+            <div className="menu-container" onClick={()=>props.history.push('Payroll')}>
             <p><RecordVoiceOverIcon /> Payroll</p>
             </div>
             }

@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 // import Dashhead from './Dashhead';
 import Dashhead from '../../../Dashhead';
-import Header from '../../Header';
+import Header from '../header/Header';
 import '../dashboard.scss'
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Button, TextField } from '@mui/material';
@@ -92,7 +92,7 @@ function Employees() {
     <div className="col-md-8 mt-5 ml-3">
 
       <div className="d-flex justify-content-start">
-        <div className="p-2 boxTitle">Manage Employees</div>
+        <div className="p-2 boxtitle">Manage Employees</div>
       
       </div>
     </div>
@@ -158,9 +158,7 @@ function Employees() {
       />
     </Box>
     </div>
-    <div className="box">
-
-    </div>
+    
 
 
 

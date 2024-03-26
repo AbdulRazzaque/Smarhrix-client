@@ -3,12 +3,15 @@ import {Switch,Route}  from 'react-router-dom'
 import Home from "./components/Home"
 import Company from './components/pages/dashboard/company/Company';
 import Employees from './components/pages/dashboard/employee/Employees';
-import Corehr from './components/pages/hr/Corehr';
-import Timesheets from './components/pages/hr/Timesheets';
-import Payroll from './components/pages/hr/Payroll';
+// import Corehr from './components/pages/hr/Corehr';
+// import Timesheets from './components/pages/hr/Timesheets';
+// import Payroll from './components/pages/hr/Payroll';
 import Addcompany from './components/pages/dashboard/company/Addcompany';
 import Addemployee from './components/pages/dashboard/employee/Addemployee';
 import Employeeinfo from './components/pages/dashboard/employee/employeeinfo/Employeeinfo';
+import Hrdetails from './components/pages/hr/Hrdetails';
+import Timesheets from './components/pages/hr/Timesheets';
+import Payroll from './components/pages/hr/Payroll';
 function App() {
   return (
     <Switch>
@@ -23,9 +26,13 @@ function App() {
       <Route exact path="/Addemployee" component={Addemployee} />
       <Route exact path="/Employeeinfo" component={Employeeinfo} />
       {/* ==================================================================================================== */}
-      <Route exact path="/Corehr" component={Corehr} />
+      <Route exact path="/Hrdetails" component={Hrdetails} />
       <Route exact path="/Timesheets" component={Timesheets} />
       <Route exact path="/Payroll" component={Payroll} />
+      
+      {/* <Route exact path="/Corehr" component={Corehr} /> */}
+      {/* <Route exact path="/Timesheets" component={Timesheets} />
+      <Route exact path="/Payroll" component={Payroll} /> */}
 
     </Switch>
   );

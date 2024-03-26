@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Dashhead from '../../../Dashhead';
-import Header from '../../Header';
+import Header from '../header/Header';
 import '../dashboard.scss'
 import { Autocomplete, Button, TextField } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/lab';

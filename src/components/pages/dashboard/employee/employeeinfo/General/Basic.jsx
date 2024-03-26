@@ -3,7 +3,7 @@ import React from 'react'
 const Basic = () => {
   return (
     <>
-
+ 
     <div className=' bg-white'>
            <p className='my-3 mx-3 py-2 boxtitle'>Basic Information</p>
             <hr className='mx-3'/>

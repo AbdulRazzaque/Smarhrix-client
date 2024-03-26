@@ -3,7 +3,7 @@ import "./Home.scss"
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Dashhead from './Dashhead';
-import Header from './pages/Header';
+import Header from './pages/dashboard/header/Header';
 function Home() {
     const [display,setDisplay]=React.useState(false)
     return (

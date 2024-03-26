@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 // import Dashhead from './Dashhead';
 import Dashhead from '../../../Dashhead';
-import Header from '../../Header';
+import Header from '../header/Header';
 import '../dashboard.scss'
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Button, TextField } from '@mui/material';

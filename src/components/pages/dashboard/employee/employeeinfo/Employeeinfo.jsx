@@ -3,15 +3,19 @@ import React, { Fragment } from 'react'
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Dashhead from '../../../../Dashhead';
-import Header from '../../../Header';
+import Header from '../../header/Header';
 import '../../../dashboard/dashboard.scss'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 import { Box, Tab, Tabs, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import './employeeinfo.scss'
-import General from './General';
-import Profile from './Profile';
-import Setsalary from './Setsalary';
+import General from './General/General';
+import Profile from './profile/Profile';
+import Setsalary from './set salary/Setsalary';
+import Leave from './leave/Leave';
+import CoreHr from './coreHr/CoreHr';
+import Payslip from './Payslip/Payslip';
+import Remainingleave from './RemainingLeave/Remainingleave';
 function Employeeinfo() {
 //  =====================================state==========================================================================
     const [display,setDisplay]=React.useState(false)
@@ -86,10 +90,10 @@ function Employeeinfo() {
           <Tab label="General" {...a11yProps(0)} className='tab'/>
           <Tab label="Profile" {...a11yProps(1)} className='tab'/>
           <Tab label="Set salary" {...a11yProps(2)} className='tab'/>
-          <Tab label="Leave" {...a11yProps(2)} className='tab'/>
-          <Tab label="Core HR" {...a11yProps(2)} className='tab'/>
-          <Tab label="Payslip" {...a11yProps(2)} className='tab'/>
-          <Tab label="Remaining Leave" {...a11yProps(2)} className='tab'/>
+          <Tab label="Leave" {...a11yProps(3)} className='tab'/>
+          <Tab label="Core HR" {...a11yProps(4)} className='tab'/>
+          <Tab label="Payslip" {...a11yProps(5)} className='tab'/>
+          <Tab label="Remaining Leave" {...a11yProps(6)} className='tab'/>
         </Tabs>
       </Box>
       </Box>
@@ -104,6 +108,18 @@ function Employeeinfo() {
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
        <Setsalary/>
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={3}>
+       <Leave/>
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={4}>
+       <CoreHr/>
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={5}>
+       <Payslip/>
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={6}>
+       <Remainingleave/>
       </CustomTabPanel>
       </div>
    
