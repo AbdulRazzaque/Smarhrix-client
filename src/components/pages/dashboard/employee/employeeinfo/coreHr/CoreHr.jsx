@@ -71,9 +71,9 @@ const CoreHr = () => {
         </div>
         <hr />
 {/* ===================================================================================================================================================================== */}
-        <div className="d-flex justify-content-center my-5">
+<div className="d-flex justify-content-center mx-5">
         <div className="row ">
-            <div className="col-xl-5  col-md-12 col-sm-12">
+            <div className="col-xl-5  col-md-5 col-9">
             <TextField
               id="outlined-basic"
               label="Search Clients..."
@@ -84,13 +84,13 @@ const CoreHr = () => {
               
             />
             </div>
-            <div className='col-xl-2 col-md-12 col-sm-12 mt-2'>
+            <div className='col-xl-2 col-md-3 col-2 mt-2 '>
             <Button variant='contained' 
             // InputProps={{ sx: { borderRadius: 10, backgroundColor:"white"} }}
             sx={{borderRadius:34, backgroundColor:'#2F69FF'}}
             >search</Button>
             </div>
-            <div className="col-xl-4 mt-2 col-md-12 col-sm-12">
+            <div className="col-xl-4 mt-2 col-md-12 col-6">
             <Button variant='contained' 
             // InputProps={{ sx: { borderRadius: 10, backgroundColor:"white"} }}
             sx={{borderRadius:34, backgroundColor:'#2F69FF'}}

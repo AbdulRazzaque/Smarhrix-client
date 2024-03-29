@@ -113,7 +113,8 @@ function Payroll() {
         <div className="col-12 ">
      <hr className='mx-3' />
         </div>
-        <div className="col-4">
+        <div className="row">
+        <div className="col-12 col-md-4">
 
 
 <Autocomplete
@@ -124,12 +125,12 @@ function Payroll() {
              onChange={(event,value)=>{
               // setSelectedDepartment(value.name)
              }}
-            sx={{ width:300 }}
+            sx={{ width:300 ,m:1}}
             renderInput={(params) => <TextField {...params} label="All Companies" style={{backgroundColor:'white'}} />}
             />
 
 </div>
-<div  className='col-4'>
+<div  className='col-12 col-md-4'>
 <Autocomplete
             disablePortal
             id="combo-box-demo"
@@ -138,11 +139,11 @@ function Payroll() {
              onChange={(event,value)=>{
               // setSelectedDepartment(value.name)
              }}
-            sx={{ width: 300 }}
+            sx={{ width: 300 ,m:1}}
             renderInput={(params) => <TextField {...params} label="All Departments" style={{backgroundColor:'white'}} />}
             />
 </div>
-        <div className="col-4">
+        <div className="col-12 col-md-4">
 
 
 <LocalizationProvider dateAdapter={AdapterDayjs} >
@@ -151,12 +152,15 @@ function Payroll() {
                   label="Date of Birth"
                   onChange={(newValue) => setSelectedDate(newValue)}
                   renderInput={(params) => (
-                    <TextField name="date" {...params}  sx={{ width: 300 }} style={{backgroundColor:'white'}} />
+                    <TextField name="date" {...params}  sx={{ width: 300 ,m:1}} style={{backgroundColor:'white'}} />
                   )}
                 />
               </LocalizationProvider>
 
       </div>
+
+        </div>
+
       
         <div className="col-12 my-5 ml-2">
         <Button variant="contained" style={{ fontSize: '15px',borderRadius: 50 , textTransform:'none', backgroundColor:'#2F69FF'}}  >
@@ -168,14 +172,15 @@ function Payroll() {
 
     {/* ========================================================Third row ======================================================= */}
                     {/* <hr /> */}
-                    <div className="d-flex justify-content-center">
-        <div className="p-2 boxtitle ml-2">showing Payment info August - 2023</div>
+                    <div className=" text-center">
+        <div className="p-2 boxtitle  ">showing Payment info August - 2023</div>
       </div>
 
 {/* ===================================================================================================================================================================== */}
-<div className="d-flex justify-content-center my-5">
+<div className="d-flex justify-content-center ">
+
         <div className="row ">
-            <div className="col-xl-5  col-md-12 col-sm-12">
+            <div className="col-xl-5  col-md-5 col-9">
             <TextField
               id="outlined-basic"
               label="Search Clients..."
@@ -186,17 +191,17 @@ function Payroll() {
               
             />
             </div>
-            <div className='col-xl-2 col-md-12 col-sm-12 mt-2'>
+            <div className='col-xl-2 col-md-3 col-2 mt-2 '>
             <Button variant='contained' 
             // InputProps={{ sx: { borderRadius: 10, backgroundColor:"white"} }}
             sx={{borderRadius:34, backgroundColor:'#2F69FF'}}
             >search</Button>
             </div>
-            <div className="col-xl-4 mt-2 col-md-12 col-sm-12">
+            <div className="col-xl-4 mt-2 col-md-12 col-6">
             <Button variant='contained' 
             // InputProps={{ sx: { borderRadius: 10, backgroundColor:"white"} }}
             sx={{borderRadius:34, backgroundColor:'#2F69FF'}}
-            >apply search filter</Button>
+            >apply search button</Button>
             </div>
             </div>
         </div>
