@@ -47,18 +47,18 @@ function Addcompany() {
         <p className="whitboxtitle my-4">Add New company</p>
         <hr/>
            {/* ---------------------------------------------------First Row Start Here------------------------------------------- */}
-           <div className="row d-flex flex-row mt-4">
+           <div className="row ">
             
-            <div className="col-6">
+            <div className="col-md-6 col-12 ">
               <TextField
                 id="outlined-basic"
-                sx={{ width: 400 }}
+                sx={{ width: 350,mt:1  }}
                 label="Company Name"
                 type="number"
                 variant="outlined"
               />
             </div>          
-              <div className="col-6">
+              <div className="col-md-6 col-12 ">
               <Autocomplete
                     disablePortal
                     id="combo-box-demo"
@@ -67,66 +67,66 @@ function Addcompany() {
                      onChange={(event,value)=>{
                       // setSelectedDepartment(value.name)
                      }}
-                    sx={{ width: 400 }}
+                    sx={{ width: 350,mt:1 }}
                     renderInput={(params) => <TextField {...params} label="Select Company Type" />}
                     />
             </div>
           </div>
            {/* ---------------------------------------------------second Row Start Here------------------------------------------- */}
-           <div className="row my-4  d-flex flex-row">
+           <div className="row  ">
             
-            <div className="col-6">
+            <div className="col-md-6 col-12">
               <TextField
                 id="outlined-basic"
-                sx={{ width: 400 }}
+                sx={{ width: 350,mt:1 }}
                 label="Treading Name"
                 type=""
                 variant="outlined"
               />
             </div>          
-              <div className="col-6">
+              <div className="col-md-6 col-12">
               <TextField
                 id="outlined-basic"
-                sx={{ width: 400 }}
+                sx={{ width: 350,mt:1 }}
                 label="Registration Number"
                 variant="outlined"
               />
             </div>
           </div>
            {/* ---------------------------------------------------Therd Row Start Here------------------------------------------- */}
-           <div className="row my-4  d-flex flex-row">
+           <div className="row d-flex flex-row">
             
-            <div className="col-6">
+            <div className="col-md-6 col-12">
               <TextField
                 id="outlined-basic"
-                sx={{ width: 400 }}
+                sx={{ width: 350,mt:1 }}
                 label="Phone number"
                 type="number"
                 variant="outlined"
               />
             </div>          
-              <div className="col-6">
+              <div className="col-md-6 col-12">
               <TextField
                 id="outlined-basic"
-                sx={{ width: 400 }}
+                sx={{ width: 350,mt:1 }}
                 label="Email"
                 variant="outlined"
               />
             </div>
           </div>
            {/* ---------------------------------------------------forth Row Start Here------------------------------------------- */}
-           <div className="row my-4  d-flex flex-row">
+           <div className="row d-flex flex-row">
             
-            <div className="col-6">
+            <div className="col-md-6 col-12">
               <TextField
                 id="outlined-basic"
-                sx={{ width: 400 }}
+                sx={{ width: 350,mt:1 }}
                 label="website (optional)"
                 type="number"
                 variant="outlined"
               />
             </div>          
-              <div className="col-6">
+              <div className="col-md-6 col-12">
               <Autocomplete
                     disablePortal
                     id="combo-box-demo"
@@ -135,27 +135,27 @@ function Addcompany() {
                      onChange={(event,value)=>{
                       // setSelectedDepartment(value.name)
                      }}
-                    sx={{ width: 400 }}
+                    sx={{ width: 350,mt:1 }}
                     renderInput={(params) => <TextField {...params} label="Select location" />}
                     />
             </div>
           </div>
            {/* ---------------------------------------------------forth Row Start Here------------------------------------------- */}
-           <div className="row my-4  d-flex flex-row">
+           <div className="row d-flex flex-row">
             
-            <div className="col-6">
+            <div className="col-md-6 col-12">
               <TextField
                 id="outlined-basic"
-                sx={{ width: 400 }}
+                sx={{ width: 350,mt:1 }}
                 label="Tax Number"
                 type="number"
                 variant="outlined"
               />
             </div>          
-              <div className="col-6">
+              <div className="col-md-6 col-12">
               <TextField
                 id="outlined-basic"
-                sx={{ width: 400 }}
+                sx={{ width: 350,mt:1 }}
                 // label="Tax Number"
                 type="file"
                 variant="outlined"

@@ -57,10 +57,10 @@ function Addemployee() {
            {/* ---------------------------------------------------First Row Start Here------------------------------------------- */}
            <div className="row d-flex flex-row mt-4">
             
-            <div className="col-6">
+            <div className="col-md-6 col-12 ">
               <TextField
                 id="outlined-basic"
-                sx={{ width: 400 }}
+                sx={{ width: 350,mt:1}}
                 label="First Name"
                 placeholder="First Name"
                 required
@@ -68,10 +68,10 @@ function Addemployee() {
                 variant="outlined"
               />
             </div>          
-              <div className="col-6">
+              <div className="col-md-6 col-12 ">
               <TextField
                 id="outlined-basic"
-                sx={{ width: 400 }}
+                sx={{ width: 350,mt:1}}
                 label="Last Name"
                 placeholder="Second Name"
                 required
@@ -86,7 +86,7 @@ function Addemployee() {
                      onChange={(event,value)=>{
                       // setSelectedDepartment(value.name)
                      }}
-                    sx={{ width: 400 }}
+                    sx={{ width: 350,mt:1}}
                     renderInput={(params) => <TextField {...params} label="Select Company Type" />}
                     /> */}
             </div>
@@ -94,20 +94,20 @@ function Addemployee() {
            {/* ---------------------------------------------------second Row Start Here------------------------------------------- */}
            <div className="row my-4  d-flex flex-row">
             
-            <div className="col-6">
+            <div className="col-md-6 col-12 ">
               <TextField
                 id="outlined-basic"
-                sx={{ width: 400 }}
+                sx={{ width: 350,mt:1}}
                 label="Staff Id"
                 placeholder="Staff Id"
                 type=""
                 variant="outlined"
               />
             </div>          
-              <div className="col-6">
+              <div className="col-md-6 col-12 ">
               <TextField
                 id="outlined-basic"
-                sx={{ width: 400 }}
+                sx={{ width: 350,mt:1}}
                 label="Email"
                 placeholder="Email"
                 variant="outlined"
@@ -117,24 +117,24 @@ function Addemployee() {
            {/* ---------------------------------------------------Therd Row Start Here------------------------------------------- */}
            <div className="row my-4  d-flex flex-row">
             
-            <div className="col-6">
+            <div className="col-md-6 col-12 ">
               <TextField
                 id="outlined-basic"
-                sx={{ width: 400 }}
+                sx={{ width: 350,mt:1}}
                 label="Phone number"
                 placeholder="Phone number"
                 type="number"
                 variant="outlined"
               />
             </div>          
-              <div className="col-6">
+              <div className="col-md-6 col-12 ">
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
                   // sx={{ width: 700 }}
                   label="Date of Birth"
                   onChange={(newValue) => setSelectedDate(newValue)}
                   renderInput={(params) => (
-                    <TextField name="date" {...params}  sx={{ width: 400 }} />
+                    <TextField name="date" {...params}  sx={{ width: 350,mt:1}} />
                   )}
                 />
               </LocalizationProvider>
@@ -143,7 +143,7 @@ function Addemployee() {
            {/* ---------------------------------------------------forth Row Start Here------------------------------------------- */}
            <div className="row my-4  d-flex flex-row">
             
-            <div className="col-6">
+            <div className="col-md-6 col-12 ">
                  <Autocomplete
                     disablePortal
                     id="combo-box-demo"
@@ -152,11 +152,11 @@ function Addemployee() {
                      onChange={(event,value)=>{
                       // setSelectedDepartment(value.name)
                      }}
-                    sx={{ width: 400 }}
+                    sx={{ width: 350,mt:1}}
                     renderInput={(params) => <TextField {...params} label="Select Gender" required/>}
                     />
             </div>          
-              <div className="col-6">
+              <div className="col-md-6 col-12 ">
               <Autocomplete
                     disablePortal
                     id="combo-box-demo"
@@ -165,7 +165,7 @@ function Addemployee() {
                      onChange={(event,value)=>{
                       // setSelectedDepartment(value.name)
                      }}
-                    sx={{ width: 400 }}
+                    sx={{ width: 350,mt:1}}
                     renderInput={(params) => <TextField {...params} label="Select Company"  required/>}
                     />
             </div>
@@ -173,7 +173,7 @@ function Addemployee() {
            {/* ---------------------------------------------------fifth Row Start Here------------------------------------------- */}
            <div className="row my-4  d-flex flex-row">
             
-            <div className="col-6">
+            <div className="col-md-6 col-12 ">
                  <Autocomplete
                     disablePortal
                     id="combo-box-demo"
@@ -182,11 +182,11 @@ function Addemployee() {
                      onChange={(event,value)=>{
                       // setSelectedDepartment(value.name)
                      }}
-                    sx={{ width: 400 }}
+                    sx={{ width: 350,mt:1}}
                     renderInput={(params) => <TextField {...params} label="Select Department" required/>}
                     />
             </div>          
-              <div className="col-6">
+              <div className="col-md-6 col-12 ">
               <Autocomplete
                     disablePortal
                     id="combo-box-demo"
@@ -195,7 +195,7 @@ function Addemployee() {
                      onChange={(event,value)=>{
                       // setSelectedDepartment(value.name)
                      }}
-                    sx={{ width: 400 }}
+                    sx={{ width: 350,mt:1}}
                     renderInput={(params) => <TextField {...params} label="Select Designation"  required/>}
                     />
             </div>
@@ -203,7 +203,7 @@ function Addemployee() {
            {/* ---------------------------------------------------sixth Row Start Here------------------------------------------- */}
            <div className="row my-4  d-flex flex-row">
             
-            <div className="col-6">
+            <div className="col-md-6 col-12 ">
                  <Autocomplete
                     disablePortal
                     id="combo-box-demo"
@@ -212,14 +212,14 @@ function Addemployee() {
                      onChange={(event,value)=>{
                       // setSelectedDepartment(value.name)
                      }}
-                    sx={{ width: 400 }}
+                    sx={{ width: 350,mt:1}}
                     renderInput={(params) => <TextField {...params} label="Office Shift" placeholder="select Office Shit" required/>}
                     />
             </div>          
-              <div className="col-6">
+              <div className="col-md-6 col-12 ">
               <TextField
                 id="outlined-basic"
-                sx={{ width: 400 }}
+                sx={{ width: 350,mt:1}}
                 label="Username"
                 placeholder="Enter User Name"
                 type="text"
@@ -230,7 +230,7 @@ function Addemployee() {
            {/* ---------------------------------------------------seven Row Start Here------------------------------------------- */}
            <div className="row my-4  d-flex flex-row">
             
-            <div className="col-6">
+            <div className="col-md-6 col-12 ">
             <Autocomplete
                     disablePortal
                     id="combo-box-demo"
@@ -239,14 +239,14 @@ function Addemployee() {
                      onChange={(event,value)=>{
                       // setSelectedDepartment(value.name)
                      }}
-                    sx={{ width: 400 }}
+                    sx={{ width: 350,mt:1}}
                     renderInput={(params) => <TextField {...params} label="Role" placeholder="select Role" required/>}
                     />
             </div>          
-              <div className="col-6">
+              <div className="col-md-6 col-12 ">
               <TextField
                 id="outlined-basic"
-                sx={{ width: 400 }}
+                sx={{ width: 350,mt:1}}
                 label="Password"
                 placeholder="Enter Password"
                 type="text"
@@ -257,17 +257,17 @@ function Addemployee() {
            {/* ---------------------------------------------------seven Row Start Here------------------------------------------- */}
            <div className="row my-4  d-flex flex-row">
             
-            <div className="col-6">
+            <div className="col-md-6 col-12 ">
             <TextField
                 id="outlined-basic"
-                sx={{ width: 400 }}
+                sx={{ width: 350,mt:1}}
                 label="Confirm Password"
                 placeholder="Enter Confirm Password"
                 type="text"
                 variant="outlined"
               />
             </div>          
-              <div className="col-6">
+              <div className="col-md-6 col-12 ">
               <Autocomplete
                     disablePortal
                     id="combo-box-demo"
@@ -276,7 +276,7 @@ function Addemployee() {
                      onChange={(event,value)=>{
                       // setSelectedDepartment(value.name)
                      }}
-                    sx={{ width: 400 }}
+                    sx={{ width: 350,mt:1}}
                     renderInput={(params) => <TextField {...params} label="Attendance Type" placeholder="select Attendance Type" required/>}
                     />
             </div>
@@ -284,22 +284,22 @@ function Addemployee() {
            {/* ---------------------------------------------------eight Row Start Here------------------------------------------- */}
            <div className="row my-4  d-flex flex-row">
             
-            <div className="col-6">
+            <div className="col-md-6 col-12 ">
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
                   // sx={{ width: 700 }}
                   label="Date"
                   onChange={(newValue) => setSelectedDate(newValue)}
                   renderInput={(params) => (
-                    <TextField name="date" {...params}  sx={{ width: 400 }} />
+                    <TextField name="date" {...params}  sx={{ width: 350,mt:1}} />
                   )}
                 />
               </LocalizationProvider>
             </div>          
-              <div className="col-6">
+              <div className="col-md-6 col-12 ">
               <TextField
                 id="outlined-basic"
-                sx={{ width: 400 }}
+                sx={{ width: 350,mt:1}}
                 label="Image"
                 placeholder="Enter Confirm Password"
                 type="file"

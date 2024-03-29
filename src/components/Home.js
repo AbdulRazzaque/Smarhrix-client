@@ -4,6 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Dashhead from './Dashhead';
 import Header from './pages/dashboard/header/Header';
+import Dashboard from './Dashboard/Dashboard';
 function Home() {
     const [display,setDisplay]=React.useState(false)
     return (
@@ -22,10 +23,11 @@ function Home() {
 
              <Header/>
 
-             <div className="container my-5">
+             <div className=" my-5">
 
                 <p className='sidTitle2'>DASHBORAD</p>
                 <hr className='mx-3' />
+                <Dashboard/>
                 {/*=========================================Content start Here==================================================================================== */}
     </div>
 
