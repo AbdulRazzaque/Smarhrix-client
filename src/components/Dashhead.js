@@ -7,6 +7,10 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 import PeopleIcon from '@mui/icons-material/People';
 import RecordVoiceOverIcon from '@mui/icons-material/RecordVoiceOver';
 import TimerIcon from '@mui/icons-material/Timer';
+import DescriptionIcon from '@mui/icons-material/Description';
+import NoteAddIcon from '@mui/icons-material/NoteAdd';
+import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
+import ReportIcon from '@mui/icons-material/Report';
 const Dashhead = (props) => {
     console.log(props);
     let {id,display} = props
@@ -110,7 +114,49 @@ const Dashhead = (props) => {
    <p><RecordVoiceOverIcon /> Interview Schedule</p>
    </div>
    }
-            
+    <hr className='ml-2' />
+ {/* ================================Account========================================================== */}
+            <div className='mx-3 my-3 '>
+
+<h6 className='subtitle'> ACCOUNT</h6>
+   </div>
+   {id===11?<div className="menu-container-active"  onClick={()=>props.history.push('Invoice')}>
+       <p><DescriptionIcon /> Invoice</p>
+   </div>:
+   <div className="menu-container" onClick={()=>props.history.push('Invoice')}>
+   <p><DescriptionIcon /> Invoice</p>
+   </div>
+   }
+
+   {id===12?<div className="menu-container-active">
+       <p><NoteAddIcon /> Credit Notes</p>
+   </div>:
+   <div className="menu-container" >
+   <p><NoteAddIcon /> Credit Notes</p>
+   </div>
+   }
+   {id===13?<div className="menu-container-active" >
+       <p><RequestQuoteIcon /> Expense</p>
+   </div>:
+   <div className="menu-container">
+   <p><RequestQuoteIcon /> Expense</p>
+   </div>
+   }
+ {/* ================================Report & file manager========================================================== */}
+            <div className='mx-3 my-3 '>
+
+<h6 className='subtitle'> REPORT & FILE MANAGER</h6>
+   </div>
+   {id===14?<div className="menu-container-active"  onClick={()=>props.history.push('Invoice')}>
+       <p><ReportIcon /> Report</p>
+   </div>:
+   <div className="menu-container" onClick={()=>props.history.push('Invoice')}>
+   <p><ReportIcon /> Report</p>
+   </div>
+   }
+
+  
+      
         </div>
     );
 }

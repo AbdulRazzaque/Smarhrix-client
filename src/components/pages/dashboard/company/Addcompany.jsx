@@ -69,7 +69,7 @@ function Addcompany() {
                      }}
                     sx={{ width: 400 }}
                     renderInput={(params) => <TextField {...params} label="Select Company Type" />}
-                    />
+                    /> 
             </div>
           </div>
            {/* ---------------------------------------------------second Row Start Here------------------------------------------- */}

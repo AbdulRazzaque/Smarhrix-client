@@ -19,17 +19,16 @@ import EditIcon from "@mui/icons-material/Edit";
 import { DataGrid } from '@mui/x-data-grid';
 import InfoIcon from '@mui/icons-material/Info';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
-function Clients() {
+function Invoice() {
     const [display,setDisplay]=React.useState(false)
     const history= useHistory()
 
     const columns = [
         { field: 'id', headerName: 'S.N', width: 90 },
-        { field: 'CompanyName', headerName: 'Client Name', width: 150 },
-        { field: 'Email', headerName: 'Client Number', width: 150 },
-        { field: 'Phone', headerName: 'Industry', width: 150 },
-        { field: 'City', headerName: 'Status', width: 150 },
-        // { field: 'Country', headerName: 'Action', width: 150 },
+        { field: 'CompanyName', headerName: 'Invoice Code', width: 150 },
+        { field: 'Email', headerName: 'Issue Date', width: 150 },
+        { field: 'Phone', headerName: 'Client', width: 150 },
+        { field: 'City', headerName: 'Created By', width: 150 },
        
           {
             title: "Action",
@@ -71,7 +70,7 @@ function Clients() {
     return (
         <div className="row">
             <div className="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
-            <Dashhead id={7} display={display} />
+            <Dashhead id={2} display={display} />
             </div>
 
             <div className="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10 dashboard-container" onClick={()=>display&&setDisplay(false)}>
@@ -83,8 +82,8 @@ function Clients() {
 
         <Header/>
         <div className="container my-5">
-      <p className='sidTitle'>Dashboard / <span>Clients</span></p>
-      <p className='sidTitle2'>ALL Clients</p>
+      <p className='sidTitle'>Dashboard / <span>Invoice</span></p>
+      <p className='sidTitle2'>Manage Billing</p>
     </div>
 
     <div className="box">
@@ -94,7 +93,7 @@ function Clients() {
     <div className="col-md-8 mt-5 ml-3">
 
       <div className="d-flex justify-content-start">
-        <div className="p-2 boxTitle">Manage Clients</div>
+        <div className="p-2 boxTitle">Manage Billing</div>
       
       </div>
     </div>
@@ -104,8 +103,8 @@ function Clients() {
       <div className="d-flex justify-content-end">
     
         <div className="p-2 ">
-            <Button variant="outlined" startIcon={<AddCircleIcon style={{ fontSize: '30px',color:'#2F69FF' }}/>}style={{ fontSize: '18px',borderRadius: 50 ,color:'#2F69FF', backgroundColor:'white', textTransform:'none' }} onClick={()=>history.push("/Addcompany")} >
-        Add Clients
+            <Button variant="outlined" startIcon={<AddCircleIcon style={{ fontSize: '30px',color:'#2F69FF' }}/>}style={{ fontSize: '18px',borderRadius: 50 ,color:'#2F69FF', backgroundColor:'white' ,textTransform:"none"}} onClick={()=>history.push("/Addcompany")} >
+        Create New
         </Button>
         </div>
       </div>
@@ -147,16 +146,17 @@ function Clients() {
       <DataGrid
         rows={rows}
         columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 5,
-            },
-          },
-        }}
-        pageSizeOptions={[5]}
-        // checkboxSelection
-        disableRowSelectionOnClick
+        // initialState={{
+        //   pagination: {
+        //     paginationModel: {
+        //       pageSize: 5,
+        //     },
+        //   },
+        // }}
+        // pageSizeOptions={[5]}
+    // checkboxSelection
+    disableRowSelectionOnClick
+    disablePagination={true} // Disabling pagination
       />
     </Box>
     </div>
@@ -171,4 +171,4 @@ function Clients() {
     )
 }
 
-export default Clients
+export default Invoice

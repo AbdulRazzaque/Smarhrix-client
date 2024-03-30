@@ -13,15 +13,15 @@ import BankAccount from './BankAccount'
 const General = () => {
   const [openComponent, setOpenComponent] = useState('Basic');
 
-  const  handelOpen = (ComponentName)=>{
+  const  handleOpen = (ComponentName)=>{
     setOpenComponent(ComponentName)
   }
   return (
     <div>
         <div className="row">
             <div className="col-3">
-            <Infolist handelOpen={handelOpen}/>
-            </div>
+            <Infolist handleOpen={handleOpen}/>
+            </div> 
 
             <div className="col-9">
             {openComponent === 'Basic' && <Basic />}
@@ -35,7 +35,7 @@ const General = () => {
             </div>
      
         </div>
-        
+         
     </div>
   )
 }

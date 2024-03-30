@@ -105,8 +105,8 @@ function Candidates() {
       <div className="d-flex justify-content-end">
     
         <div className="p-2 ">
-            <Button variant="outlined" startIcon={<AddCircleIcon style={{ fontSize: '30px',color:'#2F69FF' }}/>}style={{ fontSize: '18px',borderRadius: 50 ,color:'#2F69FF', backgroundColor:'white' }} onClick={()=>history.push("/Addcompany")} >
-        Add Job
+            <Button variant="outlined" startIcon={<AddCircleIcon style={{ fontSize: '30px',color:'#2F69FF' }}/>}style={{ fontSize: '18px',borderRadius: 50 ,color:'#2F69FF', backgroundColor:'white', textTransform:'none'}} onClick={()=>history.push("/Addcompany")} >
+        Add Candidate
         </Button>
         </div>
       </div>

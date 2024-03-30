@@ -12,7 +12,8 @@ const Header = (props) => {
 
 	},[props.user])
 console.log(props);
-	return (
+
+	return ( 
         <div className="p-4 rounded" style={{margin:"auto 5%"}}>
         <nav className="navbar navbar-expand-md navbar-dark bg-dark   navbarclass " >
 	<div className="container-fluid">

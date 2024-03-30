@@ -1,5 +1,5 @@
 import Infolist from '../General/Generallist'
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Button, TextField } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -8,9 +8,22 @@ import { DataGrid } from '@mui/x-data-grid';
 import InfoIcon from '@mui/icons-material/Info';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 
-import Generallist from '../General/Generallist';
+
 import CoreHrList from './CoreHrList';
+import Award from '../../../../hr/tabSection/Award'
+import Travel from '../../../../hr/tabSection/Travel'
+import Transfer from '../../../../hr/tabSection/Transfer'
+import Promotion from '../../../../hr/tabSection/Promotion'
+import Complaints from '../../../../hr/tabSection/Complaints'
+import Warning from '../../../../hr/tabSection/Warning'
+import Training from '../../../../hr/tabSection/Training'
+import Ticket from '../../../../hr/tabSection/Ticket'
 const CoreHr = () => {
+  const [openComponent, setOpenComponent] = useState('Award');
+
+  const  handleOpen = (ComponentName)=>{
+    setOpenComponent(ComponentName)
+  }
     const columns = [
         { field: 'id', headerName: 'S.N', width: 90 },
         { field: 'Award Name', headerName: 'Award Name', width: 150 },
@@ -50,72 +63,18 @@ const CoreHr = () => {
   
  <div className='row '>
         <div className="col-3">
-            <CoreHrList/>
+            <CoreHrList handleOpen={handleOpen}/>
         </div>
         <div className="col-9 bg-white py-3">
        
-                <div className="row">
-    <div className="col-md-8  ml-3">
-
-      <div className="d-flex justify-content-start">
-        <div className="p-2 boxtitle">Award Info</div>
-       
-      </div>
-    </div>
-    <div className="">
-      
-  
-    </div>
-
-
-        </div>
-        <hr />
-{/* ===================================================================================================================================================================== */}
-        <div className="d-flex justify-content-center my-5">
-        <div className="row ">
-            <div className="col-xl-5  col-md-12 col-sm-12">
-            <TextField
-              id="outlined-basic"
-              label="Search Clients..."
-              variant="outlined"
-            className='searchinput'
-            InputProps={{ sx: { borderRadius: 10, backgroundColor:"white" ,height:50} }}
-            //   required
-              
-            />
-            </div>
-            <div className='col-xl-2 col-md-12 col-sm-12 mt-2'>
-            <Button variant='contained' 
-            // InputProps={{ sx: { borderRadius: 10, backgroundColor:"white"} }}
-            sx={{borderRadius:34, backgroundColor:'#2F69FF'}}
-            >search</Button>
-            </div>
-            <div className="col-xl-4 mt-2 col-md-12 col-sm-12">
-            <Button variant='contained' 
-            // InputProps={{ sx: { borderRadius: 10, backgroundColor:"white"} }}
-            sx={{borderRadius:34, backgroundColor:'#2F69FF'}}
-            >apply search button</Button>
-            </div>
-            </div>
-        </div>
-{/* ===================================================================================================================================================================== */}
-
-<Box sx={{ height: 400, width: '100%', backgroundColor:'white' }} className='my-5'>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 5,
-            },
-          },
-        }}
-        pageSizeOptions={[5]}
-        // checkboxSelection
-        disableRowSelectionOnClick
-      />
-    </Box>
+        {openComponent === 'Award' && <Award />}
+        {openComponent === 'Travel' && <Travel/>}
+        {openComponent === 'Transfer' && <Transfer/>}
+        {openComponent === 'Promotion' && <Promotion/>}
+        {openComponent === 'Complaints' && <Complaints/>}
+        {openComponent === 'Warning' && <Warning/>}
+        {openComponent === 'Training' && <Training/>}
+        {openComponent === 'Ticket' && <Ticket/>}
     </div>
         </div>
 
