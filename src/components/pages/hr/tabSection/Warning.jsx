@@ -1,16 +1,8 @@
-
-
-
-
-// import Infolist from '../General/Generallist'
-import React, { Fragment } from 'react'
-import DeleteIcon from '@mui/icons-material/Delete';
+import React from 'react'
 import { Box, Button, TextField } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import EditIcon from "@mui/icons-material/Edit";
 import { DataGrid } from '@mui/x-data-grid';
-import InfoIcon from '@mui/icons-material/Info';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom';
+
 const Warning = () => {
     const columns = [
         { field: 'id', headerName: 'S.N', width: 90 },
@@ -19,29 +11,6 @@ const Warning = () => {
         { field: 'LeaveType', headerName: 'Subject', width: 150 },
         { field: 'Duration', headerName: 'Warnigni Date', width: 150 },
         { field: 'Duration', headerName: 'status', width: 150 },
-
-       
-        //   {
-        //     title: "Action",
-        //     field: "Action",
-        //     width: 180,
-        //     renderCell: () => (
-        //       <Fragment>
-        //         {/* <Button color="error" onClick={() => setAlert(true)}> */}
-        //         <Button color="primary">
-        //           <InfoIcon />
-        //         </Button>
-        //         <Button color="success" >
-        //           <EditIcon />
-        //         </Button>
-        //         <Button color="error" >
-        //           <DeleteIcon />
-                  
-        //         </Button>
-        //       </Fragment>
-        //     ),
-        //   },
-
     ];
     
       const rows = [

@@ -35,6 +35,11 @@
     font-weight: 600;
     color: #2F69FF;
 }
+.boxtitleBlackheading{
+    font-size: 18px;
+    font-weight: 600;
+    color: black;
+}
 .searchinput{
     border-radius: 10px;
     width: 400px;
@@ -46,4 +51,48 @@ font-weight: bold;
 color: #2F69FF;
 // box-shadow: 0px 4px 10px ;
 }
+.profile{
+    position: relative;
+    bottom: 50px;
+}
+.profileimage{
+    height: 145px;
+    width: 156px;
+    border-radius: 100%;
+    border: solid 7px white;
 
+}
+.profilenumber{
+    color: #2F69FF;
+    font-weight: bold;
+}
+.profileid{
+color: black;
+}
+.profilecategory{
+    margin-right: 309px;
+    margin-left: 317px;
+    background-color: black;
+    padding: 5px 12px 5px 12px;
+    span{
+        color: white;
+    }
+}
+
+.profileicon{
+    font-size: 60px;
+    color: white;
+    cursor: pointer;
+}
+
+.profileheaderIcon{
+    background-color: #2F69FF;
+    border-radius: 10px;
+}
+.badgecount{
+    position: relative;
+    left: 50px;
+}
+.documentHeading{
+color: #618DFF;
+}

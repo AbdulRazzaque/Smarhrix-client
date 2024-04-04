@@ -1,22 +1,12 @@
-
-
-import React, { Fragment } from 'react'
-// import "./Home.scss"
-// import '../../Home.scss'
+import React from 'react'
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-// import Dashhead from './Dashhead';
 import Dashhead from '../../../Dashhead';
-// import Header from '../header/Header';
 import Header from '../../dashboard/header/Header';
-// import '../dashboard.scss'
 import '../../dashboard/dashboard.scss'
-import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Button, TextField } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import EditIcon from "@mui/icons-material/Edit";
 import { DataGrid } from '@mui/x-data-grid';
-import InfoIcon from '@mui/icons-material/Info';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 function Candidates() {
     const [display,setDisplay]=React.useState(false)

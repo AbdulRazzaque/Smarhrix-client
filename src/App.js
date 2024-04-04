@@ -17,6 +17,7 @@ import Jobs from './components/pages/recruitment/jobs/Jobs';
 import Candidates from './components/pages/recruitment/candidates/Candidates';
 import Interview from './components/pages/recruitment/Interview/Interview';
 import Invoice from './components/pages/account/invoice/Invoice';
+import Clientinfo from './components/pages/recruitment/clients/Clientinfo';
 function App() {
   return (
     <Switch>
@@ -36,12 +37,16 @@ function App() {
       <Route exact path="/Payroll" component={Payroll} />
       {/* ===========================Recruitment========================================================================= */}
       <Route exact path="/Clients" component={Clients} />
+      <Route exact path="/Clientinfo" component={Clientinfo} />
+
       <Route exact path="/Jobs" component={Jobs} />
       <Route exact path="/Candidates" component={Candidates} />
       <Route exact path="/Interview" component={Interview} />
+
       
       {/* ===========================Account========================================================================= */}
       <Route exact path="/Invoice" component={Invoice} />
+      
 
       
 

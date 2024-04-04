@@ -13,41 +13,10 @@ const Immigration = () => {
         { field: 'banckSalary', headerName: 'Expired Date', width: 150 },
         { field: 'banckSalary', headerName: 'Issued By', width: 150 },
 
-       
-        //   {
-        //     title: "Action",
-        //     field: "Action",
-        //     width: 180,
-        //     renderCell: () => (
-        //       <Fragment>
-        //         {/* <Button color="error" onClick={() => setAlert(true)}> */}
-        //         <Button color="primary">
-        //           <InfoIcon />
-        //         </Button>
-        //         <Button color="success" >
-        //           <EditIcon />
-        //         </Button>
-        //         <Button color="error" >
-        //           <DeleteIcon />
-                  
-        //         </Button>
-        //       </Fragment>
-        //     ),
-        //   },
-
     ];
     
       const rows = [
-        // { id: 1, MonthYear: '1-2-203', PayslipType: 'Regular', banckSalary: 7890 },
-        // { id: 2, MonthYear: '1-2-203', PayslipType: 'Bonus', banckSalary: 7890 },
-        // { id: 3, MonthYear: '1-2-203', PayslipType: 'Regular', banckSalary: 7890 },
-        // { id: 4, MonthYear: '1-2-203', PayslipType: 'Overtime', banckSalary: 7890 },
-        // { id: 5, MonthYear: '1-2-203', PayslipType: 'Regular', banckSalary: 7890 },
-        // { id: 6, MonthYear: '1-2-203', PayslipType: 'Regular', banckSalary: 7890 },
-        // { id: 7, MonthYear: '1-2-203', PayslipType: 'Bonus', banckSalary: 7890 },
-        // { id: 8, MonthYear: '1-2-203', PayslipType: 'Regular', banckSalary: 7890 },
-        // { id: 9, MonthYear: '1-2-203', PayslipType: 'Regular', banckSalary: 7890 },
-        // { id: 10, MonthYear: '1-2-203', PayslipType: 'Bonus', banckSalary: 7890 },
+
       ]
   return (
     <div>

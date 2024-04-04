@@ -38,7 +38,7 @@ function Clients() {
             renderCell: () => (
               <Fragment>
                 {/* <Button color="error" onClick={() => setAlert(true)}> */}
-                <Button color="primary">
+                <Button color="primary" onClick={()=>{history.push("/Clientinfo")}}>
                   <InfoIcon />
                 </Button>
                 <Button color="success" >

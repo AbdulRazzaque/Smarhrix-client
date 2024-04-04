@@ -1,13 +1,9 @@
 
 
-import React, { Fragment } from 'react'
-import DeleteIcon from '@mui/icons-material/Delete';
+import React from 'react'
 import { Box, Button, TextField } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import EditIcon from "@mui/icons-material/Edit";
 import { DataGrid } from '@mui/x-data-grid';
-import InfoIcon from '@mui/icons-material/Info';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 const OtherPayments = () => {
 
 

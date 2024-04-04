@@ -1,5 +1,4 @@
 
-import Infolist from '../General/Generallist'
 import React, { Fragment } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Button, TextField } from '@mui/material';

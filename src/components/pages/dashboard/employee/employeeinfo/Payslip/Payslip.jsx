@@ -1,13 +1,10 @@
-import Infolist from '../General/Generallist'
+
 import React, { Fragment } from 'react'
-import DeleteIcon from '@mui/icons-material/Delete';
+
 import { Box, Button, TextField } from '@mui/material';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import EditIcon from "@mui/icons-material/Edit";
+
 import { DataGrid } from '@mui/x-data-grid';
-import InfoIcon from '@mui/icons-material/Info';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom';
-import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import DownloadIcon from '@mui/icons-material/Download';
 const Payslip = () => {

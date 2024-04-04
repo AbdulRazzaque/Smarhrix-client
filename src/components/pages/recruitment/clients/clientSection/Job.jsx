@@ -1,19 +1,44 @@
 
-import React from 'react'
 
+// import Infolist from '../General/Generallist'
+import React, { Fragment } from 'react'
+import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Button, TextField } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-
+import EditIcon from "@mui/icons-material/Edit";
 import { DataGrid } from '@mui/x-data-grid';
-
-const Transfer = () => {
+import InfoIcon from '@mui/icons-material/Info';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom';
+const Job = () => {
     const columns = [
         { field: 'id', headerName: 'S.N', width: 90 },
-        { field: 'Reason', headerName: 'Employee', width: 150 },
-        { field: 'Status', headerName: 'From Department', width: 150 },
-        { field: 'LeaveType', headerName: 'To Department', width: 150 },
-        { field: 'Duration', headerName: 'Date', width: 150 },
-     
+        { field: 'LeaveType', headerName: 'Title', width: 150 },
+        { field: 'Reason', headerName: 'Openign Status', width: 150 },
+        { field: 'Status', headerName: 'Contact', width: 150 },
+        { field: 'Duration', headerName: 'City', width: 150 },
+        { field: 'Department', headerName: 'Action', width: 150 },
+
+       
+          {
+            title: "Action",
+            field: "Action",
+            width: 180,
+            renderCell: () => (
+              <Fragment>
+                {/* <Button color="error" onClick={() => setAlert(true)}> */}
+                <Button color="primary">
+                  <InfoIcon />
+                </Button>
+                {/* <Button color="success" >
+                  <EditIcon />
+                </Button>
+                <Button color="error" >
+                  <DeleteIcon />
+                  
+                </Button> */}
+              </Fragment>
+            ),
+          },
 
     ];
     
@@ -30,24 +55,17 @@ const Transfer = () => {
         { id: 10, LeaveType: 'Sick', Reason: 'Cold', Status: 'Approved', Duration: '1 day', Department: 'Marketing' }
       ]
   return (
-    <div className='bg-white py-4'>
+    <div className='bg-white p-3'>
                 <div className="row">
     <div className="col-md-8  ml-3">
 
       <div className="d-flex justify-content-start">
-        <div className="p-2 boxtitle">Transfer</div>
+        <div className="p-2 boxtitle">Jobs</div>
        
       </div>
     </div>
     <div className="">
-    <div className="d-flex justify-content-end">
-    
-    <div className="">
-        <Button variant="outlined" startIcon={<AddCircleIcon style={{ fontSize: '30px',color:'#2F69FF' }}/>}style={{ fontSize: '18px',borderRadius: 50 ,color:'#2F69FF', backgroundColor:'white', textTransform:'none'}}  >
-    Add Transfer
-    </Button>
-    </div>
-  </div>
+      
   
     </div>
 
@@ -78,7 +96,7 @@ const Transfer = () => {
             <Button variant='contained' 
             // InputProps={{ sx: { borderRadius: 10, backgroundColor:"white"} }}
             sx={{borderRadius:34, backgroundColor:'#2F69FF'}}
-            >apply search filter</Button>
+            >apply search button</Button>
             </div>
             </div>
         </div>
@@ -104,7 +122,6 @@ const Transfer = () => {
   )
 }
 
-export default Transfer
-
+export default Job
 
 

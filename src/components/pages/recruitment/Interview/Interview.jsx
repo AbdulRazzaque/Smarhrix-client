@@ -1,13 +1,9 @@
 import React, { Fragment } from 'react'
-// import "./Home.scss"
-// import '../../Home.scss'
+
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-// import Dashhead from './Dashhead';
 import Dashhead from '../../../Dashhead';
-// import Header from '../header/Header';
 import Header from '../../dashboard/header/Header';
-// import '../dashboard.scss'
 import '../../dashboard/dashboard.scss'
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Button, TextField } from '@mui/material';
@@ -16,6 +12,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { DataGrid } from '@mui/x-data-grid';
 import InfoIcon from '@mui/icons-material/Info';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
+
 function Interview() {
     const [display,setDisplay]=React.useState(false)
     const history= useHistory()
@@ -30,26 +27,25 @@ function Interview() {
         { field: 'City', headerName: 'Skilset', width: 150 },
         // { field: 'Country', headerName: 'Action', width: 150 },
        
-        //   {
-        //     title: "Action",
-        //     field: "Action",
-        //     width: 180,
-        //     renderCell: () => (
-        //       <Fragment>
-        //         {/* <Button color="error" onClick={() => setAlert(true)}> */}
-        //         <Button color="primary">
-        //           <InfoIcon />
-        //         </Button>
-        //         <Button color="success" >
-        //           <EditIcon />
-        //         </Button>
-        //         <Button color="error" >
-        //           <DeleteIcon />
+          {
+            title: "Action",
+            field: "Action",
+            width: 180,
+            renderCell: () => (
+              <Fragment>
+              <Button color="primary" onClick ={()=>history.push("/Clientinfo")}>
+                  <InfoIcon />
+                </Button>
+                <Button color="success" >
+                  <EditIcon />
+                </Button>
+                <Button color="error" >
+                  <DeleteIcon />
                   
-        //         </Button>
-        //       </Fragment>
-        //     ),
-        //   },
+                </Button>
+              </Fragment>
+            ),
+          },
 
     ];
     
