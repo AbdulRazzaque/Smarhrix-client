@@ -1,0 +1,65 @@
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
+
+ open={open}
+ handleClickOpen={handleClickOpen}
+ handleClose={handleClose}
+
+onClick={handleClickOpen}
+
+
+<LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
+                  // sx={{ width: 700 }}
+            
+                  onChange={(newValue) => setSelectedDate(newValue)}
+                  renderInput={(params) => (
+                    <TextField name="date" {...params}   sx={{ 
+                        width:'100%',   maxWidth: '500Px' 
+                          }} />
+                  )}
+                />
+              </LocalizationProvider>
+
+
+ <TextField
+                id="outlined-basic"
+                 sx={{ 
+                                    width:'100%',   maxWidth: '400Px' 
+                                  }}
+                placeholder="1"
+                required
+                type="text"
+                variant="outlined"
+              />
+
+ <Autocomplete
+                    disablePortal
+                    id="combo-box-demo"
+                    getOptionLabel={(department)=>department.name}
+                     options={department}
+                     onChange={(event,value)=>{
+                      // setSelectedDepartment(value.name)
+                     }}
+                     sx={{ 
+                        width:'100%',   maxWidth: '500Px' 
+                        }}
+                    renderInput={(params) => <TextField {...params} placeholder='Select Deduction Option' required/>}
+                    />
+
+
+                      <TextField
+                variant='outlined'
+                fullWidth
+                multiline
+                minRows={8}
+                size='small'
+                />

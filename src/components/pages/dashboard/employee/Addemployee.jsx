@@ -5,7 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Dashhead from '../../../Dashhead';
 import Header from '../header/Header';
 import '../dashboard.scss'
-import { Autocomplete, Button, TextField } from '@mui/material';
+import { Autocomplete, Button, InputLabel, TextField } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/lab';
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 function Addemployee() {
@@ -58,57 +58,49 @@ function Addemployee() {
            <div className="row d-flex flex-row mt-4">
             
             <div className="col-6">
+            <InputLabel htmlFor="outlined-basic">First Name *</InputLabel>
+
               <TextField
                 id="outlined-basic"
                 sx={{ width: 400 }}
-                label="First Name"
                 placeholder="First Name"
                 required
-                type="number"
+                type="text"
                 variant="outlined"
               />
             </div>          
               <div className="col-6">
+              <InputLabel htmlFor="outlined-basic">Last Name *</InputLabel>
               <TextField
                 id="outlined-basic"
                 sx={{ width: 400 }}
-                label="Last Name"
                 placeholder="Second Name"
                 required
                 type="number"
                 variant="outlined"
               />
-              {/* <Autocomplete
-                    disablePortal
-                    id="combo-box-demo"
-                    getOptionLabel={(department)=>department.name}
-                     options={department}
-                     onChange={(event,value)=>{
-                      // setSelectedDepartment(value.name)
-                     }}
-                    sx={{ width: 400 }}
-                    renderInput={(params) => <TextField {...params} label="Select Company Type" />}
-                    /> */}
+         
             </div>
           </div>
            {/* ---------------------------------------------------second Row Start Here------------------------------------------- */}
            <div className="row my-4  d-flex flex-row">
             
             <div className="col-6">
+            <InputLabel htmlFor="outlined-basic">Staff Id*</InputLabel>
               <TextField
                 id="outlined-basic"
                 sx={{ width: 400 }}
-                label="Staff Id"
                 placeholder="Staff Id"
                 type=""
                 variant="outlined"
               />
             </div>          
               <div className="col-6">
+              <InputLabel htmlFor="outlined-basic">Email*</InputLabel>
               <TextField
                 id="outlined-basic"
                 sx={{ width: 400 }}
-                label="Email"
+          
                 placeholder="Email"
                 variant="outlined"
               />
@@ -118,20 +110,22 @@ function Addemployee() {
            <div className="row my-4  d-flex flex-row">
             
             <div className="col-6">
+            <InputLabel htmlFor="outlined-basic">Phone number *</InputLabel>
               <TextField
                 id="outlined-basic"
                 sx={{ width: 400 }}
-                label="Phone number"
+            
                 placeholder="Phone number"
                 type="number"
                 variant="outlined"
               />
             </div>          
               <div className="col-6">
+              <InputLabel htmlFor="outlined-basic">Date of Birth *</InputLabel>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
                   // sx={{ width: 700 }}
-                  label="Date of Birth"
+                  // label="Date of Birth"
                   onChange={(newValue) => setSelectedDate(newValue)}
                   renderInput={(params) => (
                     <TextField name="date" {...params}  sx={{ width: 400 }} />
@@ -144,6 +138,7 @@ function Addemployee() {
            <div className="row my-4  d-flex flex-row">
             
             <div className="col-6">
+            <InputLabel htmlFor="outlined-basic"> Gender *</InputLabel>
                  <Autocomplete
                     disablePortal
                     id="combo-box-demo"
@@ -153,10 +148,11 @@ function Addemployee() {
                       // setSelectedDepartment(value.name)
                      }}
                     sx={{ width: 400 }}
-                    renderInput={(params) => <TextField {...params} label="Select Gender" required/>}
+                    renderInput={(params) => <TextField {...params} placeholder='Select Gender' required/>}
                     />
             </div>          
               <div className="col-6">
+              <InputLabel htmlFor="outlined-basic">Company *</InputLabel>
               <Autocomplete
                     disablePortal
                     id="combo-box-demo"
@@ -166,7 +162,7 @@ function Addemployee() {
                       // setSelectedDepartment(value.name)
                      }}
                     sx={{ width: 400 }}
-                    renderInput={(params) => <TextField {...params} label="Select Company"  required/>}
+                    renderInput={(params) => <TextField {...params} placeholder='Select Company'  required/>}
                     />
             </div>
           </div>
@@ -174,19 +170,22 @@ function Addemployee() {
            <div className="row my-4  d-flex flex-row">
             
             <div className="col-6">
+            <InputLabel htmlFor="outlined-basic">Department *</InputLabel>
                  <Autocomplete
                     disablePortal
                     id="combo-box-demo"
                     getOptionLabel={(department)=>department.name}
                      options={gender}
+                     
                      onChange={(event,value)=>{
                       // setSelectedDepartment(value.name)
                      }}
                     sx={{ width: 400 }}
-                    renderInput={(params) => <TextField {...params} label="Select Department" required/>}
+                    renderInput={(params) => <TextField {...params} placeholder='Select Department'  required/>}
                     />
             </div>          
               <div className="col-6">
+              <InputLabel htmlFor="outlined-basic">Designation *</InputLabel>
               <Autocomplete
                     disablePortal
                     id="combo-box-demo"
@@ -196,7 +195,7 @@ function Addemployee() {
                       // setSelectedDepartment(value.name)
                      }}
                     sx={{ width: 400 }}
-                    renderInput={(params) => <TextField {...params} label="Select Designation"  required/>}
+                    renderInput={(params) => <TextField {...params} placeholder="Select Designation"  required/>}
                     />
             </div>
           </div>
@@ -204,6 +203,7 @@ function Addemployee() {
            <div className="row my-4  d-flex flex-row">
             
             <div className="col-6">
+            <InputLabel htmlFor="outlined-basic">Office Shift *</InputLabel>
                  <Autocomplete
                     disablePortal
                     id="combo-box-demo"
@@ -213,10 +213,11 @@ function Addemployee() {
                       // setSelectedDepartment(value.name)
                      }}
                     sx={{ width: 400 }}
-                    renderInput={(params) => <TextField {...params} label="Office Shift" placeholder="select Office Shit" required/>}
+                    renderInput={(params) => <TextField {...params}  placeholder="select Office Shit" required/>}
                     />
             </div>          
               <div className="col-6">
+              <InputLabel htmlFor="outlined-basic">Username*</InputLabel>
               <TextField
                 id="outlined-basic"
                 sx={{ width: 400 }}
@@ -231,6 +232,7 @@ function Addemployee() {
            <div className="row my-4  d-flex flex-row">
             
             <div className="col-6">
+            <InputLabel htmlFor="outlined-basic">Role *</InputLabel>
             <Autocomplete
                     disablePortal
                     id="combo-box-demo"
@@ -240,14 +242,15 @@ function Addemployee() {
                       // setSelectedDepartment(value.name)
                      }}
                     sx={{ width: 400 }}
-                    renderInput={(params) => <TextField {...params} label="Role" placeholder="select Role" required/>}
+                    renderInput={(params) => <TextField {...params}  placeholder="select Role" />}
                     />
             </div>          
               <div className="col-6">
+              <InputLabel htmlFor="outlined-basic">Password *</InputLabel>
               <TextField
                 id="outlined-basic"
                 sx={{ width: 400 }}
-                label="Password"
+          
                 placeholder="Enter Password"
                 type="text"
                 variant="outlined"
@@ -258,16 +261,18 @@ function Addemployee() {
            <div className="row my-4  d-flex flex-row">
             
             <div className="col-6">
+            <InputLabel htmlFor="outlined-basic">Confirm Password *</InputLabel>
             <TextField
                 id="outlined-basic"
                 sx={{ width: 400 }}
-                label="Confirm Password"
+               
                 placeholder="Enter Confirm Password"
                 type="text"
                 variant="outlined"
               />
             </div>          
               <div className="col-6">
+              <InputLabel htmlFor="outlined-basic">Attendance Type *</InputLabel>
               <Autocomplete
                     disablePortal
                     id="combo-box-demo"
@@ -277,7 +282,7 @@ function Addemployee() {
                       // setSelectedDepartment(value.name)
                      }}
                     sx={{ width: 400 }}
-                    renderInput={(params) => <TextField {...params} label="Attendance Type" placeholder="select Attendance Type" required/>}
+                    renderInput={(params) => <TextField {...params}  placeholder="select Attendance Type" />}
                     />
             </div>
           </div>
@@ -285,6 +290,7 @@ function Addemployee() {
            <div className="row my-4  d-flex flex-row">
             
             <div className="col-6">
+            <InputLabel htmlFor="outlined-basic">Dateof joining *</InputLabel>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
                   // sx={{ width: 700 }}
@@ -297,11 +303,12 @@ function Addemployee() {
               </LocalizationProvider>
             </div>          
               <div className="col-6">
+              <InputLabel htmlFor="outlined-basic">Image *</InputLabel>
               <TextField
                 id="outlined-basic"
                 sx={{ width: 400 }}
-                label="Image"
-                placeholder="Enter Confirm Password"
+               
+                placeholder="No file choosen"
                 type="file"
                 variant="outlined"
               />

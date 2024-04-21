@@ -1,14 +1,14 @@
 import React from 'react'
 import { Box, Tab, Tabs, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
-import Promotion from './Promotion';
-import Award from './Award';
-import Travel from './Travel';
-import Transfer from './Transfer';
-import Resignations from './Resignations';
-import Complaints from './Complaints';
-import Warning from './Warning';
-import Terminations from './Terminations';
+import Promotion from './promotion/Promotion';
+import Award from './Award/Award';
+import Travel from './Travel/Travel';
+import Transfer from './Transfer/Transfer';
+import Resignations from './Resignations/Resignations';
+import Complaints from './Complaints/Complaints';
+import Warning from './Warning/Warning';
+import Terminations from './Terminations/Terminations';
 const Tabsection = () => {
     //  =====================================logic==========================================================================
     const [display,setDisplay]=React.useState(false)

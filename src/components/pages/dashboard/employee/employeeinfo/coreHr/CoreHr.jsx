@@ -10,12 +10,12 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 
 
 import CoreHrList from './CoreHrList';
-import Award from '../../../../hr/tabSection/Award'
-import Travel from '../../../../hr/tabSection/Travel'
-import Transfer from '../../../../hr/tabSection/Transfer'
-import Promotion from '../../../../hr/tabSection/Promotion'
-import Complaints from '../../../../hr/tabSection/Complaints'
-import Warning from '../../../../hr/tabSection/Warning'
+import Award from '../../../../hr/tabSection/Award/Award'
+import Travel from '../../../../hr/tabSection/Travel/Travel'
+import Transfer from '../../../../hr/tabSection/Transfer/Transfer'
+import Promotion from '../../../../hr/tabSection/promotion/Promotion'
+import Complaints from '../../../../hr/tabSection/Complaints/Complaints'
+import Warning from '../../../../hr/tabSection/Warning/Warning'
 import Training from '../../../../hr/tabSection/Training'
 import Ticket from '../../../../hr/tabSection/Ticket'
 const CoreHr = () => {

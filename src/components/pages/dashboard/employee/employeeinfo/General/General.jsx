@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import '../employeeinfo.scss'
-import Basic from './Basic'
+import Basic from './Basic/Basic'
 import Infolist from './Generallist'
-import Immigration from './Immigration'
-import EmergencyContact from './EmergencyContact'
-import Socialprofile from './Socialprofile'
-import Document from './Document'
-import Qualification from './Qualification'
-import Workexperience from './Workexperience'
-import BankAccount from './BankAccount'
+import Immigration from './immigration/Immigration'
+import EmergencyContact from './Emergency Contact/EmergencyContact'
+import Socialprofile from './Social profile/Socialprofile'
+import Document from './Document/Document'
+import Qualification from './Qualification/Qualification'
+import Workexperience from './work experience/Workexperience'
+import BankAccount from './Bank Account/BankAccount'
 
 const General = () => {
   const [openComponent, setOpenComponent] = useState('Basic');

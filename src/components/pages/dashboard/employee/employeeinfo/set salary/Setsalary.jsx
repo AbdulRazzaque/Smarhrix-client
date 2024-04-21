@@ -8,13 +8,13 @@ import { DataGrid } from '@mui/x-data-grid';
 import InfoIcon from '@mui/icons-material/Info';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 import Salarylist from './Salarylist';
-import BasicSalary from './BasicSalary';
-import Allowances from './Allowances';
-import Commissions from './Commissions';
-import Loan from './Loan';
-import StatutoryDeductions from './StatutoryDeductions';
-import OtherPayments from './OtherPayments';
-import Overtime from './Overtime';
+import BasicSalary from './Basic Salary/BasicSalary';
+import Allowances from './Allowances/Allowances';
+import Commissions from './Commissions/Commissions';
+import Loan from './Loan/Loan';
+import StatutoryDeductions from './StatutoryDeductions/StatutoryDeductions';
+import OtherPayments from './OtherPayment/OtherPayments';
+import Overtime from './Overtime/Overtime';
 import SalaryPension from './SalaryPension';
 
 const Setsalary = () => {

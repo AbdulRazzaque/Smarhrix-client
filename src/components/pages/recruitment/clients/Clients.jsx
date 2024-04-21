@@ -11,6 +11,7 @@ import Dashhead from '../../../Dashhead';
 // import Header from '../header/Header';
 import Header from '../../dashboard/header/Header';
 // import '../dashboard.scss'
+// import '../../dashboard/dashboard.scss'
 import '../../dashboard/dashboard.scss'
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Button, TextField } from '@mui/material';
@@ -104,7 +105,7 @@ function Clients() {
       <div className="d-flex justify-content-end">
     
         <div className="p-2 ">
-            <Button variant="outlined" startIcon={<AddCircleIcon style={{ fontSize: '30px',color:'#2F69FF' }}/>}style={{ fontSize: '18px',borderRadius: 50 ,color:'#2F69FF', backgroundColor:'white', textTransform:'none' }} onClick={()=>history.push("/Addcompany")} >
+            <Button variant="outlined" startIcon={<AddCircleIcon style={{ fontSize: '25px',color:'#2F69FF' }}/>}style={{ fontSize: '14px',borderRadius: 50 ,color:'#2F69FF', backgroundColor:'white', textTransform:'none' }} onClick={()=>history.push("/AddClient")} >
         Add Clients
         </Button>
         </div>

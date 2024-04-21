@@ -22,7 +22,7 @@ const Dashhead = (props) => {
         >
             <div className="heading py-4">
             <h2>SMARTHIREX</h2>
-            </div>
+            </div> 
             <div className='mx-3 my-3 '>
 
             <h6 className='subtitle'>DASHBOARD</h6>
