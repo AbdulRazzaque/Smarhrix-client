@@ -22,9 +22,9 @@ onClick={handleClickOpen}
             
                   onChange={(newValue) => setSelectedDate(newValue)}
                   renderInput={(params) => (
-                    <TextField name="date" {...params}   sx={{ 
-                        width:'100%',   maxWidth: '500Px' 
-                          }} />
+                     <TextField name="date" {...params}   
+                     sx={{ width:'100%',   maxWidth: '500Px'}} 
+                        />
                   )}
                 />
               </LocalizationProvider>

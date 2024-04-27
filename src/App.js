@@ -21,10 +21,12 @@ import Clientinfo from './components/pages/recruitment/clients/Clientinfo';
 import AddClient from './components/pages/recruitment/clients/AddClient';
 import AddJob from './components/pages/recruitment/jobs/AddJob';
 import AddCadidate from './components/pages/recruitment/candidates/AddCadidate';
+import Jobinfo from './components/pages/recruitment/jobs/Jobinfo';
+import Dashboard from './components/pages/dashboard/Dashboard';
 function App() {
   return (
     <Switch>
-      <Route exact path="/" component={Home} />
+      <Route exact path="/Dashboard" component={Dashboard} />
       {/* ===========================company section========================================================================= */}
 
       <Route exact path="/Company" component={Company} />
@@ -51,6 +53,7 @@ function App() {
 
       <Route exact path="/Jobs" component={Jobs} />
       <Route exact path="/AddJob" component={AddJob} />
+      <Route exact path="/Jobinfo" component={Jobinfo} />
 
       <Route exact path="/Candidates" component={Candidates} />
       <Route exact path="/AddCadidate" component={AddCadidate} />

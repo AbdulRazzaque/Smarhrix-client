@@ -5,7 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Dashhead from '../../../Dashhead';
 import Header from '../header/Header';
 import '../dashboard.scss'
-import { Autocomplete, Button, TextField } from '@mui/material';
+import { Autocomplete, Button, InputLabel, TextField } from '@mui/material';
 function Addcompany() {
     const [display,setDisplay]=React.useState(false)
 
@@ -48,17 +48,19 @@ function Addcompany() {
         <hr/>
            {/* ---------------------------------------------------First Row Start Here------------------------------------------- */}
            <div className="row d-flex flex-row mt-4">
-            
+
             <div className="col-6">
+          <InputLabel htmlFor="outlined-basic">Company Name</InputLabel>
               <TextField
                 id="outlined-basic"
-                sx={{ width: 400 }}
-                label="Company Name"
+                sx={{ width:'100%',   maxWidth: '500Px'}} 
+               placeholder="eg, Smartiex"
                 type="number"
                 variant="outlined"
               />
             </div>          
               <div className="col-6">
+              <InputLabel htmlFor="outlined-basic">Company Type</InputLabel>
               <Autocomplete
                     disablePortal
                     id="combo-box-demo"
@@ -67,8 +69,8 @@ function Addcompany() {
                      onChange={(event,value)=>{
                       // setSelectedDepartment(value.name)
                      }}
-                    sx={{ width: 400 }}
-                    renderInput={(params) => <TextField {...params} label="Select Company Type" />}
+                    sx={{ width:'100%',   maxWidth: '500Px'}} 
+                    renderInput={(params) => <TextField {...params}placeholder="Select Company Type" />}
                     /> 
             </div>
           </div>
@@ -76,19 +78,21 @@ function Addcompany() {
            <div className="row my-4  d-flex flex-row">
             
             <div className="col-6">
+            <InputLabel htmlFor="outlined-basic">Treading Name</InputLabel>
               <TextField
                 id="outlined-basic"
-                sx={{ width: 400 }}
-                label="Treading Name"
+                sx={{ width:'100%',   maxWidth: '500Px'}} 
+               placeholder="Enter Treading Name"
                 type=""
                 variant="outlined"
               />
             </div>          
               <div className="col-6">
+              <InputLabel htmlFor="outlined-basic">Registration Number *</InputLabel>
               <TextField
                 id="outlined-basic"
-                sx={{ width: 400 }}
-                label="Registration Number"
+                sx={{ width:'100%',   maxWidth: '500Px'}} 
+               placeholder="Enter Registration Number"
                 variant="outlined"
               />
             </div>
@@ -97,19 +101,21 @@ function Addcompany() {
            <div className="row my-4  d-flex flex-row">
             
             <div className="col-6">
+            <InputLabel htmlFor="outlined-basic">Phone number *</InputLabel>
               <TextField
                 id="outlined-basic"
-                sx={{ width: 400 }}
-                label="Phone number"
+                sx={{ width:'100%',   maxWidth: '500Px'}} 
+               placeholder="Enter Phone number"
                 type="number"
                 variant="outlined"
               />
             </div>          
               <div className="col-6">
+              <InputLabel htmlFor="outlined-basic">Email *</InputLabel>
               <TextField
                 id="outlined-basic"
-                sx={{ width: 400 }}
-                label="Email"
+                sx={{ width:'100%',   maxWidth: '500Px'}} 
+                placeholder="Email"
                 variant="outlined"
               />
             </div>
@@ -118,15 +124,17 @@ function Addcompany() {
            <div className="row my-4  d-flex flex-row">
             
             <div className="col-6">
+            <InputLabel htmlFor="outlined-basic">website (optional)</InputLabel>
               <TextField
                 id="outlined-basic"
-                sx={{ width: 400 }}
-                label="website (optional)"
+                sx={{ width:'100%',   maxWidth: '500Px'}} 
+               placeholder="website (optional)"
                 type="number"
                 variant="outlined"
               />
             </div>          
               <div className="col-6">
+              <InputLabel htmlFor="outlined-basic">location</InputLabel>
               <Autocomplete
                     disablePortal
                     id="combo-box-demo"
@@ -135,8 +143,8 @@ function Addcompany() {
                      onChange={(event,value)=>{
                       // setSelectedDepartment(value.name)
                      }}
-                    sx={{ width: 400 }}
-                    renderInput={(params) => <TextField {...params} label="Select location" />}
+                    sx={{ width:'100%',   maxWidth: '500Px'}} 
+                    renderInput={(params) => <TextField {...params}placeholder="Select location" />}
                     />
             </div>
           </div>
@@ -144,19 +152,21 @@ function Addcompany() {
            <div className="row my-4  d-flex flex-row">
             
             <div className="col-6">
+            <InputLabel htmlFor="outlined-basic">Tax Number</InputLabel>
               <TextField
                 id="outlined-basic"
-                sx={{ width: 400 }}
-                label="Tax Number"
+                sx={{ width:'100%',   maxWidth: '500Px'}} 
+               placeholder="Enter Tax Number"
                 type="number"
                 variant="outlined"
               />
             </div>          
               <div className="col-6">
+              <InputLabel htmlFor="outlined-basic">Compny Logo</InputLabel>
               <TextField
                 id="outlined-basic"
-                sx={{ width: 400 }}
-                // label="Tax Number"
+                sx={{ width:'100%',   maxWidth: '500Px'}} 
+                //placeholder="Tax Number"
                 type="file"
                 variant="outlined"
               />

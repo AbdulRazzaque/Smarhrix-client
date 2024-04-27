@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Dashhead from '../../../Dashhead';
@@ -8,6 +8,9 @@ import { Box, Button, TextField } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { DataGrid } from '@mui/x-data-grid';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
+import InfoIcon from '@mui/icons-material/Info';
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from '@mui/icons-material/Delete';
 function Jobs() {
     const [display,setDisplay]=React.useState(false)
     const history= useHistory()
@@ -19,7 +22,26 @@ function Jobs() {
         { field: 'Phone', headerName: 'Client', width: 150 },
         { field: 'City', headerName: 'City', width: 150 },
         { field: 'City', headerName: 'Closing Date', width: 150 },
-
+        {
+          title: "Action",
+          field: "Action",
+          width: 180,
+          renderCell: () => (
+            <Fragment>
+              {/* <Button color="error" onClick={() => setAlert(true)}> */}
+              <Button color="primary" onClick={()=>history.push("/Jobinfo")} >
+                <InfoIcon />
+              </Button>
+              <Button color="success" >
+                <EditIcon />
+              </Button>
+              <Button color="error" >
+                <DeleteIcon />
+                
+              </Button>
+            </Fragment>
+          ),
+        },
     ];
     
       const rows = [

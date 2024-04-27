@@ -9,12 +9,12 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Dashhead from '../../../Dashhead';
 import Header from '../header/Header';
 import '../dashboard.scss'
-import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Button, TextField } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import EditIcon from "@mui/icons-material/Edit";
 import { DataGrid } from '@mui/x-data-grid';
 import InfoIcon from '@mui/icons-material/Info';
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from '@mui/icons-material/Delete';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 function Company() {
     const [display,setDisplay]=React.useState(false)

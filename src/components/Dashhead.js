@@ -11,6 +11,9 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
 import ReportIcon from '@mui/icons-material/Report';
+import BusinessCenterSharpIcon from '@mui/icons-material/BusinessCenterSharp';
+import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
+import TodayIcon from '@mui/icons-material/Today';
 const Dashhead = (props) => {
     console.log(props);
     let {id,display} = props
@@ -57,10 +60,10 @@ const Dashhead = (props) => {
          <h6 className='subtitle'> HR</h6>
             </div>
             {id===4?<div className="menu-container-active"  onClick={()=>props.history.push('Hrdetails')}>
-                <p><PeopleIcon /> Core HR</p>
+                <p><BusinessCenterSharpIcon /> Core HR</p>
             </div>:
             <div className="menu-container" onClick={()=>props.history.push('Hrdetails')}>
-            <p><PeopleIcon /> Core HR</p>
+            <p><BusinessCenterSharpIcon /> Core HR</p>
             </div>
             }
 
@@ -94,10 +97,10 @@ const Dashhead = (props) => {
    }
 
    {id===8?<div className="menu-container-active" onClick={()=>props.history.push('Jobs')}>
-       <p><TimerIcon /> Jobs</p>
+       <p><PermContactCalendarIcon /> Jobs</p>
    </div>:
    <div className="menu-container" onClick={()=>props.history.push('Jobs')}>
-   <p><TimerIcon /> Jobs</p>
+   <p><PermContactCalendarIcon /> Jobs</p>
    </div>
    }
    {id===9?<div className="menu-container-active" onClick={()=>props.history.push('Candidates')}>
@@ -108,10 +111,10 @@ const Dashhead = (props) => {
    </div>
    }
    {id===10?<div className="menu-container-active" onClick={()=>props.history.push('Interview')}>
-       <p><RecordVoiceOverIcon /> Interview Schedule</p>
+       <p><TodayIcon /> Interview Schedule</p>
    </div>:
    <div className="menu-container" onClick={()=>props.history.push('Interview')}>
-   <p><RecordVoiceOverIcon /> Interview Schedule</p>
+   <p><TodayIcon /> Interview Schedule</p>
    </div>
    }
     <hr className='ml-2' />

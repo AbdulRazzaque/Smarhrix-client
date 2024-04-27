@@ -9,7 +9,7 @@ const CoreHrList = ({handleOpen}) => {
   };
   return (
     <Box sx={{ width: '100%', maxWidth: 200, borderRadius:2}} className="bg-white">
-      
+       
     <nav aria-label="secondary mailbox folders">
       {/* <List>
         <ListItem disablePadding>
