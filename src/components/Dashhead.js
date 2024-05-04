@@ -13,6 +13,7 @@ import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
 import ReportIcon from '@mui/icons-material/Report';
 import BusinessCenterSharpIcon from '@mui/icons-material/BusinessCenterSharp';
 import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
+import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 import TodayIcon from '@mui/icons-material/Today';
 const Dashhead = (props) => {
     console.log(props);
@@ -154,6 +155,13 @@ const Dashhead = (props) => {
    </div>:
    <div className="menu-container" onClick={()=>props.history.push('Invoice')}>
    <p><ReportIcon /> Report</p>
+   </div>
+   }
+   {id===15?<div className="menu-container-active"  onClick={()=>props.history.push('Filemanager')}>
+       <p><CreateNewFolderIcon /> File Manager</p>
+   </div>:
+   <div className="menu-container" onClick={()=>props.history.push('Filemanager')}>
+   <p><CreateNewFolderIcon /> File Manager</p>
    </div>
    }
 

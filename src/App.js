@@ -23,6 +23,7 @@ import AddJob from './components/pages/recruitment/jobs/AddJob';
 import AddCadidate from './components/pages/recruitment/candidates/AddCadidate';
 import Jobinfo from './components/pages/recruitment/jobs/Jobinfo';
 import Dashboard from './components/pages/dashboard/Dashboard';
+import Filemanager from './components/pages/Report and file manager/Filemanager';
 function App() {
   return (
     <Switch>
@@ -64,6 +65,9 @@ function App() {
       
       {/* ===========================Account========================================================================= */}
       <Route exact path="/Invoice" component={Invoice} />
+      
+      {/* ===========================Report & File Manager========================================================================= */}
+      <Route exact path="/Filemanager" component={Filemanager} />
       
 
       
