@@ -89,7 +89,7 @@ function Timesheets() {
              </span>
 
         <Header/>
-        <div className="container my-5">
+        <div className=" container-fluid my-5">
       <p className='sidTitle'>Dashboard / Timesheets /<span>Add</span> <span>Update Attendance</span></p>
       <p className='sidTitle2'>ADD / UPDATE ATTENDANCE</p>
     </div>
@@ -104,7 +104,7 @@ function Timesheets() {
                      onChange={(event,value)=>{
                       // setSelectedDepartment(value.name)
                      }}
-                    sx={{ width: 500 }}
+                     sx={{ width:'100%',   maxWidth: '500Px'}} 
                     renderInput={(params) => <TextField {...params} label="All Companies" />}
                     />
         </div>
@@ -117,7 +117,7 @@ function Timesheets() {
                      onChange={(event,value)=>{
                       // setSelectedDepartment(value.name)
                      }}
-                    sx={{ width: 500 }}
+                     sx={{ width:'100%',   maxWidth: '500Px'}} 
                     renderInput={(params) => <TextField {...params} label="All Departments" />}
                     />
         </div>

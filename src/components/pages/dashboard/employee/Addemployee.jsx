@@ -44,7 +44,7 @@ function Addemployee() {
              </span>
 
         <Header/>
-        <div className="container my-5">
+        <div className=" container-fluid my-5">
       <p className='sidTitle'>Dashboard / Employees / <span>Add Employee</span></p>
       <p className='sidTitle2'>CREATE EMPLOYEE</p>
     </div>

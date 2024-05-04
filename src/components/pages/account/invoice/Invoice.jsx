@@ -81,7 +81,7 @@ function Invoice() {
              </span>
 
         <Header/>
-        <div className="container my-5">
+        <div className=" container-fluid my-5">
       <p className='sidTitle'>Dashboard / <span>Invoice</span></p>
       <p className='sidTitle2'>Manage Billing</p>
     </div>

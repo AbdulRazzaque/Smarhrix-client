@@ -26,7 +26,7 @@ import Dashboard from './components/pages/dashboard/Dashboard';
 function App() {
   return (
     <Switch>
-      <Route exact path="/Dashboard" component={Dashboard} />
+      <Route exact path="/" component={Dashboard} />
       {/* ===========================company section========================================================================= */}
 
       <Route exact path="/Company" component={Company} />

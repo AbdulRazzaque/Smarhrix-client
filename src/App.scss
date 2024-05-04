@@ -1,13 +1,15 @@
 $primary:"#fafafa";
 $secondary:"#fcfcfc";
 $tertiary:"#ffff";
-$primary-font:'Montserrat', sans-serif;
+$primary-font:'Inter', sans-serif;
 $secondary-font:'Roboto', sans-serif;
 
 h1,h2,h3,h5{
-  font-family: 'Friz Quadrata Std';
+  font-family: "Inter", sans-serif;
 }
-
+body{
+font-family: "Inter", sans-serif;
+}
 .display-mobile{
   display: none;
 }

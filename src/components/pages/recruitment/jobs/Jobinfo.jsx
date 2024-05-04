@@ -74,7 +74,7 @@ function Jobinfo() {
              </span>
 
         <Header/>
-        <div className="container my-5">
+        <div className=" container-fluid my-5">
       <p className='sidTitle'>Dashboard /Client <span>Client01</span></p>
       <p className='sidTitle2'>CLIENT DETAILS</p>
     </div>

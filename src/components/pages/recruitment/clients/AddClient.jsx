@@ -59,7 +59,7 @@ function AddClient() {
              </span>
 
         <Header/>
-        <div className="container my-5">
+        <div className=" container-fluid my-5">
       <p className='sidTitle'>Dashboard / Client / <span>Create</span></p>
       <p className='sidTitle2'>CREATE CLIENT</p>
     </div>

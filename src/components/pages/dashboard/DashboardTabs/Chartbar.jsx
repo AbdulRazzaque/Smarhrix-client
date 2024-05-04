@@ -1,5 +1,5 @@
 import React from 'react'
-// import { BarChart } from '@mui/x-charts/BarChart';
+import { BarChart } from '@mui/x-charts/BarChart';
 import { axisClasses } from '@mui/x-charts';
 const Chartbar = () => {
 

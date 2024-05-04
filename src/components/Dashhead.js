@@ -37,7 +37,6 @@ const Dashhead = (props) => {
             <p><DashboardIcon /> Dashboard</p>
             </div>
             }
-
             {id===2?<div className="menu-container-active" onClick={()=>props.history.push('Company')}>
                 <p><ApartmentIcon /> Company</p>
             </div>:

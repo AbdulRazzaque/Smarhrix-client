@@ -19,12 +19,15 @@ const General = () => {
   return (
     <div>
         <div className="row">
-            <div className="col-3">
+            <div className="col-md-3 ">
+      
             <Infolist handleOpen={handleOpen}/>
             </div> 
 
-            <div className="col-9">
-            {openComponent === 'Basic' && <Basic />}
+            <div className="col-md-9">
+          
+            
+          {openComponent === 'Basic' && <Basic />}
           {openComponent === 'Immigration' && <Immigration />}
           {openComponent === 'EmergencyContact' && <EmergencyContact />}
           {openComponent === 'Socialprofile' && <Socialprofile />}

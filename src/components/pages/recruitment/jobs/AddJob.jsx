@@ -58,7 +58,7 @@ function AddJob() {
              </span>
 
         <Header/>
-        <div className="container my-5">
+        <div className=" container-fluid my-5">
       <p className='sidTitle'>Dashboard / Jobs / <span>Create</span></p>
       <p className='sidTitle2'>CREATE JOB</p>
     </div>

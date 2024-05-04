@@ -8,10 +8,12 @@ import "./Header.scss"
 
 
 const Header = (props) => {
+	
 	React.useEffect(()=>{
 
 	},[props.user])
 console.log(props);
+
 
 	return ( 
         <div className="p-4 rounded" style={{margin:"auto 5%"}}>

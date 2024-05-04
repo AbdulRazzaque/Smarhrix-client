@@ -36,7 +36,7 @@ function Addcompany() {
              </span>
 
         <Header/>
-        <div className="container my-5">
+        <div className=" container-fluid my-5">
       <p className='sidTitle'>Dashboard / Company / <span>Add Company</span></p>
       <p className='sidTitle2'>ADD COMPNAY</p>
     </div>

@@ -40,7 +40,7 @@ function Employeeinfo() {
             {...other}
           >
             {value === index && (
-              <Box sx={{ p: 3 }}>
+              <Box sx={{ p: 3, }} >
                 <Typography>{children}</Typography>
               </Box>
             )}
@@ -75,14 +75,14 @@ function Employeeinfo() {
              </span>
 
         <Header/>
-        <div className="container my-5">
+        <div className=" container-fluid my-5">
       <p className='sidTitle'>Dashboard / Candidate<span>Employee</span></p>
       <p className='sidTitle2'>ALL EMPLOYEES</p>
     </div>
 
     <div className="box">
-    <Box sx={{ width: '100%', height:50}} className="bg-white my-2 mx-2   ">
-      <Box sx={{ borderBottom: 1,  borderColor: 'divider',}}>
+    <Box sx={{ width: '100%', height:50, }} className="bg-white my-2 mx-2   ">
+      <Box sx={{ borderBottom: 1,  borderColor: 'divider' ,}}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className='tabs'>
           <Tab label="General" {...a11yProps(0)} className='tab'/>
           <Tab label="Profile" {...a11yProps(1)} className='tab'/>
