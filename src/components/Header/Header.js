@@ -12,6 +12,10 @@ const Header = (props) => {
 	React.useEffect(()=>{
 
 	},[props.user])
+
+
+
+
 console.log(props);
 
 
@@ -44,8 +48,7 @@ console.log(props);
 				<Button sx={{fontSize:"1.1rem"}} variant="contained" size="large"  className="btn-purple">SignUp</Button>
 				</Link>}
 			</li>
-			
-			
+	
 		</ul>
 	</div>
 </div>
@@ -60,3 +63,5 @@ const mapStateToProps =({EventUser})=>{
 	}
 	}
 export default connect(mapStateToProps)(Header);
+
+

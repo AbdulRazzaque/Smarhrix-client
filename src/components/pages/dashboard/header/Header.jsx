@@ -29,7 +29,7 @@ const Header = () => {
       {/* <!-- Your left side icons here --> */}
       <div className="d-flex justify-content-start">
         {/* <!-- Icon 1 --> */}
-        <div className="p-2 headerIcon "><KeyboardDoubleArrowLeftIcon className='icon' onClick={()=>{history.goBack()}}/></div>
+        {/* <div className="p-2 headerIcon "><KeyboardDoubleArrowLeftIcon className='icon' onClick={()=>{history.goBack()}}/></div> */}
       
       </div>
     </div>
