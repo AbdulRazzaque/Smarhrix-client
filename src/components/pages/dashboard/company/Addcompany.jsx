@@ -17,7 +17,7 @@ function Addcompany() {
     const [file, setFile] = useState(null);
     
 
-    
+     
     const url=process.env.REACT_APP_DEVELOPMENT; 
     const department =[
       {name:'GENETIC'},

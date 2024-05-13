@@ -35,9 +35,9 @@ function Dashboard() {
    
       <p className='sidTitle2'>DASHBOARD</p>
     </div>
-        <DashbordTotalClient/>
+        {/* <DashbordTotalClient/>
         <Chatrbar/>
-        <DashboardTask/>
+        <DashboardTask/> */}
     </div>
 
 
