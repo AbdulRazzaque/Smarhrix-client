@@ -1,32 +1,54 @@
 
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-// import Dashhead from './Dashhead';
 import Dashhead from '../../../Dashhead';
 import Header from '../header/Header';
 import '../dashboard.scss'
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Button, TextField } from '@mui/material';
-
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import EditIcon from "@mui/icons-material/Edit";
 import { DataGrid } from '@mui/x-data-grid';
 import InfoIcon from '@mui/icons-material/Info';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
+import axios from 'axios';
+
+// ======================================Get Api===========================================================================================
+
+export const getCompany = (setData) => {
+  const url = process.env.REACT_APP_DEVELOPMENT;
+  axios.get(`${url}/api/get-employee/`)
+    .then(response => {
+      const arr = response.data.map((item, index) => ({
+        ...item,
+        id: index + 1
+      }));
+      setData(arr);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+
+    }); 
+};
+// =================Main Component start Here===========================================================================
+
 function Employees() {
     const [display,setDisplay]=React.useState(false)
+    const [data,setData]=useState([])
+
+
+
     const history= useHistory()
 
     const columns = [
         { field: 'id', headerName: 'S.N', width: 90 },
-        { field: 'Employee', headerName: 'Employee', width: 150 },
-        { field: 'Department', headerName: 'Department', width: 150 },
-        { field: 'Designation', headerName: 'Designation', width: 150 },
-        { field: 'Contact', headerName: 'Contact', width: 150 },
-        { field: 'City', headerName: 'City', width: 150 },
-        { field: 'Country', headerName: 'Country', width: 150 },
+        { field: 'first_name', headerName: 'Employee', width: 150 },
+        { field: 'Company', headerName: 'Company', width: 150 ,valueGetter:(params)=>params.row.company_details.company_name},
+        { field: 'department', headerName: 'Department', width: 150 },
+        { field: 'designation', headerName: 'Designation', width: 150 },
+        { field: 'phone_number', headerName: 'Contact', width: 150 },
        
           {
             title: "Action",
@@ -51,20 +73,12 @@ function Employees() {
 
     ];
     
-    const rows = [
-        { id: 1, Employee: 'Arctic', Department: 'Marketing', Designation: 'Marketing Coordinator', Contact: 9876543210, City: 'Mumbai', Country: 'India' },
-        { id: 2, Employee: 'Polar', Department: 'Sales', Designation: 'Sales Manager', Contact: 8765432109, City: 'Bengaluru', Country: 'India' },
-        { id: 3, Employee: 'Glacial', Department: 'Finance', Designation: 'Financial Analyst', Contact: 7654321098, City: 'Chandigarh', Country: 'India' },
-        { id: 4, Employee: 'Frozen', Department: 'Human Resources', Designation: 'HR Manager', Contact: 6543210987, City: 'Ahmedabad', Country: 'India' },
-        { id: 5, Employee: 'Iceberg', Department: 'Operations', Designation: 'Operations Manager', Contact: 5432109876, City: 'Jaipur', Country: 'India' },
-        { id: 6, Employee: 'Frostbite', Department: 'Research and Development', Designation: 'Research Scientist', Contact: 4321098765, City: 'Kolkata', Country: 'India' },
-        { id: 7, Employee: 'Chilly', Department: 'Customer Service', Designation: 'Customer Support Specialist', Contact: 3210987654, City: 'Chennai', Country: 'India' },
-        { id: 8, Employee: 'Icicle', Department: 'Information Technology', Designation: 'IT Specialist', Contact: 2109876543, City: 'Delhi', Country: 'India' },
-        { id: 9, Employee: 'Snowfall', Department: 'Quality Assurance', Designation: 'QA Tester', Contact: 1098765432, City: 'Hyderabad', Country: 'India' },
-        { id: 10, Employee: 'Freeze', Department: 'Product Management', Designation: 'Product Manager', Contact: 1234567890, City: 'Pune', Country: 'India' },
-        { id: 11, Employee: 'Polaris', Department: 'Engineering', Designation: 'Software Developer', Contact: 2345678901, City: 'Lucknow', Country: 'India' },
-        { id: 12, Employee: 'Icy Peaks', Department: 'Supply Chain', Designation: 'Logistics Coordinator', Contact: 3456789012, City: 'Gurgaon', Country: 'India' }
-    ];
+// ============================================Get api====================================================================================================================
+        
+useEffect(()=>{
+  getCompany(setData)
+},[])
+console.log(data)
     
     return (
         <div className="row">
@@ -143,7 +157,7 @@ function Employees() {
 
 <Box sx={{ height: 400, width: '100%', backgroundColor:'white' }} className='my-5'>
       <DataGrid
-        rows={rows}
+        rows={data}
         columns={columns}
         initialState={{
           pagination: {

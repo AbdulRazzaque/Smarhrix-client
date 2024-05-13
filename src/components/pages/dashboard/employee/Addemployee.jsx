@@ -6,8 +6,11 @@ import Dashhead from '../../../Dashhead';
 import Header from '../header/Header';
 import '../dashboard.scss'
 import { Autocomplete, Button, InputLabel, TextField } from '@mui/material';
-import { DatePicker, LocalizationProvider } from '@mui/lab';
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+// import { DatePicker } from '@mui/lab';
+// import { LocalizationProvider } from '@mui/x-date-pickers';
+// import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 function Addemployee() {
     const [display,setDisplay]=React.useState(false)
     const [selectedDate,setSelectedDate]=useState()
@@ -124,7 +127,7 @@ function Addemployee() {
               <InputLabel htmlFor="outlined-basic">Date of Birth *</InputLabel>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
-                  // sx={{ width: 700 }}
+                  sx={{ width: 400 }}
                   // label="Date of Birth"
                   onChange={(newValue) => setSelectedDate(newValue)}
                   renderInput={(params) => (
