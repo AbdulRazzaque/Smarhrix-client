@@ -16,7 +16,7 @@ function Addcompany() {
     const [selectLocation,setSelectedLocation]=useState([])
     const [file, setFile] = useState(null);
     
-
+ 
      
     const url=process.env.REACT_APP_DEVELOPMENT; 
     const department =[

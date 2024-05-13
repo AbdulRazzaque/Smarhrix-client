@@ -9,7 +9,7 @@ import Header from '../../dashboard/header/Header';
 // import '../dashboard.scss'
 import '../../dashboard/dashboard.scss'
 import { Autocomplete, Button, InputLabel, TextField } from '@mui/material';
-import { DatePicker, LocalizationProvider } from '@mui/lab';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import DeleteIcon from '@mui/icons-material/Delete';

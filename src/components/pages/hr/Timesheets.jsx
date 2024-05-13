@@ -17,7 +17,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import InfoIcon from '@mui/icons-material/Info';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 import Tabsection from './tabSection/Tabsection';
-import { DatePicker, LocalizationProvider } from '@mui/lab';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 function Timesheets() {
     const [display,setDisplay]=React.useState(false)
