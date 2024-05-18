@@ -121,7 +121,33 @@ console.log(file)
            <div className="row my-4  d-flex flex-row">
             
             <div className="col-6">
-            <InputLabel htmlFor="outlined-basic">Treading Name</InputLabel>
+            <InputLabel htmlFor="outlined-basic">Trade/Business Name</InputLabel>
+              <TextField
+                id="outlined-basic"
+                sx={{ width:'100%',   maxWidth: '500Px'}} 
+               placeholder="Enter Treading Name"
+                type=""
+                variant="outlined"
+                {...register('treading_name')}
+              />
+            </div>          
+            <div className="col-6">
+            <InputLabel htmlFor="outlined-basic">GST Number</InputLabel>
+              <TextField
+                id="outlined-basic"
+                sx={{ width:'100%',   maxWidth: '500Px'}} 
+               placeholder="Enter Treading Name"
+                type="number"
+                variant="outlined"
+                {...register('treading_name')}
+              />
+            </div> 
+          </div>
+           {/* ---------------------------------------------------second Row Start Here------------------------------------------- */}
+           <div className="row my-4  d-flex flex-row">
+            
+            <div className="col-6">
+            <InputLabel htmlFor="outlined-basic">Pan Card Number</InputLabel>
               <TextField
                 id="outlined-basic"
                 sx={{ width:'100%',   maxWidth: '500Px'}} 
@@ -132,7 +158,82 @@ console.log(file)
               />
             </div>          
               <div className="col-6">
-              <InputLabel htmlFor="outlined-basic">Registration Number </InputLabel>
+              <InputLabel htmlFor="outlined-basic">Registered Office Address</InputLabel>
+              <TextField
+                id="outlined-basic"
+                sx={{ width:'100%',   maxWidth: '500Px'}} 
+               placeholder="Enter Registered Office Address"
+                variant="outlined"
+                {...register('registration_number')}
+              />
+            </div>
+          </div>
+           {/* ---------------------------------------------------second Row Start Here------------------------------------------- */}
+           <div className="row my-4  d-flex flex-row">
+            
+            <div className="col-6">
+            <InputLabel htmlFor="outlined-basic"> Line 1</InputLabel>
+              <TextField
+                id="outlined-basic"
+                sx={{ width:'100%',   maxWidth: '500Px'}} 
+               placeholder="Enter Treading Name"
+                type=""
+                variant="outlined"
+                {...register('treading_name')}
+              />
+            </div>          
+              <div className="col-6">
+              <InputLabel htmlFor="outlined-basic">  Line 2</InputLabel>
+              <TextField
+                id="outlined-basic"
+                sx={{ width:'100%',   maxWidth: '500Px'}} 
+               placeholder="Enter Registered Office Address"
+                variant="outlined"
+                {...register('registration_number')}
+              />
+            </div>
+          </div>
+           {/* ---------------------------------------------------second Row Start Here------------------------------------------- */}
+           <div className="row my-4  d-flex flex-row">
+            
+            <div className="col-6">
+            <InputLabel htmlFor="outlined-basic">City</InputLabel>
+              <TextField
+                id="outlined-basic"
+                sx={{ width:'100%',   maxWidth: '500Px'}} 
+               placeholder="Enter Treading Name"
+                type=""
+                variant="outlined"
+                {...register('treading_name')}
+              />
+            </div>          
+              <div className="col-6">
+              <InputLabel htmlFor="outlined-basic">State</InputLabel>
+              <TextField
+                id="outlined-basic"
+                sx={{ width:'100%',   maxWidth: '500Px'}} 
+               placeholder="Enter Registered Office Address"
+                variant="outlined"
+                {...register('registration_number')}
+              />
+            </div>
+          </div>
+           {/* ---------------------------------------------------Thired Row Start Here------------------------------------------- */}
+           <div className="row my-4  d-flex flex-row">
+            
+            <div className="col-6">
+            <InputLabel htmlFor="outlined-basic">Country</InputLabel>
+              <TextField
+                id="outlined-basic"
+                sx={{ width:'100%',   maxWidth: '500Px'}} 
+               placeholder="Enter Treading Name"
+                type="number"
+                variant="outlined"
+                {...register('treading_name')}
+              />
+            </div>          
+              <div className="col-6">
+              <InputLabel htmlFor="outlined-basic">PIN Code </InputLabel>
               <TextField
                 id="outlined-basic"
                 sx={{ width:'100%',   maxWidth: '500Px'}} 
@@ -142,7 +243,7 @@ console.log(file)
               />
             </div>
           </div>
-           {/* ---------------------------------------------------Therd Row Start Here------------------------------------------- */}
+           {/* ---------------------------------------------------forth Row Start Here------------------------------------------- */}
            <div className="row my-4  d-flex flex-row">
             
             <div className="col-6">
@@ -171,7 +272,7 @@ console.log(file)
            <div className="row my-4  d-flex flex-row">
             
             <div className="col-6">
-            <InputLabel htmlFor="outlined-basic">website (optional)</InputLabel>
+            <InputLabel htmlFor="outlined-basic">Company Website</InputLabel>
               <TextField
                 id="outlined-basic"
                 sx={{ width:'100%',   maxWidth: '500Px'}} 
@@ -181,36 +282,22 @@ console.log(file)
                 {...register('website', { required: true })}
               />
             </div>          
-              <div className="col-6">
-              <InputLabel htmlFor="outlined-basic">location *</InputLabel>
-              <Autocomplete
-                    disablePortal
-                    id="combo-box-demo"
-                    getOptionLabel={(department)=>department.name}
-                     options={department}
-                     onChange={(event,value)=>{
-                      setSelectedLocation(value.name)
-                     }}
-                    sx={{ width:'100%',   maxWidth: '500Px'}} 
-                    renderInput={(params) => <TextField {...params}placeholder="Select location" />}
-                    />
+            <div className="col-6">
+            <InputLabel htmlFor="outlined-basic">TIN Number</InputLabel>
+              <TextField
+                id="outlined-basic"
+                sx={{ width:'100%',   maxWidth: '500Px'}} 
+               placeholder="TIN Number"
+                type="text"
+                variant="outlined"
+                {...register('website', { required: true })}
+              />
             </div>
           </div>
            {/* ---------------------------------------------------forth Row Start Here------------------------------------------- */}
            <div className="row my-4  d-flex flex-row">
             
-            <div className="col-6">
-            <InputLabel htmlFor="outlined-basic">Tax Number *</InputLabel>
-              <TextField
-                id="outlined-basic"
-                sx={{ width:'100%',   maxWidth: '500Px'}} 
-               placeholder="Enter Tax Number"
-                type="number"
-                variant="outlined"
-                {...register('tax_number', { required: true })}
-              />
-            </div>          
-              <div className="col-6">
+           <div className="col-6">
               <InputLabel htmlFor="outlined-basic">Compny Logo</InputLabel>
               <TextField
                 id="outlined-basic"
@@ -223,7 +310,34 @@ console.log(file)
                 variant="outlined"
                 
               />
+            </div>          
+              <div className="col-6">
+              <InputLabel htmlFor="outlined-basic">Currency *</InputLabel>
+              <TextField
+                id="outlined-basic"
+                sx={{ width:'100%',   maxWidth: '500Px'}} 
+               placeholder="Currency"
+                type="text" 
+                variant="outlined"
+                {...register('website', { required: true })}
+              />
             </div>
+          </div>
+           {/* ---------------------------------------------------forth Row Start Here------------------------------------------- */}
+           <div className="row my-4  d-flex flex-row">
+            
+            <div className="col-6">
+            <InputLabel htmlFor="outlined-basic">Signature of Admin</InputLabel>
+              <TextField
+                id="outlined-basic"
+                sx={{ width:'100%',   maxWidth: '500Px'}} 
+               placeholder="Enter Tax Number"
+                type="number"
+                variant="outlined"
+                {...register('tax_number', { required: true })}
+              />
+            </div>          
+           
           </div>
           <div className="col-xl-4 mt-2 col-md-12 col-sm-12 my-5">
             <Button variant='contained'  type='submit'

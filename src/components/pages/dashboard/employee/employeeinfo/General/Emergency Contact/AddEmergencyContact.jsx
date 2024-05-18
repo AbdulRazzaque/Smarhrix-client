@@ -13,6 +13,9 @@ import Typography from '@mui/material/Typography';
 import { Autocomplete, Divider, InputLabel, TextField } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { Controller, useForm } from 'react-hook-form';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -27,21 +30,75 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
  const AddEmergencyContact= ({open,handleClickOpen,handleClose})=> {
-    const [selectedDate,setSelectedDate]=React.useState()
 
+  const { register, handleSubmit,control, reset, formState: { isSubmitting } } = useForm();
+    const [selectedRelation,setSelectedRelation]=React.useState([])
+    const [selectedCountry,setSelectedCountry]=React.useState([])
+    const [data,setData]= React.useState([])
+    const employeeData = useSelector(state => state.socket.messages)
     const department =[
-        {name:'GENETIC'},
-        {name:"MICROBIOLOGY"},
-        {name:"HEAMOTOLGY"},
-        {name:"BIOCHEMISTRY"},
-        {name:"HPLC"},
-        {name:"AAS"},
-        {name:"PARASITOLOGY"},
-        {name:"GENERAL"},
-           
-        
-      ]
+      {name:'GENETIC'},
+      {name:"MICROBIOLOGY"},
+      {name:"HEAMOTOLGY"},
+      {name:"BIOCHEMISTRY"},
+      {name:"HPLC"},
+      {name:"AAS"},
+      {name:"PARASITOLOGY"},
+      {name:"GENERAL"},
+      
+      
+    ]
+    const url=process.env.REACT_APP_DEVELOPMENT;
+// ============================================Get api====================================================================================================================
+const getEmergencyContact =()=>{
 
+  axios.get(`${url}/api/employees/general/get-contact/`)
+    .then(response => {
+      const arr = response.data.map((item, index) => ({
+        ...item,
+        id: index + 1
+      }));
+      setData(arr);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+
+    }); 
+}
+  // ==========================================POST API==============================================================================================================================
+      const onSubmit = async(formData)=>{
+        try {
+          var obj ={
+            relation:selectedRelation,
+            country:selectedCountry,
+            employee:employeeData.uuid,
+            ...formData
+          }
+          console.log('obj',obj)
+          await axios.post(`${url}/api/employees/general/create-contact/`,obj)
+          .then(response=>{
+            console.log('Response',response)
+            const newData = response.data.data;
+  
+            // Update local state with the new data
+            setData((prevData) => [...prevData, newData]);
+            reset()
+            handleClose()
+          }).catch(error=>console.log(error))
+           getEmergencyContact();
+        } catch (error) {
+          console.log(error)
+          
+        }
+        
+      }
+  
+  
+  
+      React.useEffect(() => {
+        getEmergencyContact(); // Fetch data on initial render
+      }, []); // Re-fetch data when 'data' state changes (after POST request)
+      
   return (
     <React.Fragment>
  
@@ -69,26 +126,26 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
         <p className="whitboxtitle ml-4 my-4">Add Contact</p>
      
         <Divider/>
+        <form onSubmit={handleSubmit(onSubmit)}>
         <div className="container my-4">
         <div className="d-flex align-items-center my-3">
             
-            <div className="col-6">
-            <InputLabel htmlFor="outlined-basic">Relation *</InputLabel>
-
-            <Autocomplete
+        <div className="col-6">
+                <InputLabel htmlFor="relation">Relation *</InputLabel>
+                <Autocomplete
                     disablePortal
                     id="combo-box-demo"
                     getOptionLabel={(department)=>department.name}
                      options={department}
                      onChange={(event,value)=>{
-                      // setSelectedDepartment(value.name)
+                      setSelectedRelation(value.name)
                      }}
                      sx={{ 
                         width:'100%',   maxWidth: '500Px' 
                         }}
-                    renderInput={(params) => <TextField {...params} placeholder='Select Relation' required/>}
+                    renderInput={(params) => <TextField {...params} placeholder='Select Document Type' required/>}
                     />
-            </div>          
+              </div>       
               <div className="col-6">
               <InputLabel htmlFor="outlined-basic">Email *</InputLabel>
               <TextField
@@ -98,8 +155,9 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                   }}
                 placeholder="Email"
                 required
-                type="number"
+                type="text"
                 variant="outlined"
+                {...register('email')}
               />
          
             </div>
@@ -117,8 +175,9 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                   }}
                 placeholder="Name"
                 required
-                type="number"
+                type="text"
                 variant="outlined"
+                {...register('name')}
               />
             </div>          
               <div className="col-6">
@@ -132,6 +191,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                 required
                 type="number"
                 variant="outlined"
+                {...register('phone_number')}
               />
          
             </div>
@@ -147,8 +207,9 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                 fullWidth
                 placeholder="Address"
                 required
-                type="number"
+                type="text"
                 variant="outlined"
+                {...register('address')}
                 
               />
             </div>          
@@ -170,6 +231,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                     width:'100%',   maxWidth: '500Px' 
                     }}
                 variant="outlined"
+                {...register('city')}
               />
             </div>          
             <div className="col-6">
@@ -185,6 +247,8 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                     width:'100%',   maxWidth: '500Px' 
                       }}
                 variant="outlined"
+                {...register('state')}
+
               />
             </div>          
              
@@ -205,30 +269,30 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                       }}
                 type="text"
                 variant="outlined"
+                {...register('zip_code')}
               />
             </div>          
             <div className="col-6">
-            <InputLabel htmlFor="outlined-basic">Country *</InputLabel>
-
-            <Autocomplete
+                <InputLabel htmlFor="country">Country *</InputLabel>
+                <Autocomplete
                     disablePortal
                     id="combo-box-demo"
                     getOptionLabel={(department)=>department.name}
                      options={department}
                      onChange={(event,value)=>{
-                      // setSelectedDepartment(value.name)
+                      setSelectedCountry(value.name)
                      }}
-                
-                    renderInput={(params) => <TextField {...params} placeholder='Select Relation'  sx={{ 
+                     sx={{ 
                         width:'100%',   maxWidth: '500Px' 
-                          }} required/>}
+                        }}
+                    renderInput={(params) => <TextField {...params} placeholder='Select Document Type' required/>}
                     />
-            </div>          
+              </div>           
              
           </div>
           <div className="d-flex my-5">
           <div className="mx-4">
-            <Button variant='contained' 
+            <Button variant='contained' type='submit'
             // InputProps={{ sx: { borderRadius: 10, backgroundColor:"white"} }}
             sx={{borderRadius:34, backgroundColor:'#2F69FF'}}
             >Add Contact</Button>
@@ -236,7 +300,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
         
           </div>
         </div>
-        
+        </form>
         
         
  

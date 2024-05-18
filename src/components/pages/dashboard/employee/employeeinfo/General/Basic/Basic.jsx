@@ -1,6 +1,9 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 const Basic = () => {
+  const employeeData = useSelector(state => state.socket.messages)
+  // console.log(employeeData,'employeeData')
   return (
     <>
  
@@ -10,15 +13,15 @@ const Basic = () => {
             <div className="row my-2">
                 <div className="col">
                   <div className="col my-3 boxtextheading">First Name</div>
-                  <div className="col my-3 boxtextcontent" >Khan</div>
+                  <div className="col my-3 boxtextcontent" >{employeeData.first_name}</div>
                 </div>
                 <div className="col">
                   <div className="col my-3 boxtextheading">Last Name</div>
-                  <div className="col my-3 boxtextcontent" >Tabish</div>
+                  <div className="col my-3 boxtextcontent" >{employeeData.last_name}</div>
                 </div>
                 <div className="col">
                   <div className="col my-3 boxtextheading">STAFF ID</div>
-                  <div className="col my-3 boxtextcontent" >1</div>
+                  <div className="col my-3 boxtextcontent" >{employeeData.staff_id}</div>
                 </div>
                
             </div>
@@ -26,15 +29,15 @@ const Basic = () => {
             <div className="row my-3">
                 <div className="col">
                   <div className="col my-3 boxtextheading">User Name</div>
-                  <div className="col my-3 boxtextcontent" >Khantabish</div>
+                  <div className="col my-3 boxtextcontent" >{employeeData.username}</div>
                 </div>
                 <div className="col">
                   <div className="col my-3 boxtextheading">Email</div>
-                  <div className="col my-3 boxtextcontent" >KhanTabish@gmail.com</div>
+                  <div className="col my-3 boxtextcontent" >{employeeData.email}</div>
                 </div>
                 <div className="col">
                   <div className="col my-3 boxtextheading">PHONE</div>
-                  <div className="col my-3 boxtextcontent" >1232342</div>
+                  <div className="col my-3 boxtextcontent" >{employeeData.phone_number}</div>
                 </div>
                
             </div>
@@ -42,11 +45,11 @@ const Basic = () => {
             <div className="row my-2">
                 <div className="col">
                   <div className="col my-3 boxtextheading">Gender</div>
-                  <div className="col my-3 boxtextcontent" >Male</div>
+                  <div className="col my-3 boxtextcontent" >{employeeData.gender}</div>
                 </div>
                 <div className="col">
                   <div className="col my-3 boxtextheading">Date Of Birth</div>
-                  <div className="col my-3 boxtextcontent" >24-2-2023</div>
+                  <div className="col my-3 boxtextcontent" >{employeeData.date_of_birth}</div>
                 </div>
                 <div className="col">
                   <div className="col my-3 boxtextheading">Marrital Status</div>
@@ -64,15 +67,15 @@ const Basic = () => {
             <div className="row my-2">
                 <div className="col">
                   <div className="col my-3 boxtextheading">Company</div>
-                  <div className="col my-3 boxtextcontent" >Tech Geeks</div>
+                  <div className="col my-3 boxtextcontent" >{employeeData.company_details.company_name}</div>
                 </div>
                 <div className="col">
                   <div className="col my-3 boxtextheading">Department</div>
-                  <div className="col my-3 boxtextcontent" >Technical</div>
+                  <div className="col my-3 boxtextcontent" >{employeeData.department}</div>
                 </div>
                 <div className="col">
                   <div className="col my-3 boxtextheading">DESIGNATION</div>
-                  <div className="col my-3 boxtextcontent" >Android Developer</div>
+                  <div className="col my-3 boxtextcontent" >{employeeData.designation}</div>
                 </div>
                
             </div>
@@ -80,7 +83,7 @@ const Basic = () => {
             <div className="row my-3">
                 <div className="col">
                   <div className="col my-3 boxtextheading">Role</div>
-                  <div className="col my-3 boxtextcontent" >Employee</div>
+                  <div className="col my-3 boxtextcontent" >{employeeData.role}</div>
                 </div>
                 <div className="col">
                   <div className="col my-3 boxtextheading">STATUS</div>
@@ -88,7 +91,7 @@ const Basic = () => {
                 </div>
                 <div className="col">
                   <div className="col my-3 boxtextheading">OFFICE SHIFT</div>
-                  <div className="col my-3 boxtextcontent" >Mornig shift</div>
+                  <div className="col my-3 boxtextcontent" >{employeeData.office_shift}</div>
                 </div>
                
             </div>
@@ -104,7 +107,7 @@ const Basic = () => {
                 </div>
                 <div className="col">
                   <div className="col my-3 boxtextheading">ATTENDANSE TYPE</div>
-                  <div className="col my-3 boxtextcontent" >Genral</div>
+                  <div className="col my-3 boxtextcontent" >{employeeData.attendance_type}</div>
                 </div>
                
             </div>

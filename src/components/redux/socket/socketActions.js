@@ -11,3 +11,9 @@ export const updateSocket =(messages)=>{
         payload:messages
     }
 }
+export const sendEmployeeData =(data)=>{
+    return {
+        type:"SEND_EMPLOYEE_DATA",
+        payload:data
+    }
+}

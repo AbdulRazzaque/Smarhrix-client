@@ -14,10 +14,12 @@ import { DataGrid } from '@mui/x-data-grid';
 import InfoIcon from '@mui/icons-material/Info';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { sendEmployeeData } from '../../../redux/socket/socketActions';
 
 // ======================================Get Api===========================================================================================
 
-export const getCompany = (setData) => {
+export const getEmployee = (setData) => {
   const url = process.env.REACT_APP_DEVELOPMENT;
   axios.get(`${url}/api/get-employee/`)
     .then(response => {
@@ -37,7 +39,8 @@ export const getCompany = (setData) => {
 function Employees() {
     const [display,setDisplay]=React.useState(false)
     const [data,setData]=useState([])
-
+    const [update,setUpdate]=useState([])
+    const dispatch = useDispatch();
 
 
     const history= useHistory()
@@ -54,10 +57,12 @@ function Employees() {
             title: "Action",
             field: "Action",
             width: 180,
-            renderCell: () => (
+            renderCell: (params) => (
               <Fragment>
                 {/* <Button color="error" onClick={() => setAlert(true)}> */}
-                <Button color="primary" onClick={()=>{history.push("/Employeeinfo")}}>
+                {/* onRowClick={(item)=> */}
+                <Button color="primary" onClick={()=>handelClick(params.row)}>
+                {/* <Button color="primary" > */}
                   <InfoIcon />
                 </Button>
                 <Button color="success" >
@@ -76,10 +81,16 @@ function Employees() {
 // ============================================Get api====================================================================================================================
         
 useEffect(()=>{
-  getCompany(setData)
+  getEmployee(setData)
 },[])
-console.log(data)
-    
+// console.log(data)
+// ====================================Send data in EpmployeeInfo==============================================================================================
+    const handelClick =(params)=>{
+      history.push("/Employeeinfo")
+      dispatch(sendEmployeeData(params));
+      console.log(params)
+  
+    }
     return (
         <div className="row">
             <div className="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
@@ -101,7 +112,7 @@ console.log(data)
 
     <div className="box">
 {/* ===================================================================================================================================================================== */}
-
+ 
         <div className="row">
     <div className="col-md-8 mt-5 ml-3">
 
@@ -169,6 +180,8 @@ console.log(data)
         pageSizeOptions={[5]}
         // checkboxSelection
         disableRowSelectionOnClick
+        // onRowClick={(item)=>setUpdate(item.row)}
+        
       />
     </Box>
     </div>

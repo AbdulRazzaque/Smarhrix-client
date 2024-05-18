@@ -13,6 +13,11 @@ import Typography from '@mui/material/Typography';
 import { Autocomplete, Divider, InputLabel, TextField } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import moment from 'moment';
+
+import axios from 'axios';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -27,21 +32,90 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
  const Addimmigration= ({open,handleClickOpen,handleClose})=> {
-    const [selectedDate,setSelectedDate]=React.useState()
+  const { register, handleSubmit, reset, formState: { isSubmitting } } = useForm();
+  const employeeData = useSelector(state => state.socket.messages)
+  // console.log(employeeData,'employeeData')
 
+    // const [selectedDate,setSelectedDate]=React.useState()
+    const [selectedDocumentType,setSelectedDocumentType]=React.useState()
+    const [selectedIssueDate,setSelectedIssueDate]=React.useState()
+    const [selectedExpiryDate,setSelectedExpiryDate]=React.useState()
+    const [selectedEligibleDate,setSelectedEligibleDate]=React.useState()
+    const [selectedCountry,setSelectedCountry]=React.useState()
+    const [data,setData]= React.useState([])
+
+
+    
     const department =[
-        {name:'GENETIC'},
-        {name:"MICROBIOLOGY"},
-        {name:"HEAMOTOLGY"},
-        {name:"BIOCHEMISTRY"},
-        {name:"HPLC"},
-        {name:"AAS"},
-        {name:"PARASITOLOGY"},
-        {name:"GENERAL"},
-           
-        
-      ]
+      {name:'GENETIC'},
+      {name:"MICROBIOLOGY"},
+      {name:"HEAMOTOLGY"},
+      {name:"BIOCHEMISTRY"},
+      {name:"HPLC"},
+      {name:"AAS"},
+      {name:"PARASITOLOGY"},
+      {name:"GENERAL"},
+      
+      
+    ]
+    const url=process.env.REACT_APP_DEVELOPMENT; 
+// ==========================================GET API==============================================================================================================================
+const getImmigration = async()=>{
+try {
+  axios.get(`${url}/api/employees/general/get-immigration/`)
+  .then(response => {
+    const arr = response.data.map((item, index) => ({
+      ...item,
+      id: index + 1
+    }));
+    setData(arr);
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
 
+  }); 
+} catch (error) {
+  console.log(error)
+}
+ 
+}
+// ==========================================POST API==============================================================================================================================
+    const onSubmit = async(formData)=>{
+      try {
+        var obj ={
+          document_type:moment.parseZone(selectedDocumentType).format("YYYY-MM-DD"),
+          issue_date:moment.parseZone(selectedIssueDate).format("YYYY-MM-DD") ,
+          expired_date:moment.parseZone(selectedExpiryDate).format("YYYY-MM-DD"),
+          eligible_review_date:moment.parseZone(selectedEligibleDate).format("YYYY-MM-DD"),
+          country:selectedCountry,
+          employee:employeeData.uuid,
+          ...formData
+        }
+        console.log('obj',obj)
+        await axios.post(`${url}/api/employees/general/create-immigration/`,obj)
+        .then(response=>{
+          console.log('Response',response)
+          const newData = response.data.data;
+
+          // Update local state with the new data
+          setData((prevData) => [...prevData, newData]);
+          reset()
+          handleClose()
+        }).catch(error=>console.log(error))
+        await getImmigration();
+      } catch (error) {
+        console.log(error)
+        
+      }
+      
+    }
+
+
+
+    React.useEffect(() => {
+      getImmigration(); // Fetch data on initial render
+    }, []); // Re-fetch data when 'data' state changes (after POST request)
+    
   return (
     <React.Fragment>
  
@@ -69,6 +143,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
         <p className="whitboxtitle ml-4 my-4">Add Immigration</p>
      
         <Divider/>
+        <form onSubmit={handleSubmit(onSubmit)}>
         <div className="container my-4">
         <div className="d-flex align-items-center my-3">
             
@@ -81,7 +156,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                     getOptionLabel={(department)=>department.name}
                      options={department}
                      onChange={(event,value)=>{
-                      // setSelectedDepartment(value.name)
+                      setSelectedDocumentType(value.name)
                      }}
                      sx={{ 
                         width:'100%',   maxWidth: '500Px' 
@@ -100,6 +175,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                 required
                 type="number"
                 variant="outlined"
+                {...register('document_number')}
               />
          
             </div>
@@ -114,7 +190,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                 <DatePicker
                   // sx={{ width: 700 }}
             
-                  onChange={(newValue) => setSelectedDate(newValue)}
+                  onChange={(newValue) => setSelectedIssueDate(newValue)}
                   renderInput={(params) => (
                     <TextField name="date" {...params}   sx={{ 
                         width:'100%',   maxWidth: '500Px' 
@@ -129,7 +205,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                 <DatePicker
                   // sx={{ width: 700 }}
             
-                  onChange={(newValue) => setSelectedDate(newValue)}
+                  onChange={(newValue) => setSelectedExpiryDate(newValue)}
                   renderInput={(params) => (
                     <TextField name="date" {...params}   sx={{ 
                         width:'100%',   maxWidth: '500Px' 
@@ -150,7 +226,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                 <DatePicker
                   // sx={{ width: 700 }}
             
-                  onChange={(newValue) => setSelectedDate(newValue)}
+                  onChange={(newValue) => setSelectedEligibleDate(newValue)}
                   renderInput={(params) => (
                     <TextField name="date" {...params}   sx={{ 
                         width:'100%',   maxWidth: '500Px' 
@@ -167,7 +243,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                     width:'100%',   maxWidth: '500Px' 
                       }}
                 placeholder="Document File"
-                required
+                // required
                 type="file"
                 variant="outlined"
               />
@@ -186,7 +262,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                     getOptionLabel={(department)=>department.name}
                      options={department}
                      onChange={(event,value)=>{
-                      // setSelectedDepartment(value.name)
+                      setSelectedCountry(value.name)
                      }}
                      sx={{ 
                         width:'100%',   maxWidth: '500Px' 
@@ -198,7 +274,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
           </div>
           <div className="d-flex my-5">
           <div className="mx-4">
-            <Button variant='contained' 
+            <Button variant='contained' type='submit'
             // InputProps={{ sx: { borderRadius: 10, backgroundColor:"white"} }}
             sx={{borderRadius:34, backgroundColor:'#2F69FF'}}
             >Add Immigration</Button>
@@ -207,7 +283,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
           </div>
         </div>
         
-        
+        </form>
         
  
       </BootstrapDialog>

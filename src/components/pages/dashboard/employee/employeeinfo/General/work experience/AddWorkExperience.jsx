@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
@@ -12,6 +11,9 @@ import Typography from '@mui/material/Typography';
 import { Autocomplete, Divider, InputLabel, TextField } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { useForm } from 'react-hook-form';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -26,8 +28,10 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
  const AddWorkExperience= ({open,handleClickOpen,handleClose})=> {
-    const [selectedDate,setSelectedDate]=React.useState()
-
+  const { register, handleSubmit, reset, formState: { isSubmitting } } = useForm();
+    const [selectedFrom,setSelectedFrom]=React.useState()
+    const employeeData = useSelector(state => state.socket.messages)
+    const [data,setData]=React.useState([])
     const department =[
         {name:'GENETIC'},
         {name:"MICROBIOLOGY"},
@@ -40,7 +44,64 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
            
         
       ]
-
+      const url=process.env.REACT_APP_DEVELOPMENT; 
+      // ==========================================GET API==============================================================================================================================
+      const getImmigration = async()=>{
+      try {
+        axios.get(`${url}/api/employees/general/get-immigration/`)
+        .then(response => {
+          const arr = response.data.map((item, index) => ({
+            ...item,
+            id: index + 1
+          }));
+          setData(arr);
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+      
+        }); 
+      } catch (error) {
+        console.log(error)
+      }
+       
+      }
+      // ==========================================POST API==============================================================================================================================
+          const onSubmit = async(formData)=>{
+            try {
+              var obj ={
+                // document_type:moment.parseZone(selectedDocumentType).format("YYYY-MM-DD"),
+                // issue_date:moment.parseZone(selectedIssueDate).format("YYYY-MM-DD") ,
+                // expired_date:moment.parseZone(selectedExpiryDate).format("YYYY-MM-DD"),
+                // eligible_review_date:moment.parseZone(selectedEligibleDate).format("YYYY-MM-DD"),
+                // country:selectedCountry,
+                employee:employeeData.uuid,
+                ...formData
+              }
+              console.log('obj',obj)
+              await axios.post(`${url}/api/employees/general/create-immigration/`,obj)
+              .then(response=>{
+                console.log('Response',response)
+                const newData = response.data.data;
+      
+                // Update local state with the new data
+                setData((prevData) => [...prevData, newData]);
+                reset()
+                handleClose()
+              }).catch(error=>console.log(error))
+              await getImmigration();
+            } catch (error) {
+              console.log(error)
+              
+            }
+            
+          }
+      
+      
+      
+          React.useEffect(() => {
+            getImmigration(); // Fetch data on initial render
+          }, []); // Re-fetch data when 'data' state changes (after POST request)
+          
   return (
     <React.Fragment>
  
@@ -81,8 +142,9 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                   }}
                 placeholder="Company "
                 required
-                type="number"
+                type="text"
                 variant="outlined"
+                {...register('company')}
               />
             </div>          
               <div className="col-6">
@@ -93,7 +155,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                     getOptionLabel={(department)=>department.name}
                      options={department}
                      onChange={(event,value)=>{
-                      // setSelectedDepartment(value.name)
+                      setSelectedFrom(value.name)
                      }}
                      sx={{ 
                         width:'100%',   maxWidth: '500Px' 
@@ -113,9 +175,9 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                 sx={{ 
                 width:'100%',   maxWidth: '500Px' 
                   }}
-              
+                {...register('company')}
            
-                type="number"
+                type="text"
                 variant="outlined"
               />
             </div>          
@@ -127,7 +189,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                 width:'100%',   maxWidth: '500Px' 
                   }}
 
-                type="number"
+                type="text"
                 variant="outlined"
               />
          
@@ -144,7 +206,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                 width:'100%',   maxWidth: '500Px' 
                   }}
 
-                type="number"
+                type="text"
                 variant="outlined"
               />
             </div>          

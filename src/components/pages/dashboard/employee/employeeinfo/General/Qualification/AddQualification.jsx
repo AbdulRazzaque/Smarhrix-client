@@ -11,6 +11,10 @@ import Typography from '@mui/material/Typography';
 import { Autocomplete, Divider, InputLabel, TextField } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { useForm } from 'react-hook-form';
+import moment from 'moment'
+import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -25,8 +29,15 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
  const AddQualification= ({open,handleClickOpen,handleClose})=> {
-    const [selectedDate,setSelectedDate]=React.useState()
 
+  const { register, handleSubmit,control, reset, formState: { isSubmitting } } = useForm();
+    const [selectedEducationLevel,setSelectedEducationLevel]=React.useState([])
+    const [selectedLanguage,setSelectedLanguage]=React.useState([])
+    const [selectedProfessionalSkills,setSelectedProfessionalSkills]=React.useState([])
+    const [selectedFromDate,setSelectedFromDate]=React.useState([])
+    const [selectedToDate,setSelectedToDate]=React.useState([])
+    const [data,setData]=React.useState([])
+    const employeeData = useSelector(state => state.socket.messages)
     const department =[
         {name:'GENETIC'},
         {name:"MICROBIOLOGY"},
@@ -39,7 +50,60 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
            
         
       ]
-
+      const url=process.env.REACT_APP_DEVELOPMENT;
+      // ============================================Get api====================================================================================================================
+      const getEmergencyContact =()=>{
+      
+        axios.get(`${url}/api/employees/general/get-qualification/`)
+          .then(response => {
+            const arr = response.data.map((item, index) => ({
+              ...item,
+              id: index + 1
+            }));
+            setData(arr);
+          })
+          .catch(error => {
+            console.error('Error fetching data:', error);
+      
+          }); 
+      }
+        // ==========================================POST API==============================================================================================================================
+            const onSubmit = async(formData)=>{
+              try {
+                var obj ={
+                  from_date:moment.parseZone(selectedFromDate).format("YYYY-MM-DD"),
+                  to_date:moment.parseZone(selectedToDate).format("YYYY-MM-DD"),
+                  professional_skills:selectedProfessionalSkills,
+                  language:selectedLanguage,
+                  education_level:selectedEducationLevel,
+                  employee:employeeData.uuid,
+                  ...formData
+                }
+                console.log('obj',obj)
+                await axios.post(`${url}/api/employees/general/create-qualification/`,obj)
+                .then(response=>{
+                  console.log('Response',response)
+                  const newData = response.data.data;
+        
+                  // Update local state with the new data
+                  setData((prevData) => [...prevData, newData]);
+                  reset()
+                  handleClose()
+                }).catch(error=>console.log(error))
+                 getEmergencyContact();
+              } catch (error) {
+                console.log(error)
+                
+              }
+              
+            }
+        
+        
+        
+            React.useEffect(() => {
+              getEmergencyContact(); // Fetch data on initial render
+            }, []); // Re-fetch data when 'data' state changes (after POST request)
+            
   return (
     <React.Fragment>
  
@@ -67,6 +131,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
         <p className="whitboxtitle ml-4 my-4">Add Qualification</p>
      
         <Divider/>
+        <form onSubmit={handleSubmit(onSubmit)}>
         <div className="container my-4">
         <div className="d-flex align-items-center my-3">
             
@@ -80,8 +145,9 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                   }}
                 placeholder="School/UniverSity "
                 required
-                type="number"
+                type="text"
                 variant="outlined"
+                {...register('university')}
               />
             </div>          
               <div className="col-6">
@@ -92,7 +158,8 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                     getOptionLabel={(department)=>department.name}
                      options={department}
                      onChange={(event,value)=>{
-                      // setSelectedDepartment(value.name)
+                      setSelectedEducationLevel(value.name)
+ 
                      }}
                      sx={{ 
                         width:'100%',   maxWidth: '500Px' 
@@ -107,28 +174,31 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
             
             <div className="col-6">
             <InputLabel htmlFor="outlined-basic">From *</InputLabel>
-              <TextField
-                id="outlined-basic"
-                sx={{ 
-                width:'100%',   maxWidth: '500Px' 
-                  }}
-              
-           
-                type="number"
-                variant="outlined"
-              />
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
+                       sx={{ width:'100%',   maxWidth: '500Px'}} 
+                  // label="Date of Birth"
+                  onChange={(newValue) => setSelectedFromDate(newValue)}
+                 
+                  renderInput={(params) => (
+                    <TextField name="date" {...params}       sx={{ width:'100%',   maxWidth: '500Px'}}  />
+                  )}
+                />
+              </LocalizationProvider>
             </div>          
               <div className="col-6">
               <InputLabel htmlFor="outlined-basic">To *</InputLabel>
-              <TextField
-                id="outlined-basic"
-                sx={{ 
-                width:'100%',   maxWidth: '500Px' 
-                  }}
-
-                type="number"
-                variant="outlined"
-              />
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
+                       sx={{ width:'100%',   maxWidth: '500Px'}} 
+                  // label="Date of Birth"
+                  onChange={(newValue) => setSelectedToDate(newValue)}
+                 
+                  renderInput={(params) => (
+                    <TextField name="date" {...params}       sx={{ width:'100%',   maxWidth: '500Px'}}  />
+                  )}
+                />
+              </LocalizationProvider>
          
             </div>
           </div>
@@ -144,7 +214,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                     getOptionLabel={(department)=>department.name}
                      options={department}
                      onChange={(event,value)=>{
-                      // setSelectedDepartment(value.name)
+                      setSelectedLanguage(value.name)
                      }}
                      sx={{ 
                         width:'100%',   maxWidth: '500Px' 
@@ -161,7 +231,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
         getOptionLabel={(department)=>department.name}
          options={department}
          onChange={(event,value)=>{
-          // setSelectedDepartment(value.name)
+          setSelectedProfessionalSkills(value.name)
          }}
          sx={{ 
             width:'100%',   maxWidth: '500Px' 
@@ -181,8 +251,8 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                 sx={{ 
                 width:'100%',   maxWidth: '500Px' 
                   }}
-
-                type="number"
+                {...register('description')}
+                type="text"
                 variant="outlined"
               />
             </div>          
@@ -190,7 +260,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
           </div>
           <div className="d-flex my-5">
           <div className="mx-4">
-            <Button variant='contained' 
+            <Button variant='contained'  type='submit'
             // InputProps={{ sx: { borderRadius: 10, backgroundColor:"white"} }}
             sx={{borderRadius:34, backgroundColor:'#2F69FF'}}
             >Add Qualification</Button>
@@ -199,7 +269,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
           </div>
         </div>
         
-        
+        </form>
         
  
       </BootstrapDialog>

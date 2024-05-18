@@ -17,9 +17,13 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 import axios from 'axios';
+import Companyinfo from './Companyinfo';
 // ======================================Get Api===========================================================================================
 
 export const getCompany = (setData) => {
+  
+
+
   const url = process.env.REACT_APP_DEVELOPMENT;
   axios.get(`${url}/api/get-company/`)
     .then(response => {
@@ -41,7 +45,7 @@ function Company() {
     const [data,setData]=useState([])
     const [alert, setAlert] = useState(false);
     const [update,setUpdate]=useState([])
-
+    const [open, setOpen] = React.useState(false);
     const history= useHistory()
 // ============================columns=============================================================================================
     const columns = [
@@ -58,7 +62,7 @@ function Company() {
             width: 180,
             renderCell: () => (
               <Fragment>
-                <Button color="primary">
+                <Button color="primary" onClick={handleClickOpen}>
                   <InfoIcon />
                 </Button>
                 <Button color="success" >
@@ -78,7 +82,7 @@ function Company() {
         useEffect(()=>{
           getCompany(setData)
         },[])
-        console.log(data)
+        // console.log(data)
 //=======================================================Delete code & api here ==============================================================
   const deleteRow = async (update) => {
 
@@ -98,7 +102,15 @@ function Company() {
       console.log(error);
     }
   };
-
+  // ===========================company information Code============================================================
+  const handleClickOpen = () => {
+    setOpen(true);
+    
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+// ===================================End================================================================================================
     return (
         <div className="row">
             <div className="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
@@ -154,7 +166,7 @@ function Company() {
         <div className="p-2 boxTitle">All Company</div>
       
       </div>
-    </div>
+    </div> 
     <div className="col-md-3 mt-5 mr-2">
       <div className="d-flex justify-content-end">
     
@@ -215,6 +227,14 @@ function Company() {
         onRowClick={(item)=>setUpdate(item.row)}
       />
     </Box>
+
+    <Companyinfo
+    data ={update}
+     open={open}
+     handleClickOpen={handleClickOpen}
+     handleClose={handleClose}
+    
+    />
     </div>
     <div className="box">
 

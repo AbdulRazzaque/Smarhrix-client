@@ -1,54 +1,98 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Box, Button, TextField } from '@mui/material';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import EditIcon from "@mui/icons-material/Edit";
 import { DataGrid } from '@mui/x-data-grid';
 import InfoIcon from '@mui/icons-material/Info';
 import AddEmergencyContact from './AddEmergencyContact';
+import axios from 'axios';
 const EmergencyContact = () => {
   const [open, setOpen] = React.useState(false);
+  const [data,setData]=useState([])
+  const [alert, setAlert] = useState(false);
+  const [update,setUpdate]=useState([])
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+
     const columns = [
         { field: 'id', headerName: 'S.N', width: 90 },
-        { field: 'MonthYear', headerName: 'Name', width: 150 },
-        { field: 'PayslipType', headerName: 'Relation', width: 150 },
-        { field: 'Email', headerName: 'Email', width: 150 },
+        { field: 'name', headerName: 'Name', width: 150 },
+        { field: 'relation', headerName: 'Relation', width: 150 },
+        { field: 'email', headerName: 'Email', width: 150 },
+        { field: 'phone_number', headerName: 'Phone', width: 150 },
         // { field: 'banckSalary', headerName: 'Issued By', width: 150 },
 
        
-        //   {
-        //     title: "Action",
-        //     field: "Action",
-        //     width: 180,
-        //     renderCell: () => (
-        //       <Fragment>
-        //         {/* <Button color="error" onClick={() => setAlert(true)}> */}
-        //         <Button color="primary">
-        //           <InfoIcon />
-        //         </Button>
-        //         <Button color="success" >
-        //           <EditIcon />
-        //         </Button>
-        //         <Button color="error" >
-        //           <DeleteIcon />
-                  
-        //         </Button>
-        //       </Fragment>
-        //     ),
-        //   },
+        {
+          title: "Action",
+          field: "Action",
+          width: 180,
+          renderCell: () => (
+            <Fragment>
+              <Button color="primary" onClick={handleClickOpen}>
+                <InfoIcon />
+              </Button>
+              <Button color="success" >
+                <EditIcon />
+              </Button>
+              <Button color="error" onClick={() => setAlert(true)}>
+          <DeleteIcon />
+        </Button>
+            </Fragment>
+          ),
+        },
 
     ];
     
-      const rows = [
+// ============================================Get api====================================================================================================================
+const url = process.env.REACT_APP_DEVELOPMENT;
+const getEmergencyContact = async()=>{
 
-      ]
+ await axios.get(`${url}/api/employees/general/get-contact/`)
+    .then(response => {
+      const arr = response.data.map((item, index) => ({
+        ...item,
+        id: index + 1
+      }));
+      setData(arr);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+
+    }); 
+}
+//=======================================================Delete code & api here ==============================================================
+  const deleteRow = async (update) => {
+
+    try {
+      await axios
+        .post(
+          `${process.env.REACT_APP_DEVELOPMENT}/api/employees/general/delete-contact/${update.uuid}`,)
+          .then(response=>{
+          console.log('Response',response)
+          // apiRef.current.updateRows([update])
+          })
+  
+          getEmergencyContact()
+        
+      setAlert(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // =======================================================================================================
+useEffect(()=>{
+  getEmergencyContact()
+},[])
+     
+  // =========================================Model colse & open==============================================================
+
+const handleClickOpen = () => {
+  setOpen(true);
+};
+const handleClose = () => {
+  setOpen(false);
+};
   return (
     <div>
         <div className="row">
@@ -75,7 +119,33 @@ const EmergencyContact = () => {
 
     </div>
     <hr />
-{/* ===================================================================================================================================================================== */}
+    {/* =============================================Delete Modal code===================================================================================================================================== */}
+    {alert && (
+          <Dialog open={alert} style={{ height: 600 }}>
+            <DialogTitle>Delete Row</DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Are You sure You want to delete this.
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button variant="contained" onClick={() => deleteRow(update)}>
+                Yes
+              </Button>
+              <Button
+                variant="outlined"
+                color="error"
+                onClick={() => {
+                  setAlert(false);
+                }}
+              >
+                Cancel
+              </Button>
+            </DialogActions>
+          </Dialog>
+        )}
+{/* ============================================================================================================================================================================================================================ */}
+
     <div className="d-flex justify-content-center my-5">
     <div className="row ">
         <div className="col-xl-5  col-md-12 col-sm-12">
@@ -107,7 +177,7 @@ const EmergencyContact = () => {
 
 <Box sx={{ height: 400, width: '100%', backgroundColor:'white' }} className='my-5'>
   <DataGrid
-    rows={rows}
+    rows={data}
     columns={columns}
     initialState={{
       pagination: {
@@ -119,6 +189,7 @@ const EmergencyContact = () => {
     pageSizeOptions={[5]}
     // checkboxSelection
     disableRowSelectionOnClick
+    onRowClick={(item)=>setUpdate(item.row)}
   />
 </Box>
 <AddEmergencyContact
