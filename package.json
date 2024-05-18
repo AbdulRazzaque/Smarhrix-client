@@ -25,7 +25,6 @@
     "google-map-react": "^2.1.10",
     "jsog": "^1.0.7",
     "moment": "^2.29.1",
-    "node-sass": "^4.14.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.17.5",
@@ -41,8 +40,8 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -58,6 +57,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "react-error-overlay": "^6.0.9"
+    "react-error-overlay": "^6.0.9",
+    "sass": "^1.77.2"
   }
 }
