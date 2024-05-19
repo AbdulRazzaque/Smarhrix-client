@@ -1,28 +1,30 @@
 
 
-import React, { Fragment } from 'react'
-import { Box, Button, TextField } from '@mui/material';
+import React, { Fragment, useEffect, useState } from 'react'
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import EditIcon from "@mui/icons-material/Edit";
 import { DataGrid } from '@mui/x-data-grid';
 import InfoIcon from '@mui/icons-material/Info';
 import AddWorkExperience from './AddWorkExperience';
+import DeleteIcon from '@mui/icons-material/Delete';
+import axios from 'axios';
+import moment from 'moment';
 const Workexperience = () => {
   const [open, setOpen] = React.useState(false);
+  const [data,setData]=useState([])
+  const [alert, setAlert] = useState(false);
+  const [update,setUpdate]=useState([])
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+
+
     const columns = [
         { field: 'id', headerName: 'S.N', width: 90 },
-        { field: 'MonthYear', headerName: 'Company', width: 150 },
-        { field: 'PayslipType', headerName: 'From Data', width: 150 },
-        { field: 'Email', headerName: 'To Data', width: 150 },
-        { field: 'EPostmail', headerName: 'Post', width: 150 },
-        { field: 'Description', headerName: 'Description', width: 150 },
+        { field: 'company', headerName: 'Company', width: 150 },
+        { field: 'from_date', headerName: 'From Data', width: 150,valueGetter:(params)=>moment.parseZone( params.row.from_date).format('DD/MM/YYYY') },
+        { field: 'to_date', headerName: 'To Data', width: 150 ,valueGetter:(params)=>moment.parseZone( params.row.to_date).format('DD/MM/YYYY')},
+        { field: 'post', headerName: 'Post', width: 150 },
+        { field: 'description', headerName: 'Description', width: 150 },
         // { field: 'banckSalary', headerName: 'Issued By', width: 150 },
 
        
@@ -39,28 +41,70 @@ const Workexperience = () => {
                 <Button color="success" >
                   <EditIcon />
                 </Button>
-                <Button color="error" >
-                  {/* <DeleteIcon /> */}
-                  
-                </Button>
+                <Button color="error" onClick={() => setAlert(true)}>
+                <DeleteIcon />
+            </Button>
               </Fragment>
             ),
           },
 
     ];
-    
-      const rows = [
-        // { id: 1, MonthYear: '1-2-203', PayslipType: 'Regular', banckSalary: 7890 },
-        // { id: 2, MonthYear: '1-2-203', PayslipType: 'Bonus', banckSalary: 7890 },
-        // { id: 3, MonthYear: '1-2-203', PayslipType: 'Regular', banckSalary: 7890 },
-        // { id: 4, MonthYear: '1-2-203', PayslipType: 'Overtime', banckSalary: 7890 },
-        // { id: 5, MonthYear: '1-2-203', PayslipType: 'Regular', banckSalary: 7890 },
-        // { id: 6, MonthYear: '1-2-203', PayslipType: 'Regular', banckSalary: 7890 },
-        // { id: 7, MonthYear: '1-2-203', PayslipType: 'Bonus', banckSalary: 7890 },
-        // { id: 8, MonthYear: '1-2-203', PayslipType: 'Regular', banckSalary: 7890 },
-        // { id: 9, MonthYear: '1-2-203', PayslipType: 'Regular', banckSalary: 7890 },
-        // { id: 10, MonthYear: '1-2-203', PayslipType: 'Bonus', banckSalary: 7890 },
-      ]
+    // ===============================Model open and clsoe===================================================================
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+    const handleClose = () => {
+      setOpen(false);
+    }; 
+
+    // ======================================================================================================================
+
+
+    const handleClick = () => {
+      // Perform the redirection when the element is clicked
+     setOpen(true)
+    };
+// ============================================Get api====================================================================================================================
+const url = process.env.REACT_APP_DEVELOPMENT;
+const getWorkExperience =()=>{
+
+axios.get(`${url}/api/employees/general/get-work-experience/`)
+  .then(response => {
+    const arr = response.data.map((item, index) => ({
+      ...item,
+      id: index + 1
+    }));
+    setData(arr);
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+
+  }); 
+}
+//=======================================================Delete code & api here ==============================================================
+const deleteRow = async (update) => {
+
+  try {
+    await axios
+      .post(
+        `${process.env.REACT_APP_DEVELOPMENT}/api/employees/general/delete-work-experience/${update.uuid}`,)
+        .then(response=>{
+        console.log('Response',response)
+        // apiRef.current.updateRows([update])
+        })
+
+        getWorkExperience()
+      
+    setAlert(false);
+  } catch (error) {
+    console.log(error);
+  }
+};
+// =======================================================================================================
+useEffect(()=>{
+  getWorkExperience()
+},[])
+  
   return (
     <div>
         <div className="row">
@@ -87,6 +131,32 @@ const Workexperience = () => {
 
     </div>
     <hr />
+        {/* =============================================Delete Modal code===================================================================================================================================== */}
+{alert && (
+          <Dialog open={alert} style={{ height: 600 }}>
+            <DialogTitle>Delete Row</DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Are You sure You want to delete this.
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button variant="contained" onClick={() => deleteRow(update)}>
+                Yes
+              </Button>
+              <Button
+                variant="outlined"
+                color="error"
+                onClick={() => {
+                  setAlert(false);
+                }}
+              >
+                Cancel
+              </Button>
+            </DialogActions>
+          </Dialog>
+        )}
+
 {/* ===================================================================================================================================================================== */}
     <div className="d-flex justify-content-center my-5">
     <div className="row ">
@@ -119,7 +189,7 @@ const Workexperience = () => {
 
 <Box sx={{ height: 400, width: '100%', backgroundColor:'white' }} className='my-5'>
   <DataGrid
-    rows={rows}
+    rows={data}
     columns={columns}
     initialState={{
       pagination: {
@@ -130,6 +200,7 @@ const Workexperience = () => {
     }}
     pageSizeOptions={[5]}
     // checkboxSelection
+    onRowClick={(item)=>setUpdate(item.row)}
     disableRowSelectionOnClick
   />
 </Box>

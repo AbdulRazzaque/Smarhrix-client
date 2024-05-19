@@ -16,7 +16,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import moment from 'moment';
-
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import axios from 'axios';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -60,25 +60,21 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     ]
     const url=process.env.REACT_APP_DEVELOPMENT; 
 // ==========================================GET API==============================================================================================================================
-const getImmigration = async()=>{
-try {
-  axios.get(`${url}/api/employees/general/get-immigration/`)
-  .then(response => {
-    const arr = response.data.map((item, index) => ({
-      ...item,
-      id: index + 1
-    }));
-    setData(arr);
-  })
-  .catch(error => {
-    console.error('Error fetching data:', error);
-
-  }); 
-} catch (error) {
-  console.log(error)
-}
+const getBanckAccount = async()=>{
+      
+  await axios.get(`${url}/api/employees/general/get-bank-account/`)
+     .then(response => {
+       const arr = response.data.map((item, index) => ({
+         ...item,
+         id: index + 1
+       }));
+       setData(arr);
+     })
+     .catch(error => {
+       console.error('Error fetching data:', error);
  
-}
+     }); 
+ }
 // ==========================================POST API==============================================================================================================================
     const onSubmit = async(formData)=>{
       try {
@@ -99,10 +95,11 @@ try {
 
           // Update local state with the new data
           setData((prevData) => [...prevData, newData]);
+          
           reset()
           handleClose()
         }).catch(error=>console.log(error))
-        await getImmigration();
+        await getBanckAccount();
       } catch (error) {
         console.log(error)
         
@@ -113,7 +110,7 @@ try {
 
 
     React.useEffect(() => {
-      getImmigration(); // Fetch data on initial render
+      getBanckAccount(); // Fetch data on initial render
     }, []); // Re-fetch data when 'data' state changes (after POST request)
     
   return (
@@ -186,7 +183,7 @@ try {
             <div className="col-6">
             <InputLabel htmlFor="outlined-basic">Issue Date *</InputLabel>
 
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
+           <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                   // sx={{ width: 700 }}
             
@@ -201,7 +198,7 @@ try {
             </div>          
               <div className="col-6">
               <InputLabel htmlFor="outlined-basic">Expired Date </InputLabel>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
+             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                   // sx={{ width: 700 }}
             
@@ -222,7 +219,7 @@ try {
             <div className="col-6">
             <InputLabel htmlFor="outlined-basic">Eligible Reviwe Date</InputLabel>
 
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
+           <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                   // sx={{ width: 700 }}
             

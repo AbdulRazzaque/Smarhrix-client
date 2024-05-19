@@ -15,7 +15,7 @@ import { useForm } from 'react-hook-form';
 import moment from 'moment'
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
@@ -174,7 +174,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
             
             <div className="col-6">
             <InputLabel htmlFor="outlined-basic">From *</InputLabel>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
+           <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                        sx={{ width:'100%',   maxWidth: '500Px'}} 
                   // label="Date of Birth"
@@ -188,7 +188,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
             </div>          
               <div className="col-6">
               <InputLabel htmlFor="outlined-basic">To *</InputLabel>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
+             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                        sx={{ width:'100%',   maxWidth: '500Px'}} 
                   // label="Date of Birth"

@@ -11,24 +11,8 @@ import { useHistory } from 'react-router-dom';
 import Addimmigration from './Addimmigration';
 import axios from 'axios';
 import moment from 'moment';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
-// ======================================Get Api===========================================================================================
-
-// export const getImmigration = (setData) => {
-//   const url = process.env.REACT_APP_DEVELOPMENT;
-//   axios.get(`${url}/api/employees/general/get-immigration/`)
-//     .then(response => {
-//       const arr = response.data.map((item, index) => ({
-//         ...item,
-//         id: index + 1
-//       }));
-//       setData(arr);
-//     })
-//     .catch(error => {
-//       console.error('Error fetching data:', error);
-
-//     }); 
-// };
 // =================Main Component start Here===========================================================================
 const Immigration = () => {
 
@@ -172,6 +156,7 @@ useEffect(()=>{
           </Dialog>
         )}
 {/* ===================================================================================================================================================================== */}
+
     <div className="d-flex justify-content-center my-5">
     <div className="row ">
         <div className="col-xl-5  col-md-12 col-sm-12">

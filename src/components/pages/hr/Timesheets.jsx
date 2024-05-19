@@ -9,7 +9,7 @@ import Header from '../dashboard/header/Header';
 import '../dashboard/dashboard.scss'
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Autocomplete, Box, Button, TextField } from '@mui/material';
-
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import EditIcon from "@mui/icons-material/Edit";
@@ -175,7 +175,7 @@ function Timesheets() {
 
       </div>
       <div  className='col-6'>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
+       <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                   // sx={{ width: 700 }}
                   label="Date of Birth"

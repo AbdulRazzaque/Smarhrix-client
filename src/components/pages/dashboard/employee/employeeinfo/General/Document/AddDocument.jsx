@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography';
 import { Autocomplete, Checkbox, Divider, InputLabel, TextField } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -109,7 +110,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
             <div className="col-6">
             <InputLabel htmlFor="outlined-basic">Expired Date *</InputLabel>
 
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
+           <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                   // sx={{ width: 700 }}
             
@@ -143,7 +144,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
             <div className="col-6">
             <InputLabel htmlFor="outlined-basic">Eligible Reviwe Date</InputLabel>
 
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
+           <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                   // sx={{ width: 700 }}
             

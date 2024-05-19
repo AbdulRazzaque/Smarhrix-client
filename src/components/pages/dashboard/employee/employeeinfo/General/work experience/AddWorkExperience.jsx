@@ -14,6 +14,8 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import moment from 'moment';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -30,8 +32,11 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
  const AddWorkExperience= ({open,handleClickOpen,handleClose})=> {
   const { register, handleSubmit, reset, formState: { isSubmitting } } = useForm();
     const [selectedFrom,setSelectedFrom]=React.useState()
+    const [selectedTo,setSelectedTo]=React.useState()
     const employeeData = useSelector(state => state.socket.messages)
+
     const [data,setData]=React.useState([])
+    
     const department =[
         {name:'GENETIC'},
         {name:"MICROBIOLOGY"},
@@ -46,39 +51,32 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
       ]
       const url=process.env.REACT_APP_DEVELOPMENT; 
       // ==========================================GET API==============================================================================================================================
-      const getImmigration = async()=>{
-      try {
-        axios.get(`${url}/api/employees/general/get-immigration/`)
-        .then(response => {
-          const arr = response.data.map((item, index) => ({
-            ...item,
-            id: index + 1
-          }));
-          setData(arr);
-        })
-        .catch(error => {
-          console.error('Error fetching data:', error);
-      
-        }); 
-      } catch (error) {
-        console.log(error)
-      }
-       
-      }
+      const getWorkExperience =()=>{
+
+        axios.get(`${url}/api/employees/general/get-work-experience/`)
+          .then(response => {
+            const arr = response.data.map((item, index) => ({
+              ...item,
+              id: index + 1
+            }));
+            setData(arr);
+          })
+          .catch(error => {
+            console.error('Error fetching data:', error);
+        
+          }); 
+        }
       // ==========================================POST API==============================================================================================================================
           const onSubmit = async(formData)=>{
             try {
               var obj ={
-                // document_type:moment.parseZone(selectedDocumentType).format("YYYY-MM-DD"),
-                // issue_date:moment.parseZone(selectedIssueDate).format("YYYY-MM-DD") ,
-                // expired_date:moment.parseZone(selectedExpiryDate).format("YYYY-MM-DD"),
-                // eligible_review_date:moment.parseZone(selectedEligibleDate).format("YYYY-MM-DD"),
-                // country:selectedCountry,
+                from_date:moment.parseZone(selectedFrom).format("YYYY-MM-DD"),
+                to_date:moment.parseZone(selectedTo).format("YYYY-MM-DD"),
                 employee:employeeData.uuid,
                 ...formData
               }
               console.log('obj',obj)
-              await axios.post(`${url}/api/employees/general/create-immigration/`,obj)
+              await axios.post(`${url}/api/employees/general/create-work-experience/`,obj)
               .then(response=>{
                 console.log('Response',response)
                 const newData = response.data.data;
@@ -88,7 +86,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                 reset()
                 handleClose()
               }).catch(error=>console.log(error))
-              await getImmigration();
+               getWorkExperience();
             } catch (error) {
               console.log(error)
               
@@ -99,7 +97,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
       
       
           React.useEffect(() => {
-            getImmigration(); // Fetch data on initial render
+            getWorkExperience(); // Fetch data on initial render
           }, []); // Re-fetch data when 'data' state changes (after POST request)
           
   return (
@@ -129,6 +127,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
         <p className="whitboxtitle ml-4 my-4">Add Work Experience</p>
      
         <Divider/>
+        <form onSubmit={handleSubmit(onSubmit)}>
         <div className="container my-4">
         <div className="d-flex align-items-center my-3">
             
@@ -149,19 +148,16 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
             </div>          
               <div className="col-6">
               <InputLabel htmlFor="outlined-basic">From *</InputLabel>
-              <Autocomplete
-                    disablePortal
-                    id="combo-box-demo"
-                    getOptionLabel={(department)=>department.name}
-                     options={department}
-                     onChange={(event,value)=>{
-                      setSelectedFrom(value.name)
-                     }}
-                     sx={{ 
-                        width:'100%',   maxWidth: '500Px' 
-                        }}
-                    renderInput={(params) => <TextField {...params} placeholder='From' required/>}
-                    />
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                       sx={{ width:'100%',   maxWidth: '500Px'}} 
+                  onChange={(newValue) => setSelectedFrom(newValue)}
+                 
+                  renderInput={(params) => (
+                    <TextField name="date" {...params}       sx={{ width:'100%',   maxWidth: '500Px'}}  />
+                  )}
+                />
+              </LocalizationProvider>
          
             </div>
           </div>
@@ -170,16 +166,16 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
             
             <div className="col-6">
             <InputLabel htmlFor="outlined-basic">To *</InputLabel>
-              <TextField
-                id="outlined-basic"
-                sx={{ 
-                width:'100%',   maxWidth: '500Px' 
-                  }}
-                {...register('company')}
-           
-                type="text"
-                variant="outlined"
-              />
+           <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                       sx={{ width:'100%',   maxWidth: '500Px'}} 
+                  onChange={(newValue) => setSelectedTo(newValue)}
+                 
+                  renderInput={(params) => (
+                    <TextField name="date" {...params}       sx={{ width:'100%',   maxWidth: '500Px'}}  />
+                  )}
+                />
+              </LocalizationProvider>
             </div>          
               <div className="col-6">
               <InputLabel htmlFor="outlined-basic">Post *</InputLabel>
@@ -191,6 +187,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 
                 type="text"
                 variant="outlined"
+                {...register('post')}
               />
          
             </div>
@@ -208,6 +205,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 
                 type="text"
                 variant="outlined"
+                {...register('description')}
               />
             </div>          
             
@@ -216,7 +214,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
         
           <div className="d-flex my-5">
           <div className="mx-4">
-            <Button variant='contained' 
+            <Button variant='contained' type='submit'
             // InputProps={{ sx: { borderRadius: 10, backgroundColor:"white"} }}
             sx={{borderRadius:34, backgroundColor:'#2F69FF'}}
             >Add Work Experience</Button>
@@ -224,7 +222,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
         
           </div>
         </div>
-        
+        </form>
         
         
  

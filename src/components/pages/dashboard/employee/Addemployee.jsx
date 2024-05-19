@@ -5,6 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Dashhead from '../../../Dashhead';
 import Header from '../header/Header';
 import '../dashboard.scss'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { Autocomplete, Button, InputLabel, TextField } from '@mui/material';
 // import { DatePicker } from '@mui/lab';
 // import { LocalizationProvider } from '@mui/x-date-pickers';
@@ -168,7 +169,7 @@ function Addemployee() {
            <div className="row my-4  d-flex flex-row">
            <div className="col-6">
               <InputLabel htmlFor="outlined-basic">Date of Birth *</InputLabel>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
+             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                        sx={{ width:'100%',   maxWidth: '500Px'}} 
                   // label="Date of Birth"
@@ -436,7 +437,7 @@ function Addemployee() {
             
             <div className="col-6">
             <InputLabel htmlFor="outlined-basic">Date of joining *</InputLabel>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
+           <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                   // sx={{ width: 700 }}
                   label="Date"

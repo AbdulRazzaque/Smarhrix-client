@@ -13,6 +13,7 @@ import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 function AddJob() {
     const [display,setDisplay]=React.useState(false)
     const [selectedDate,setSelectedDate]=useState()
@@ -142,7 +143,7 @@ function AddJob() {
             <div className="col-6">
             <InputLabel htmlFor="outlined-basic">Publish Date *</InputLabel>
            
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
+           <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                   // sx={{ width: 700 }}
             
@@ -159,7 +160,7 @@ function AddJob() {
             </div>          
               <div className="col-6">
               <InputLabel htmlFor="outlined-basic">Application Deadline *</InputLabel>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
+             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                   // sx={{ width: 700 }}
             

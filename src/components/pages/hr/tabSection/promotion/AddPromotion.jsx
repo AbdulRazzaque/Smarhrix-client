@@ -14,7 +14,7 @@ import Typography from '@mui/material/Typography';
 import { Autocomplete, Divider, InputLabel, TextField } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
@@ -126,7 +126,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
             </div>          
             <div className="col-6">
             <InputLabel htmlFor="outlined-basic">Promotion Date *</InputLabel>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
+           <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                   // sx={{ width: 700 }}
             

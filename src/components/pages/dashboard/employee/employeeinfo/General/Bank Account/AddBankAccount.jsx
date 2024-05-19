@@ -13,6 +13,9 @@ import Typography from '@mui/material/Typography';
 import { Autocomplete, Divider, InputLabel, TextField } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import axios from 'axios';
+import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -27,8 +30,11 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
  const AddBankAccount= ({open,handleClickOpen,handleClose})=> {
-    const [selectedDate,setSelectedDate]=React.useState()
 
+  const { register, handleSubmit, reset, formState: { isSubmitting } } = useForm();
+  const employeeData = useSelector(state => state.socket.messages)
+  
+    const [data,setData]= React.useState([])
     const department =[
         {name:'GENETIC'},
         {name:"MICROBIOLOGY"},
@@ -41,7 +47,61 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
            
         
       ]
-
+      const url=process.env.REACT_APP_DEVELOPMENT; 
+      // ==========================================GET API==============================================================================================================================
+      const getImmigration = async()=>{
+      try {
+        axios.get(`${url}/api/employees/general/get-immigration/`)
+        .then(response => {
+          const arr = response.data.map((item, index) => ({
+            ...item,
+            id: index + 1
+          }));
+          setData(arr);
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+      
+        }); 
+      } catch (error) {
+        console.log(error)
+      }
+       
+      }
+      // ==========================================POST API==============================================================================================================================
+          const onSubmit = async(formData)=>{
+            try {
+              var obj ={
+  
+                employee:employeeData.uuid,
+                ...formData
+              }
+              console.log('obj',obj)
+              await axios.post(`${url}/api/employees/general/create-bank-account/`,obj)
+              .then(response=>{
+                console.log('Response',response)
+                const newData = response.data.data;
+      
+                // Update local state with the new data
+                setData((prevData) => [...prevData, newData]);
+                
+                reset()
+                handleClose()
+              }).catch(error=>console.log(error))
+              await getImmigration();
+            } catch (error) {
+              console.log(error)
+              
+            }
+            
+          }
+      
+      
+      
+          React.useEffect(() => {
+            getImmigration(); // Fetch data on initial render
+          }, []); // Re-fetch data when 'data' state changes (after POST request)
+          
   return (
     <React.Fragment>
  
@@ -69,6 +129,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
         <p className="whitboxtitle ml-4 my-4">Add Bank Account</p>
      
         <Divider/>
+        <form onSubmit={handleSubmit(onSubmit)}>
         <div className="container my-4">
         <div className="d-flex align-items-center my-3">
             
@@ -82,25 +143,25 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                   }}
                 placeholder="Accoutn Title "
                 required
-                type="number"
+                type="text"
                 variant="outlined"
+                {...register('account_title')}
               />
             </div>          
               <div className="col-6">
               <InputLabel htmlFor="outlined-basic">Accoutn Number *</InputLabel>
-              <Autocomplete
-                    disablePortal
-                    id="combo-box-demo"
-                    getOptionLabel={(department)=>department.name}
-                     options={department}
-                     onChange={(event,value)=>{
-                      // setSelectedDepartment(value.name)
-                     }}
-                     sx={{ 
-                        width:'100%',   maxWidth: '500Px' 
-                        }}
-                    renderInput={(params) => <TextField {...params} placeholder='Accoutn Number' required/>}
-                    />
+              <TextField
+                id="outlined-basic"
+                sx={{ 
+                width:'100%',   maxWidth: '500Px' 
+                  }}
+                placeholder="Accoutn Number "
+                required
+                type="text"
+                variant="outlined"
+                {...register('account_number')}
+
+              />
          
             </div>
           </div>
@@ -116,8 +177,10 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                   }}
               
              placeholder='Bank Name '
-                type="number"
+                type="text"
                 variant="outlined"
+                {...register('bank_name')}
+
               />
             </div>          
               <div className="col-6">
@@ -128,8 +191,10 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                 width:'100%',   maxWidth: '500Px' 
                   }}
                 placeholder='Bank Code '
-                type="number"
+                type="text"
                 variant="outlined"
+                {...register('bank_code')}
+
               />
          
             </div>
@@ -145,8 +210,9 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                 width:'100%',   maxWidth: '500Px' 
                   }}
                 placeholder='Bank Branch '
-                type="number"
+                type="text"
                 variant="outlined"
+                {...register('bank_branch')}
               />
             </div>          
             
@@ -155,7 +221,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
         
           <div className="d-flex my-5">
           <div className="mx-4">
-            <Button variant='contained' 
+            <Button variant='contained' type='submit'
             // InputProps={{ sx: { borderRadius: 10, backgroundColor:"white"} }}
             sx={{borderRadius:34, backgroundColor:'#2F69FF'}}
             >Add Bank Account</Button>
@@ -164,7 +230,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
           </div>
         </div>
         
-        
+        </form>
         
  
       </BootstrapDialog>
