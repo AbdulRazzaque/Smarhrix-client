@@ -12,6 +12,11 @@ import Typography from '@mui/material/Typography';
 import { Autocomplete, Divider, InputLabel, TextField } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { useForm } from 'react-hook-form';
+import moment from 'moment';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -26,8 +31,12 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
  const AddCommission= ({open,handleClickOpen,handleClose})=> {
-    const [selectedDate,setSelectedDate]=React.useState()
-
+  const { register, handleSubmit, reset, formState: { isSubmitting } } = useForm();
+  const employeeData = useSelector(state => state.socket.messages)
+    // const [selectedDate,setSelectedDate]=React.useState()
+    const [selectedMonthYear,setSelectedMonthYear]=React.useState()
+    const [selectedCommessionTitle,setSelectedCommessionTitle]=React.useState()
+    const [data,setData]=React.useState([])
     const department =[
         {name:'GENETIC'},
         {name:"MICROBIOLOGY"},
@@ -40,7 +49,57 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
            
         
       ]
-
+      const url=process.env.REACT_APP_DEVELOPMENT; 
+      // ==========================================GET API==============================================================================================================================
+      const getCommissions = async()=>{
+                 
+        await axios.get(`${url}/api/employees/set-salary/get-commission/`)
+           .then(response => {
+             const arr = response.data.map((item, index) => ({
+               ...item,
+               id: index + 1
+             }));
+             setData(arr);
+           })
+           .catch(error => {
+             console.error('Error fetching data:', error);
+       
+           }); 
+       }
+      // ==========================================POST API==============================================================================================================================
+          const onSubmit = async(formData)=>{
+            try {
+              var obj ={
+                month_year:moment.parseZone(selectedMonthYear).format("YYYY-MM-DD"),
+                commission_title:selectedCommessionTitle,
+                employee:employeeData.uuid,
+                ...formData
+              }
+              console.log('obj',obj)
+              await axios.post(`${url}/api/employees/set-salary/create-commission/`,obj)
+              .then(response=>{
+                console.log('Response',response)
+                const newData = response.data.data;
+      
+                // Update local state with the new data
+                setData((prevData) => [...prevData, newData]);
+                reset()
+                handleClose()
+              }).catch(error=>console.log(error))
+              await getCommissions();
+            } catch (error) {
+              console.log(error)
+              
+            }
+            
+          }
+      
+      
+      
+          React.useEffect(() => {
+            getCommissions()
+          }, []); // Re-fetch data when 'data' state changes (after POST request)
+          
   return (
     <React.Fragment>
  
@@ -66,24 +125,25 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 {/* ===================================================================================================================================================================== */}
       
         <p className="whitboxtitle ml-4 my-4">Add Commission</p>
-     
+      
         <Divider/>
+        <form onSubmit={handleSubmit(onSubmit)}>
         <div className="container my-4">
         <div className="d-flex align-items-center my-3">
             
             <div className="col-6">
             <InputLabel htmlFor="outlined-basic">Month - Year *</InputLabel>
-
-            <TextField
-                id="outlined-basic"
-                sx={{ 
-                width:'100%',   maxWidth: '500Px' 
-                  }}
-                placeholder="Month - Year"
-                required
-                type="number"
-                variant="outlined"
-              />
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                       sx={{ width:'100%',   maxWidth: '500Px'}} 
+                  // label="Date of Birth"
+                  onChange={(newValue) => setSelectedMonthYear(newValue)}
+                 
+                  renderInput={(params) => (
+                    <TextField name="date" {...params}       sx={{ width:'100%',   maxWidth: '500Px'}}  />
+                  )}
+                />
+              </LocalizationProvider>
             </div>          
               <div className="col-6">
               <InputLabel htmlFor="outlined-basic">Commession Title *</InputLabel>
@@ -93,7 +153,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                     getOptionLabel={(department)=>department.name}
                      options={department}
                      onChange={(event,value)=>{
-                      // setSelectedDepartment(value.name)
+                      setSelectedCommessionTitle(value.name)
                      }}
                      sx={{ 
                         width:'100%',   maxWidth: '500Px' 
@@ -114,7 +174,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
                 width:'100%',   maxWidth: '500Px' 
                   }}
               placeholder='$ 0.00'
-           
+              {...register('commission_amount')}
                 type="number"
                 variant="outlined"
               />
@@ -128,7 +188,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
         
           <div className="d-flex my-5">
           <div className="mx-4">
-            <Button variant='contained' 
+            <Button variant='contained' type='submit'
             // InputProps={{ sx: { borderRadius: 10, backgroundColor:"white"} }}
             sx={{borderRadius:34, backgroundColor:'#2F69FF'}}
             >Add Commission</Button>
@@ -138,7 +198,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
         </div>
         
         
-        
+        </form>
  
       </BootstrapDialog>
     </React.Fragment>

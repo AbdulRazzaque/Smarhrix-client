@@ -100,6 +100,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
           React.useEffect(() => {
             getAllowances()
           }, []); // Re-fetch data when 'data' state changes (after POST request)
+          
   return (
     <React.Fragment>
  

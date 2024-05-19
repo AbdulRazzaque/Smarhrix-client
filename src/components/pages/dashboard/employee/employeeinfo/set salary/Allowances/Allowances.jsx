@@ -74,7 +74,7 @@ const Allowances = () => {
                   try {
                     await axios
                       .post(
-                        `${process.env.REACT_APP_DEVELOPMENT}/api/employees/set-salary/delete-basic-salary/${update.uuid}`,)
+                        `${process.env.REACT_APP_DEVELOPMENT}/api/employees/set-salary/delete-allowance/${update.uuid}`,)
                         .then(response=>{
                         console.log('Response',response)
                         // apiRef.current.updateRows([update])
@@ -131,6 +131,32 @@ onClick={handleClickOpen}>
 
         </div>
         <hr />
+                        {/* =============================================Delete Modal code===================================================================================================================================== */}
+{alert && (
+          <Dialog open={alert} style={{ height: 600 }}>
+            <DialogTitle>Delete Row</DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Are You sure You want to delete this.
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button variant="contained" onClick={() => deleteRow(update)}>
+                Yes
+              </Button>
+              <Button
+                variant="outlined"
+                color="error"
+                onClick={() => {
+                  setAlert(false);
+                }}
+              >
+                Cancel
+              </Button>
+            </DialogActions>
+          </Dialog>
+        )}
+
 {/* ===================================================================================================================================================================== */}
         <div className="d-flex justify-content-center my-5">
         <div className="row ">
@@ -174,6 +200,7 @@ onClick={handleClickOpen}>
         }}
         pageSizeOptions={[5]}
         // checkboxSelection
+        onRowClick={(item)=>setUpdate(item.row)}
         disableRowSelectionOnClick
       />
       <AddAllowance
