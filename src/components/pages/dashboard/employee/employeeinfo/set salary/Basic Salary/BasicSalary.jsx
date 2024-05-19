@@ -1,31 +1,28 @@
 import Infolist from '../../General/Generallist'
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Box, Button, TextField } from '@mui/material';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import EditIcon from "@mui/icons-material/Edit";
 import { DataGrid } from '@mui/x-data-grid';
 import InfoIcon from '@mui/icons-material/Info';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 import AddBasicSalary from './AddBasicSalary';
+import axios from 'axios';
 const BasicSalary = () => {
   const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const [data,setData]=useState([])
+  const [alert, setAlert] = useState(false);
+  const [update,setUpdate]=useState([])
 
 
     const columns = [
         { field: 'id', headerName: 'S.N', width: 90 },
-        { field: 'MonthYear', headerName: 'Month-Year', width: 150 },
-        { field: 'PayslipType', headerName: 'Payslip Type', width: 150 },
-        { field: 'banckSalary', headerName: 'Banck Salary', width: 150 },
+        { field: 'month_year', headerName: 'Month-Year', width: 150 },
+        { field: 'payslip_type', headerName: 'Payslip Type', width: 150 },
+        { field: 'basic_salary', headerName: 'Banck Salary', width: 150 },
 
-       
+        
           {
             title: "Action",
             field: "Action",
@@ -39,7 +36,7 @@ const BasicSalary = () => {
                 <Button color="success" >
                   <EditIcon />
                 </Button>
-                <Button color="error" >
+                <Button color="error" onClick={() => setAlert(true)}>
                   <DeleteIcon />
                   
                 </Button>
@@ -49,18 +46,57 @@ const BasicSalary = () => {
 
     ];
     
-      const rows = [
-        { id: 1, MonthYear: '1-2-203', PayslipType: 'Regular', banckSalary: 7890 },
-        { id: 2, MonthYear: '1-2-203', PayslipType: 'Bonus', banckSalary: 7890 },
-        { id: 3, MonthYear: '1-2-203', PayslipType: 'Regular', banckSalary: 7890 },
-        { id: 4, MonthYear: '1-2-203', PayslipType: 'Overtime', banckSalary: 7890 },
-        { id: 5, MonthYear: '1-2-203', PayslipType: 'Regular', banckSalary: 7890 },
-        { id: 6, MonthYear: '1-2-203', PayslipType: 'Regular', banckSalary: 7890 },
-        { id: 7, MonthYear: '1-2-203', PayslipType: 'Bonus', banckSalary: 7890 },
-        { id: 8, MonthYear: '1-2-203', PayslipType: 'Regular', banckSalary: 7890 },
-        { id: 9, MonthYear: '1-2-203', PayslipType: 'Regular', banckSalary: 7890 },
-        { id: 10, MonthYear: '1-2-203', PayslipType: 'Bonus', banckSalary: 7890 },
-      ]
+        // ============================================Get api====================================================================================================================
+        const url = process.env.REACT_APP_DEVELOPMENT;
+        const getBasicSalary = async()=>{
+        
+         await axios.get(`${url}/api/employees/set-salary/get-basic-salary/`)
+            .then(response => {
+              const arr = response.data.map((item, index) => ({
+                ...item,
+                id: index + 1
+              }));
+              setData(arr);
+            })
+            .catch(error => {
+              console.error('Error fetching data:', error);
+        
+            }); 
+        }
+        //=======================================================Delete code & api here ==============================================================
+          const deleteRow = async (update) => {
+        
+            try {
+              await axios
+                .post(
+                  `${process.env.REACT_APP_DEVELOPMENT}/api/employees/set-salary/delete-basic-salary/${update.uuid}`,)
+                  .then(response=>{
+                  console.log('Response',response)
+                  // apiRef.current.updateRows([update])
+                  })
+          
+                  getBasicSalary()
+                
+              setAlert(false);
+            } catch (error) {
+              console.log(error);
+            }
+          }; 
+          // =======================================================================================================
+        useEffect(()=>{
+          getBasicSalary()
+        },[])
+             
+          // =========================================Model colse & open==============================================================
+        
+        const handleClickOpen = () => {
+          setOpen(true);
+        };
+        const handleClose = () => {
+          setOpen(false);
+        };
+        // ==================================================================================================================
+         
   return (
 
        <>
@@ -90,6 +126,32 @@ onClick={handleClickOpen} >
 
         </div>
         <hr />
+                {/* =============================================Delete Modal code===================================================================================================================================== */}
+{alert && (
+          <Dialog open={alert} style={{ height: 600 }}>
+            <DialogTitle>Delete Row</DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Are You sure You want to delete this.
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button variant="contained" onClick={() => deleteRow(update)}>
+                Yes
+              </Button>
+              <Button
+                variant="outlined"
+                color="error"
+                onClick={() => {
+                  setAlert(false);
+                }}
+              >
+                Cancel
+              </Button>
+            </DialogActions>
+          </Dialog>
+        )}
+
 {/* ===================================================================================================================================================================== */}
         <div className="d-flex justify-content-center my-5">
         <div className="row ">
@@ -122,7 +184,7 @@ onClick={handleClickOpen} >
 
 <Box sx={{ height: 400, width: '100%', backgroundColor:'white' }} className='my-5'>
       <DataGrid
-        rows={rows}
+        rows={data}
         columns={columns}
         initialState={{
           pagination: {
@@ -134,6 +196,7 @@ onClick={handleClickOpen} >
         pageSizeOptions={[5]}
         // checkboxSelection
         disableRowSelectionOnClick
+    onRowClick={(item)=>setUpdate(item.row)}
       />
     </Box>
            <AddBasicSalary
@@ -141,6 +204,7 @@ onClick={handleClickOpen} >
           open={open}
           handleClickOpen={handleClickOpen}
           handleClose={handleClose}
+
            />
               
               </>

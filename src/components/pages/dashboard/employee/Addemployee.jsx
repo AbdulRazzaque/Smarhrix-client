@@ -47,7 +47,6 @@ function Addemployee() {
       {name:'Male'},
       {name:"Fmale"},
       {name:"Other"},
-
       
     ]
 

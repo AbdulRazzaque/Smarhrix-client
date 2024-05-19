@@ -1,67 +1,107 @@
 
 import Infolist from '../../General/Generallist'
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Box, Button, TextField } from '@mui/material';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
+
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import EditIcon from "@mui/icons-material/Edit";
 import { DataGrid } from '@mui/x-data-grid';
 import InfoIcon from '@mui/icons-material/Info';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 import AddAllowance from './AddAllowance';
+import axios from 'axios';
 const Allowances = () => {
 
   const [open, setOpen] = React.useState(false);
+  const [data,setData]=useState([])
+  const [alert, setAlert] = useState(false);
+  const [update,setUpdate]=useState([])
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+ 
 
     const columns = [
         { field: 'id', headerName: 'S.N', width: 90 },
-        { field: 'MonthYear', headerName: 'Month-Year', width: 150 },
-        { field: 'PayslipType', headerName: 'Allowance Type', width: 150 },
-        { field: 'banckSalary', headerName: 'Allowance Title', width: 150 },
+        { field: 'month_year', headerName: 'Month-Year', width: 150 },
+        { field: 'allowance_type', headerName: 'Allowance Type', width: 150 },
+        { field: 'allowance_title', headerName: 'Allowance Title', width: 150 },
+        { field: 'allowance_amount', headerName: 'Allowance Amount', width: 150 },
 
        
-        //   {
-        //     title: "Action",
-        //     field: "Action",
-        //     width: 180,
-        //     renderCell: () => (
-        //       <Fragment>
-        //         {/* <Button color="error" onClick={() => setAlert(true)}> */}
-        //         <Button color="primary">
-        //           <InfoIcon />
-        //         </Button>
-        //         <Button color="success" >
-        //           <EditIcon />
-        //         </Button>
-        //         <Button color="error" >
-        //           <DeleteIcon />
+          {
+            title: "Action",
+            field: "Action",
+            width: 180,
+            renderCell: () => (
+              <Fragment>
+                {/* <Button color="error" onClick={() => setAlert(true)}> */}
+                <Button color="primary">
+                  <InfoIcon />
+                </Button>
+                <Button color="success" >
+                  <EditIcon />
+                </Button>
+                <Button color="error" >
+                  <DeleteIcon />
                   
-        //         </Button>
-        //       </Fragment>
-        //     ),
-        //   },
+                </Button>
+              </Fragment>
+            ),
+          },
 
     ];
-    
-      const rows = [
-        { id: 1, MonthYear: '1-2-203', PayslipType: 'Regular', banckSalary: 7890 },
-        { id: 2, MonthYear: '1-2-203', PayslipType: 'Bonus', banckSalary: 7890 },
-        { id: 3, MonthYear: '1-2-203', PayslipType: 'Regular', banckSalary: 7890 },
-        { id: 4, MonthYear: '1-2-203', PayslipType: 'Overtime', banckSalary: 7890 },
-        { id: 5, MonthYear: '1-2-203', PayslipType: 'Regular', banckSalary: 7890 },
-        { id: 6, MonthYear: '1-2-203', PayslipType: 'Regular', banckSalary: 7890 },
-        { id: 7, MonthYear: '1-2-203', PayslipType: 'Bonus', banckSalary: 7890 },
-        { id: 8, MonthYear: '1-2-203', PayslipType: 'Regular', banckSalary: 7890 },
-        { id: 9, MonthYear: '1-2-203', PayslipType: 'Regular', banckSalary: 7890 },
-        { id: 10, MonthYear: '1-2-203', PayslipType: 'Bonus', banckSalary: 7890 },
-      ]
+
+              // ============================================Get api====================================================================================================================
+              const url = process.env.REACT_APP_DEVELOPMENT;
+              const getAllowances = async()=>{
+              
+               await axios.get(`${url}/api/employees/set-salary/get-allowance/`)
+                  .then(response => {
+                    const arr = response.data.map((item, index) => ({
+                      ...item,
+                      id: index + 1
+                    }));
+                    setData(arr);
+                  })
+                  .catch(error => {
+                    console.error('Error fetching data:', error);
+              
+                  }); 
+              }
+              //=======================================================Delete code & api here ==============================================================
+                const deleteRow = async (update) => {
+              
+                  try {
+                    await axios
+                      .post(
+                        `${process.env.REACT_APP_DEVELOPMENT}/api/employees/set-salary/delete-basic-salary/${update.uuid}`,)
+                        .then(response=>{
+                        console.log('Response',response)
+                        // apiRef.current.updateRows([update])
+                        })
+                
+                        getAllowances()
+                      
+                    setAlert(false);
+                  } catch (error) {
+                    console.log(error);
+                  }
+                }; 
+                // =======================================================================================================
+              useEffect(()=>{
+                getAllowances()
+              },[])
+                   
+                // =========================================Model colse & open==============================================================
+              
+              const handleClickOpen = () => {
+                setOpen(true);
+              };
+              const handleClose = () => {
+                setOpen(false);
+              };
+              // ==================================================================================================================
+               
   return (
 
        <>
@@ -123,7 +163,7 @@ onClick={handleClickOpen}>
 
 <Box sx={{ height: 400, width: '100%', backgroundColor:'white' }} className='my-5'>
       <DataGrid
-        rows={rows}
+        rows={data}
         columns={columns}
         initialState={{
           pagination: {

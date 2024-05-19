@@ -102,7 +102,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
             getImmigration(); // Fetch data on initial render
           }, []); // Re-fetch data when 'data' state changes (after POST request)
           
-  return (
+  return ( 
     <React.Fragment>
  
       <BootstrapDialog
