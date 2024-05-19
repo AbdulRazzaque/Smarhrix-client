@@ -16,15 +16,14 @@
 onClick={handleClickOpen}
 
 
-<LocalizationProvider dateAdapter={AdapterDayjs}>
+ <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
-                  // sx={{ width: 700 }}
-            
-                  onChange={(newValue) => setSelectedDate(newValue)}
+                       sx={{ width:'100%',   maxWidth: '500Px'}} 
+                  // label="Date of Birth"
+                  onChange={(newValue) => setSelectedBirth(newValue)}
+                 
                   renderInput={(params) => (
-                     <TextField name="date" {...params}   
-                     sx={{ width:'100%',   maxWidth: '500Px'}} 
-                        />
+                    <TextField name="date" {...params}       sx={{ width:'100%',   maxWidth: '500Px'}}  />
                   )}
                 />
               </LocalizationProvider>

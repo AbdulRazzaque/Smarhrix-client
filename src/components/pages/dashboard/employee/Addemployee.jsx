@@ -143,23 +143,23 @@ function Addemployee() {
            <div className="row my-4  d-flex flex-row">
             
             <div className="col-6">
-            <InputLabel htmlFor="outlined-basic"> Email Address*</InputLabel>
+            <InputLabel htmlFor="outlined-basic"> Staff ID (Unique identifier for each employee) *</InputLabel>
               <TextField
                 id="outlined-basic"
                      sx={{ width:'100%',   maxWidth: '500Px'}} 
-                placeholder=" Email Address"
+                placeholder=" Staff ID"
                 type=""
                 variant="outlined"
                 {...register('staff_id', { required: true })}
               />
             </div>          
               <div className="col-6">
-              <InputLabel htmlFor="outlined-basic">Phone Number*</InputLabel>
+              <InputLabel htmlFor="outlined-basic">Email Address *</InputLabel>
               <TextField
                 id="outlined-basic"
                      sx={{ width:'100%',   maxWidth: '500Px'}} 
           
-                placeholder="Phone Number"
+                placeholder="Email"
                 variant="outlined"
                 {...register('email', { required: true })}
               />
@@ -168,8 +168,20 @@ function Addemployee() {
            {/* ---------------------------------------------------Therd Row Start Here------------------------------------------- */}
            <div className="row my-4  d-flex flex-row">
            <div className="col-6">
+              <InputLabel htmlFor="outlined-basic">Phone Number *</InputLabel>
+              <TextField
+                id="outlined-basic"
+                     sx={{ width:'100%',   maxWidth: '500Px'}} 
+          
+                placeholder="Enter Phone Number "
+                variant="outlined"
+                {...register('email', { required: true })}
+              />
+            </div>
+           <div className="col-6">
               <InputLabel htmlFor="outlined-basic">Date of Birth *</InputLabel>
-             <LocalizationProvider dateAdapter={AdapterDateFns}>
+            
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                        sx={{ width:'100%',   maxWidth: '500Px'}} 
                   // label="Date of Birth"
@@ -183,25 +195,26 @@ function Addemployee() {
             </div>
             
                   
-            <div className="col-6">
-            <InputLabel htmlFor="outlined-basic"> Gender *</InputLabel>
-                 <Autocomplete
-                    disablePortal
-                    id="combo-box-demo"
-                    getOptionLabel={(department)=>department.name}
-                     options={gender}
-                     onChange={(event,value)=>{
-                      setSelectedGender(value.name)
-                     }}
-                         sx={{ width:'100%',   maxWidth: '500Px'}} 
-                    renderInput={(params) => <TextField {...params} placeholder='Select Gender' required/>}
-                    />
-            </div> 
+           
           </div>
            {/* ---------------------------------------------------forth Row Start Here------------------------------------------- */}
            <div className="row my-4  d-flex flex-row">
             
                    
+              <div className="col-6">
+              <InputLabel htmlFor="outlined-basic">Gender*</InputLabel>
+              <Autocomplete
+                    disablePortal
+                    id="combo-box-demo"
+                    getOptionLabel={(department)=>department.name}
+                     options={department}
+                     onChange={(event,value)=>{
+                      setSelectedCompany(value.name)
+                     }}
+                         sx={{ width:'100%',   maxWidth: '500Px'}} 
+                    renderInput={(params) => <TextField {...params} placeholder='Select Gender'  required/>}
+                    />
+            </div>
               <div className="col-6">
               <InputLabel htmlFor="outlined-basic">Material Status*</InputLabel>
               <Autocomplete
@@ -213,27 +226,17 @@ function Addemployee() {
                       setSelectedCompany(value.name)
                      }}
                          sx={{ width:'100%',   maxWidth: '500Px'}} 
-                    renderInput={(params) => <TextField {...params} placeholder='Select Company'  required/>}
+                    renderInput={(params) => <TextField {...params} placeholder='Material Status'  required/>}
                     />
             </div>
-            <div className="col-6">
-              <InputLabel htmlFor="outlined-basic">Permanent Address*</InputLabel>
-              <TextField
-                id="outlined-basic"
-                     sx={{ width:'100%',   maxWidth: '500Px'}} 
-          
-                placeholder="Permanent Address"
-                variant="outlined"
-                {...register('email', { required: true })}
-              />
-            </div>
+    
           </div>
            {/* ---------------------------------------------------forth Row Start Here------------------------------------------- */}
            <div className="row my-4  d-flex flex-row">
             
                    
               <div className="col-6">
-              <InputLabel htmlFor="outlined-basic"> Current Address</InputLabel>
+              <InputLabel htmlFor="outlined-basic">Permanent Address</InputLabel>
               <TextField
                 id="outlined-basic"
                      sx={{ width:'100%',   maxWidth: '500Px'}} 
@@ -244,12 +247,12 @@ function Addemployee() {
               />
             </div>
             <div className="col-6">
-              <InputLabel htmlFor="outlined-basic">Father Name</InputLabel>
+              <InputLabel htmlFor="outlined-basic">Current Address (This can be the same as permanent address)</InputLabel>
               <TextField
                 id="outlined-basic"
                      sx={{ width:'100%',   maxWidth: '500Px'}} 
           
-                placeholder="Permanent Address"
+                placeholder="Current Address "
                 variant="outlined"
                 {...register('email', { required: true })}
               />
@@ -260,23 +263,23 @@ function Addemployee() {
             
                    
               <div className="col-6">
-              <InputLabel htmlFor="outlined-basic"> Mother Name</InputLabel>
+              <InputLabel htmlFor="outlined-basic"> Father's Name</InputLabel>
               <TextField
                 id="outlined-basic"
                      sx={{ width:'100%',   maxWidth: '500Px'}} 
           
-                placeholder="Permanent Address"
+                placeholder="Enter Father's Name"
                 variant="outlined"
                 {...register('email', { required: true })}
               />
             </div>
             <div className="col-6">
-              <InputLabel htmlFor="outlined-basic">Adhaar Number</InputLabel>
+              <InputLabel htmlFor="outlined-basic">Mother's Name</InputLabel>
               <TextField
                 id="outlined-basic"
                      sx={{ width:'100%',   maxWidth: '500Px'}} 
           
-                placeholder="Permanent Address"
+                placeholder="Enter Mother's Name"
                 variant="outlined"
                 {...register('email', { required: true })}
               />
@@ -287,12 +290,12 @@ function Addemployee() {
             
                    
               <div className="col-6">
-              <InputLabel htmlFor="outlined-basic"> PAN Number</InputLabel>
+              <InputLabel htmlFor="outlined-basic"> Aadhar Number (India)</InputLabel>
               <TextField
                 id="outlined-basic"
                      sx={{ width:'100%',   maxWidth: '500Px'}} 
           
-                placeholder="Permanent Address"
+                placeholder=" Aadhar Number (India)"
                 variant="outlined"
                 {...register('email', { required: true })}
               />
@@ -303,17 +306,17 @@ function Addemployee() {
                 id="outlined-basic"
                      sx={{ width:'100%',   maxWidth: '500Px'}} 
           
-                placeholder="Permanent Address"
+                placeholder="Enter Passport Nubmer"
                 variant="outlined"
                 {...register('email', { required: true })}
               />
             </div>
           </div>
            {/* ---------------------------------------------------fifth Row Start Here------------------------------------------- */}
-           {/* <div className="row my-4  d-flex flex-row">
+           <div className="row my-4  d-flex flex-row">
             
             <div className="col-6">
-            <InputLabel htmlFor="outlined-basic">Department *</InputLabel>
+            <InputLabel htmlFor="outlined-basic"> PAN Number (India) *</InputLabel>
                  <Autocomplete
                     disablePortal
                     id="combo-box-demo"
@@ -324,29 +327,26 @@ function Addemployee() {
                       setSelectedDepartment(value.name)
                      }}
                          sx={{ width:'100%',   maxWidth: '500Px'}} 
-                    renderInput={(params) => <TextField {...params} placeholder='Select Department'  required/>}
+                    renderInput={(params) => <TextField {...params} placeholder=' Enter PAN Number (India)'  required/>}
                     />
             </div>          
-              <div className="col-6">
-              <InputLabel htmlFor="outlined-basic">Designation *</InputLabel>
-              <Autocomplete
-                    disablePortal
-                    id="combo-box-demo"
-                    getOptionLabel={(department)=>department.name}
-                     options={department}
-                     onChange={(event,value)=>{
-                      setSelectedDesignation(value.name)
-                     }}
-                         sx={{ width:'100%',   maxWidth: '500Px'}} 
-                    renderInput={(params) => <TextField {...params} placeholder="Select Designation"  required/>}
-                    />
-            </div>
-          </div> */}
+            <div className="col-6">
+            <InputLabel htmlFor="outlined-basic">Image*</InputLabel>
+            <TextField
+                id="outlined-basic"
+                     sx={{ width:'100%',   maxWidth: '500Px'}} 
+               
+                placeholder="e (e.g., Full Time, Part Time) "
+                type="file"
+                variant="outlined"
+              />
+            </div> 
+          </div>
            {/* ---------------------------------------------------sixth Row Start Here------------------------------------------- */}
-           {/* <div className="row my-4  d-flex flex-row">
+           <div className="row my-4  d-flex flex-row">
             
             <div className="col-6">
-            <InputLabel htmlFor="outlined-basic">Office Shift *</InputLabel>
+            <InputLabel htmlFor="outlined-basic"> Department (e.g., Engineering, Sales, Marketing) *</InputLabel>
                  <Autocomplete
                     disablePortal
                     id="combo-box-demo"
@@ -356,27 +356,27 @@ function Addemployee() {
                       setSelectedShift(value.name)
                      }}
                          sx={{ width:'100%',   maxWidth: '500Px'}} 
-                    renderInput={(params) => <TextField {...params}  placeholder="select Office Shit" required/>}
+                    renderInput={(params) => <TextField {...params}  placeholder="select  Department" required/>}
                     />
             </div>          
               <div className="col-6">
-              <InputLabel htmlFor="outlined-basic">Username*</InputLabel>
+              <InputLabel htmlFor="outlined-basic">Designation (e.g., Software Engineer, Team Lead)*</InputLabel>
               <TextField
                 id="outlined-basic"
                      sx={{ width:'100%',   maxWidth: '500Px'}} 
-                label="Username"
-                placeholder="Enter User Name"
+       
+                placeholder="Enter Designation"
                 type="text"
                 variant="outlined"
                 {...register('username', { required: true })}
               />
             </div>
-          </div> */}
+          </div>
            {/* ---------------------------------------------------seven Row Start Here------------------------------------------- */}
-           {/* <div className="row my-4  d-flex flex-row">
+           <div className="row my-4  d-flex flex-row">
             
             <div className="col-6">
-            <InputLabel htmlFor="outlined-basic">Role *</InputLabel>
+            <InputLabel htmlFor="outlined-basic">Office Shift *</InputLabel>
             <Autocomplete
                     disablePortal
                     id="combo-box-demo"
@@ -386,81 +386,108 @@ function Addemployee() {
                       setSelectedRole(value.name)
                      }}
                          sx={{ width:'100%',   maxWidth: '500Px'}} 
-                    renderInput={(params) => <TextField {...params}  placeholder="select Role" />}
+                    renderInput={(params) => <TextField {...params}  placeholder="Select (e.g., Morning, Evening)" />}
                     />
             </div>          
               <div className="col-6">
-              <InputLabel htmlFor="outlined-basic">Password *</InputLabel>
+              <InputLabel htmlFor="outlined-basic">Username  *</InputLabel>
               <TextField
                 id="outlined-basic"
                      sx={{ width:'100%',   maxWidth: '500Px'}} 
           
-                placeholder="Enter Password"
+                placeholder="Enter Username"
                 type="text"
                 variant="outlined"
                 {...register('password', { required: true })}
               />
             </div>
-          </div> */}
+          </div>
            {/* ---------------------------------------------------seven Row Start Here------------------------------------------- */}
-           {/* <div className="row my-4  d-flex flex-row">
+           <div className="row my-4  d-flex flex-row">
             
             <div className="col-6">
-            <InputLabel htmlFor="outlined-basic">Confirm Password *</InputLabel>
+            <InputLabel htmlFor="outlined-basic">Role *</InputLabel>
             <TextField
                 id="outlined-basic"
                      sx={{ width:'100%',   maxWidth: '500Px'}} 
                
-                placeholder="Enter Confirm Password"
+                placeholder="(e.g., Admin, Manager, Employee)"
                 type="text"
                 variant="outlined"
                 {...register('password')}
               />
             </div>          
               <div className="col-6">
-              <InputLabel htmlFor="outlined-basic">Attendance Type *</InputLabel>
-              <Autocomplete
-                    disablePortal
-                    id="combo-box-demo"
-                    getOptionLabel={(department)=>department.name}
-                     options={department}
-                     onChange={(event,value)=>{
-                      setSelectedAttendance(value.name)
-                     }}
-                         sx={{ width:'100%',   maxWidth: '500Px'}} 
-                    renderInput={(params) => <TextField {...params}  placeholder="select Attendance Type" />}
-                    />
-            </div>
-          </div> */}
-           {/* ---------------------------------------------------eight Row Start Here------------------------------------------- */}
-           {/* <div className="row my-4  d-flex flex-row">
-            
-            <div className="col-6">
-            <InputLabel htmlFor="outlined-basic">Date of joining *</InputLabel>
-           <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  // sx={{ width: 700 }}
-                  label="Date"
-                       sx={{ width:'100%',   maxWidth: '500Px'}} 
-                  // onChange={(newValue) => setSelectedDate(newValue)}
-                  renderInput={(params) => (
-                    <TextField name="date" {...params}   />
-                  )}
-                />
-              </LocalizationProvider>
-            </div>          
-              <div className="col-6">
-              <InputLabel htmlFor="outlined-basic">Image *</InputLabel>
+              <InputLabel htmlFor="outlined-basic">Password *</InputLabel>
               <TextField
                 id="outlined-basic"
                      sx={{ width:'100%',   maxWidth: '500Px'}} 
                
-                placeholder="No file choosen"
+                placeholder="Enter Password"
+                type="text"
+                variant="outlined"
+                {...register('password')}
+              />
+            </div>
+          </div>
+           {/* ---------------------------------------------------eight Row Start Here------------------------------------------- */}
+           <div className="row my-4  d-flex flex-row">
+            
+            <div className="col-6">
+            <InputLabel htmlFor="outlined-basic">Attendance*</InputLabel>
+            <TextField
+                id="outlined-basic"
+                     sx={{ width:'100%',   maxWidth: '500Px'}} 
+               
+                placeholder="e (e.g., Full Time, Part Time) "
+                type="text"
+                variant="outlined"
+              />
+            </div>          
+              <div className="col-6">
+              <InputLabel htmlFor="outlined-basic">Date *</InputLabel>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                       sx={{ width:'100%',   maxWidth: '500Px'}} 
+                  // label="Date of Birth"
+                  onChange={(newValue) => setSelectedBirth(newValue)}
+                 
+                  renderInput={(params) => (
+                    <TextField name="date" {...params}       sx={{ width:'100%',   maxWidth: '500Px'}}  />
+                  )}
+                />
+              </LocalizationProvider>
+            </div>
+          </div>
+          {/* ====================================nine===================================================================== */}
+           <div className="row my-4  d-flex flex-row">
+            
+            {/* <div className="col-6">
+            <InputLabel htmlFor="outlined-basic">Image*</InputLabel>
+            <TextField
+                id="outlined-basic"
+                     sx={{ width:'100%',   maxWidth: '500Px'}} 
+               
+                placeholder="e (e.g., Full Time, Part Time) "
                 type="file"
                 variant="outlined"
               />
-            </div>
-          </div> */}
+            </div>           */}
+              {/* <div className="col-6">
+              <InputLabel htmlFor="outlined-basic">Date *</InputLabel>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                       sx={{ width:'100%',   maxWidth: '500Px'}} 
+                  // label="Date of Birth"
+                  onChange={(newValue) => setSelectedBirth(newValue)}
+                 
+                  renderInput={(params) => (
+                    <TextField name="date" {...params}       sx={{ width:'100%',   maxWidth: '500Px'}}  />
+                  )}
+                />
+              </LocalizationProvider>
+            </div> */}
+          </div>
           <div className="d-flex my-5">
           <div className="mx-4">
             <Button variant='contained' type='submit'
