@@ -1,57 +1,106 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Box, Button, TextField } from '@mui/material';
+
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import EditIcon from "@mui/icons-material/Edit";
 import { DataGrid } from '@mui/x-data-grid';
 import InfoIcon from '@mui/icons-material/Info';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 import AddLoan from './AddLoan';
+import axios from 'axios';
 const Loan = () => {
 
   const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const [data,setData]=useState([])
+  const [alert, setAlert] = useState(false);
+  const [update,setUpdate]=useState([])
 
 
     const columns = [
         { field: 'id', headerName: 'S.N', width: 90 },
-        { field: 'MonthYear', headerName: 'Month-Year', width: 150 },
-        { field: 'PayslipType', headerName: 'Commssion Tilte', width: 150 },
-        { field: 'banckSalary', headerName: 'Commission Amount', width: 150 },
+        { field: 'month_year', headerName: 'Month-Year', width: 150 },
+        { field: 'loan_option', headerName: 'Loan option', width: 150 },
+        { field: 'title', headerName: 'title', width: 150 },
+        { field: 'amount', headerName: 'Amount', width: 150 },
+        { field: 'number_of_installment', headerName: 'Number of installment', width: 150 },
+        { field: 'reason', headerName: 'reason', width: 150 },
 
-       
-          {
-            title: "Action",
-            field: "Action",
-            width: 180,
-            renderCell: () => (
-              <Fragment>
-                {/* <Button color="error" onClick={() => setAlert(true)}> */}
-                <Button color="primary">
-                  <InfoIcon />
-                </Button>
-                <Button color="success" >
-                  <EditIcon />
-                </Button>
-                <Button color="error" >
-                  <DeleteIcon />
-                  
-                </Button>
-              </Fragment>
-            ),
-          },
+        
+        {
+          title: "Action",
+          field: "Action",
+          width: 180,
+          renderCell: () => (
+            <Fragment>
+              {/* <Button color="error" onClick={() => setAlert(true)}> */}
+              <Button color="primary">
+                <InfoIcon />
+              </Button>
+              <Button color="success" >
+                <EditIcon />
+              </Button>
+              <Button color="error" onClick={() => setAlert(true)}>
+                <DeleteIcon />
+                
+              </Button>
+            </Fragment>
+          ),
+        },
 
     ];
     
-      const rows = [
+// ============================================Get api====================================================================================================================
+const url = process.env.REACT_APP_DEVELOPMENT;
+const getLoan = async()=>{
 
-      ]
+ await axios.get(`${url}/api/employees/set-salary/get-loan/`)
+    .then(response => {
+      const arr = response.data.map((item, index) => ({
+        ...item,
+        id: index + 1
+      }));
+      setData(arr);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+
+    }); 
+}
+//=======================================================Delete code & api here ==============================================================
+  const deleteRow = async (update) => {
+
+    try {
+      await axios
+        .post(
+          `${process.env.REACT_APP_DEVELOPMENT}/api/employees/set-salary/delete-loan/${update.uuid}`,)
+          .then(response=>{
+          console.log('Response',response)
+          // apiRef.current.updateRows([update])
+          })
+  
+          getLoan()
+        
+      setAlert(false);
+    } catch (error) {
+      console.log(error);
+    }
+  }; 
+  // =======================================================================================================
+useEffect(()=>{
+  getLoan()
+},[])
+     
+  // =========================================Model colse & open==============================================================
+
+const handleClickOpen = () => {
+  setOpen(true);
+};
+const handleClose = () => {
+  setOpen(false);
+};
+// ==================================================================================================================
+ 
   return (
 
        <>
@@ -80,6 +129,32 @@ const Loan = () => {
 
         </div>
         <hr />
+           {/* =============================================Delete Modal code===================================================================================================================================== */}
+{alert && (
+          <Dialog open={alert} style={{ height: 600 }}>
+            <DialogTitle>Delete Row</DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Are You sure You want to delete this.
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button variant="contained" onClick={() => deleteRow(update)}>
+                Yes
+              </Button>
+              <Button
+                variant="outlined"
+                color="error"
+                onClick={() => {
+                  setAlert(false);
+                }}
+              >
+                Cancel
+              </Button>
+            </DialogActions>
+          </Dialog>
+        )}
+
 {/* ===================================================================================================================================================================== */}
         <div className="d-flex justify-content-center my-5">
         <div className="row ">
@@ -112,7 +187,7 @@ const Loan = () => {
 
 <Box sx={{ height: 400, width: '100%', backgroundColor:'white' }} className='my-5'>
       <DataGrid
-        rows={rows}
+        rows={data}
         columns={columns}
         initialState={{
           pagination: {
@@ -123,6 +198,7 @@ const Loan = () => {
         }}
         pageSizeOptions={[5]}
         // checkboxSelection
+        onRowClick={(item)=>setUpdate(item.row)}
         disableRowSelectionOnClick
       />
     </Box>

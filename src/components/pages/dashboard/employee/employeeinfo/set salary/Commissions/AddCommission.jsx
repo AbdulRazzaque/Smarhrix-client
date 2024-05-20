@@ -47,7 +47,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
         {name:"PARASITOLOGY"},
         {name:"GENERAL"},
            
-        
+         
       ]
       const url=process.env.REACT_APP_DEVELOPMENT; 
       // ==========================================GET API==============================================================================================================================
