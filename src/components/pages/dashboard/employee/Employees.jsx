@@ -48,7 +48,7 @@ function Employees() {
     const columns = [
         { field: 'id', headerName: 'S.N', width: 90 },
         { field: 'first_name', headerName: 'Employee', width: 150 },
-        { field: 'Company', headerName: 'Company', width: 150 ,valueGetter:(params)=>params.row.company_details.company_name},
+        // { field: 'Company', headerName: 'Company', width: 150 ,valueGetter:(params)=>params.row.company_details.company_name},
         { field: 'department', headerName: 'Department', width: 150 },
         { field: 'designation', headerName: 'Designation', width: 150 },
         { field: 'phone_number', headerName: 'Contact', width: 150 },

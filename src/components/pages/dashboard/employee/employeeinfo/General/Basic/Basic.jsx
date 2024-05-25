@@ -67,7 +67,7 @@ const Basic = () => {
             <div className="row my-2">
                 <div className="col">
                   <div className="col my-3 boxtextheading">Company</div>
-                  <div className="col my-3 boxtextcontent" >{employeeData.company_details.company_name}</div>
+                  {/* <div className="col my-3 boxtextcontent" >{employeeData.company_details.company_name}</div> */}
                 </div>
                 <div className="col">
                   <div className="col my-3 boxtextheading">Department</div>

@@ -17,3 +17,9 @@ export const sendEmployeeData =(data)=>{
         payload:data
     }
 }
+export const senRowData =(row)=>{
+    return {
+        type:"SEND_ROW_DATA",
+        payload:row
+    }
+}

@@ -18,6 +18,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 import axios from 'axios';
 import Companyinfo from './Companyinfo';
+import { senRowData } from '../../../redux/socket/socketActions';
+import Info from '../info/Info';
+import { useDispatch } from 'react-redux';
 // ======================================Get Api===========================================================================================
 
 export const getCompany = (setData) => {
@@ -47,6 +50,10 @@ function Company() {
     const [update,setUpdate]=useState([])
     const [open, setOpen] = React.useState(false);
     const history= useHistory()
+    const [openInfo, setOpenInfo] = useState(false);
+
+
+    const dispatch = useDispatch();
 // ============================columns=============================================================================================
     const columns = [
         { field: 'id', headerName: 'S.N', width: 90 },
@@ -60,9 +67,9 @@ function Company() {
             title: "Action",
             field: "Action",
             width: 180,
-            renderCell: () => (
+            renderCell: (params) => (
               <Fragment>
-                <Button color="primary" onClick={handleClickOpen}>
+                  <Button color="primary" onClick={()=>handelClick(params.row)}>
                   <InfoIcon />
                 </Button>
                 <Button color="success" >
@@ -110,6 +117,17 @@ function Company() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleCloseInfo = () => {
+    setOpenInfo(false);
+  };
+  const handelClick =(params)=>{
+    // history.push("/Employeeinfo")
+    dispatch(senRowData({params}));
+    console.log(params)
+    setOpenInfo(true)
+
+  }
 // ===================================End================================================================================================
     return (
         <div className="row">
@@ -227,14 +245,20 @@ function Company() {
         onRowClick={(item)=>setUpdate(item.row)}
       />
     </Box>
+    <Info
 
-    <Companyinfo
+openInfo={openInfo}
+handleCloseInfo={handleCloseInfo}
+columns ={columns}
+
+/>
+    {/* <Companyinfo
     data ={update}
      open={open}
      handleClickOpen={handleClickOpen}
      handleClose={handleClose}
     
-    />
+    /> */}
     </div>
     <div className="box">
 
