@@ -331,6 +331,7 @@ const Addimmigration = ({ open, handleClose, refreshData }) => {
   const [selectedEligibleDate, setSelectedEligibleDate] = React.useState();
   const [selectedCountry, setSelectedCountry] = React.useState();
   const [data, setData] = React.useState([]);
+  const [file, setFile] = React.useState([]);
   
   const department = [
     { name: 'GENETIC' },
@@ -369,6 +370,7 @@ const Addimmigration = ({ open, handleClose, refreshData }) => {
         expired_date: moment.parseZone(selectedExpiryDate).format("YYYY-MM-DD"),
         eligible_review_date: moment.parseZone(selectedEligibleDate).format("YYYY-MM-DD"),
         country: selectedCountry,
+        country: selectedCountry,
         employee: employeeData.uuid,
         ...formData
       };
@@ -390,6 +392,9 @@ const Addimmigration = ({ open, handleClose, refreshData }) => {
     getBanckAccount(); // Fetch data on initial render
   }, []);
   
+
+  console.log(file)
+
   return (
     <React.Fragment>
       <BootstrapDialog
@@ -484,6 +489,7 @@ const Addimmigration = ({ open, handleClose, refreshData }) => {
                   sx={{ width: '100%', maxWidth: '500px' }}
                   placeholder="Document File"
                   type="file"
+                  onChange={(e)=>setFile(e.target.files[0])}
                   variant="outlined"
                 />
               </div>

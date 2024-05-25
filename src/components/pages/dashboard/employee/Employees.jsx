@@ -52,6 +52,7 @@ function Employees() {
         { field: 'department', headerName: 'Department', width: 150 },
         { field: 'designation', headerName: 'Designation', width: 150 },
         { field: 'phone_number', headerName: 'Contact', width: 150 },
+        { field: 'email', headerName: 'Email', width: 150 },
        
           {
             title: "Action",

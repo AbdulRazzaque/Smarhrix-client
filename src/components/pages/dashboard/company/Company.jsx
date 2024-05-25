@@ -58,10 +58,15 @@ function Company() {
     const columns = [
         { field: 'id', headerName: 'S.N', width: 90 },
         { field: 'company_name', headerName: 'Company Name', width: 150 },
-        { field: 'email', headerName: 'Email', width: 150 },
-        { field: 'phone_number', headerName: 'Phone', width: 150 },
-        { field: 'location', headerName: 'City', width: 150 },
-        { field: 'Country', headerName: 'Country', width: 150 },
+        { field: 'admin_name', headerName: 'Admin Name', width: 150 },
+        { field: 'admin_phone_number', headerName: 'Admin Phone Number', width: 150 },
+        { field: 'gst_number', headerName: 'GST Number', width: 150 },
+        { field: 'pancard_number', headerName: 'Pancard Number', width: 150 },
+        { field: 'tan_number', headerName: 'TAN number', width: 150 },
+        { field: 'city', headerName: 'City', width: 150 },
+        { field: 'website', headerName: 'Website', width: 150 },
+       
+      
        
           {
             title: "Action",

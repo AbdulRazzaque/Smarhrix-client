@@ -24,13 +24,13 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1),
   },
   '& .MuiPaper-root': {
-    width: 1500, // Adjust the value to increase or decrease width
+    width: 1200, // Adjust the value to increase or decrease width
   },
 }));
 
  const Info = ({openInfo,handleCloseInfo,columns})=> {
     const rowData = useSelector(state => state.socket.row.params)
-    const filteredColumns = columns.filter(column => column.field !== 'id');
+    const filteredColumns = columns.filter(column => column.field !== 'id' && column.field !== 'Action');
     console.log(rowData,'rowData')
   
 // console.log(data)
@@ -63,9 +63,9 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
       <hr className='mx-3' />
       <div className="row my-2">
         {filteredColumns.map((column, index) => (
-          <div className="col-auto" key={index}>
-            <div className="col-6 my-3 boxtextheading text-uppercase">{column.headerName}</div>
-            <div className="col-6 my-3 boxtextcontent">{rowData[column.field]}</div>
+          <div className="col-6" key={index}>
+            <div className="col-12 my-3 boxtextheading text-uppercase">{column.headerName}</div>
+            <div className="col-12 my-3 boxtextcontent">{rowData ? rowData [column.field]:"" }</div>
           </div>
         ))}
       </div>
